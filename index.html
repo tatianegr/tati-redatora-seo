@@ -271,33 +271,30 @@
     .miniCard h3{ margin:0 0 6px; font-size:15px; }
     .miniCard p{ margin:0; font-size:13px; color:var(--muted); }
 
-    /* ✅ TIMELINE SEM BARRAS (horizontal no desktop, vertical no mobile) */
+    /* ✅ TIMELINE (melhor visual, sem barras) */
     .timelineClean{
       margin-top: 16px;
       border:1px solid var(--line);
       border-radius: var(--radius);
       background: rgba(255,255,255,.02);
-      padding: 18px 16px;
+      padding: 16px 14px;
       overflow: hidden; /* mata qualquer barra */
     }
-
-    /* DESKTOP: circuito horizontal, sem scroll */
     .tlWrap{
       width:100%;
-      overflow: hidden; /* sem barra horizontal/vertical */
-      padding: 10px 0 6px;
+      overflow:hidden; /* sem scroll */
+      padding: 8px 0 4px;
     }
-
     .tl{
-      --stem: 40px;
+      --stem: 26px;
       --dot: 10px;
       --cap: 8px;
 
       position:relative;
       display:grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr)); /* cabe na largura */
-      gap: 18px;
-      height: 176px; /* enxuto */
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+      height: 210px; /* suficiente pra mostrar os de baixo sem “enterrar” */
       padding: 0 8px;
     }
 
@@ -311,16 +308,15 @@
       background: linear-gradient(90deg, rgba(109,106,255,.85), rgba(255,45,141,.85));
       border-radius:999px;
       opacity:.95;
-      box-shadow: 0 0 0 6px rgba(109,106,255,.06);
+      box-shadow: 0 0 0 6px rgba(109,106,255,.05);
     }
 
     .tlItem{
       position:relative;
-      min-width: 0;
       display:flex;
       justify-content:center;
       align-items:center;
-      padding: 0 4px; /* evita label colar nas bordas */
+      min-width: 0;
     }
 
     .tlDot{
@@ -332,9 +328,7 @@
       transform: translate(-50%,-50%);
       border-radius:999px;
       background: linear-gradient(135deg, rgba(255,45,141,.95), rgba(109,106,255,.85));
-      box-shadow:
-        0 0 0 6px rgba(255,45,141,.10),
-        0 10px 24px rgba(0,0,0,.25);
+      box-shadow: 0 0 0 6px rgba(255,45,141,.10);
       z-index:3;
     }
 
@@ -357,41 +351,25 @@
       transform: translateX(-50%);
       background: rgba(255,255,255,.14);
       border: 1px solid rgba(255,255,255,.18);
-      box-shadow: 0 10px 18px rgba(0,0,0,.18);
     }
 
-    .tlItem::before{
-      content:"";
-      position:absolute;
-      top:50%;
-      left:50%;
-      width: 18px;
-      height: 2px;
-      transform: translate(-50%,-50%);
-      background: rgba(255,255,255,.16);
-      border-radius:999px;
-      z-index:1;
-      opacity:.9;
-    }
-
-    /* Label leve (menos card, mais “circuito”) */
+    /* label mais leve (menos cardzão) */
     .tlLabel{
       position:absolute;
-      width: min(200px, 100%); /* nunca estoura a coluna */
-      padding: 10px 10px;
+      width: min(185px, 100%);
+      padding: 9px 10px;
       border-radius: 14px;
-      background: rgba(15,22,41,.22);
+      background: rgba(15,22,41,.18);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255,255,255,.08);
-      box-shadow: 0 14px 34px rgba(0,0,0,.22);
+      box-shadow: 0 12px 28px rgba(0,0,0,.20);
     }
-
     .tlYear{
       display:inline-block;
-      font-size:12px;
+      font-size:11px;
       font-weight:900;
       color: var(--text);
-      padding: 5px 9px;
+      padding: 4px 8px;
       border-radius: 999px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
@@ -400,28 +378,27 @@
     }
     .tlTitle{
       margin:0;
-      font-size:13px;
-      line-height:1.25;
-      letter-spacing:-.2px;
+      font-size:12.5px;
+      line-height:1.2;
+      letter-spacing:-.15px;
     }
     .tlMeta{
       margin:3px 0 0;
-      font-size:12px;
+      font-size:11.5px;
       color: var(--muted);
-      line-height:1.25;
+      line-height:1.2;
     }
 
-    /* alterna cima/baixo */
+    /* alterna cima/baixo, mas mais perto da linha (sem vazio) */
     .tlItem:nth-child(odd) .tlStem{
       top: calc(50% - var(--stem));
       height: var(--stem);
     }
     .tlItem:nth-child(odd) .tlStem::after{ top:-6px; }
     .tlItem:nth-child(odd) .tlLabel{
-      top: calc(50% - var(--stem) - 78px);
+      top: calc(50% - var(--stem) - 64px);
       left:50%;
       transform: translateX(-50%);
-      text-align:left;
     }
 
     .tlItem:nth-child(even) .tlStem{
@@ -430,13 +407,12 @@
     }
     .tlItem:nth-child(even) .tlStem::after{ bottom:-6px; }
     .tlItem:nth-child(even) .tlLabel{
-      top: calc(50% + var(--stem) + 18px);
+      top: calc(50% + var(--stem) + 16px);
       left:50%;
       transform: translateX(-50%);
-      text-align:left;
     }
 
-    /* evita estourar nas pontas (1º e 5º) */
+    /* bordas: 1º e 5º não podem “vazar” */
     .tlItem:first-child .tlLabel{
       left: 0;
       transform: none;
@@ -447,49 +423,26 @@
       transform: none;
     }
 
-    /* MOBILE: vira timeline vertical (sem barra) */
-    @media (max-width: 720px){
-      .tlWrap{ padding: 6px 0 0; }
-      .tl{
-        height: auto;
-        display:flex;
-        flex-direction:column;
-        gap: 14px;
-        padding: 0;
-      }
+    /* mobile: vira vertical (sem scroll e sem esmagar) */
+    @media (max-width: 740px){
+      .tl{ height:auto; display:flex; flex-direction:column; gap:12px; padding:0; }
       .tl::before{
-        left: 18px;
-        right: auto;
-        top: 10px;
-        bottom: 10px;
-        width: 2px;
-        height: auto;
-        transform: none;
+        left: 18px; right:auto;
+        top: 10px; bottom: 10px;
+        width:2px; height:auto;
+        transform:none;
         background: linear-gradient(180deg, rgba(109,106,255,.85), rgba(255,45,141,.85));
-        box-shadow: 0 0 0 6px rgba(109,106,255,.05);
       }
-      .tlItem{
-        justify-content:flex-start;
-        align-items:flex-start;
-        padding: 0 0 0 44px;
-        min-height: 0;
-      }
-      .tlItem::before{ display:none; }
-
-      .tlDot{
-        left: 18px;
-        top: 18px;
-        transform: translate(-50%,-50%);
-      }
+      .tlItem{ justify-content:flex-start; align-items:flex-start; padding-left:44px; }
+      .tlDot{ left:18px; top:18px; transform: translate(-50%,-50%); }
       .tlStem{ display:none; }
-
       .tlLabel{
-        position: relative;
-        top: 0 !important;
-        left: 0 !important;
-        right: auto !important;
-        transform: none !important;
-        width: 100%;
+        position:relative;
+        top:0 !important;
+        left:0 !important;
+        right:auto !important;
+        transform:none !important;
+        width:100%;
       }
     }
 
