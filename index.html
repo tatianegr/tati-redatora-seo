@@ -3,11 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tati Redatora | Portfólio</title>
+
+  <title>Portfólio - Tatiane Gomes</title>
   <meta name="description" content="Redatora SEO | Transformando palavras em sucesso online. Páginas institucionais, páginas de produtos e serviços e artigos para blogs com foco em SEO." />
- <!-- FAVICON (ícone da aba) -->
-<link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/4659/4659027.png">
-<link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/4659/4659027.png">
+
+  <!-- FAVICON (ícone da aba) -->
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/4659/4659027.png?v=2">
+  <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/4659/4659027.png?v=2">
 
   <!-- Se JS estiver ativo, adiciona classe "js" pra habilitar as animações com segurança -->
   <script>
@@ -43,6 +45,7 @@
       line-height:1.6;
     }
     a{color:inherit}
+    img{max-width:100%; height:auto; display:block;} /* defesa contra imagem “gigante” se algum estilo falhar */
     .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 72px}
     .card{
       border:1px solid var(--line);
@@ -123,16 +126,13 @@
     @media (max-width: 920px){ .heroGrid{ grid-template-columns: 1fr; } }
 
     .slider{
-  position:relative;
-  overflow:hidden;
-  border-radius: var(--radius);
-  border:1px solid var(--line);
-  background: rgba(255,255,255,.03);
-
-  /* limita o "tamanho visual" do hero */
-  height: clamp(280px, 44vh, 420px);
-}
-
+      position:relative;
+      overflow:hidden;
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      min-height: 300px;
+    }
     .slides{display:flex; width:100%; transition: transform .45s ease;}
     .slide{
       flex: 0 0 100%;
@@ -231,27 +231,21 @@
       background: rgba(255,255,255,.03);
       color:var(--muted);
       font-size:13px;
+    }
+
+    /* ✅ sem bolinha */
     .tick{
-  width:auto;
-  height:auto;
-  border:0;
-  background:transparent;
-  flex:0 0 auto;
-  display:inline-block;
-  margin-top:1px;
-  line-height:1;
-  font-size:16px;
-}
-
-
-.tick:after{
-  content:"✅";
-  position: static;
-  transform: none;
-  line-height: 1;
-}
-
-
+      width:auto;
+      height:auto;
+      border:0;
+      background:transparent;
+      flex:0 0 auto;
+      display:inline-block;
+      margin-top:1px;
+      line-height:1;
+      font-size:16px;
+    }
+    .tick:after{ content:"✅"; }
 
     /* Services */
     .grid3{ display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; }
@@ -313,7 +307,6 @@
     .coverImg{
       width:100%;
       height:160px;
-      display:block;
       object-fit:cover;
       border-bottom:1px solid var(--line);
       background: rgba(255,255,255,.03);
@@ -468,7 +461,7 @@
       </main>
 
       <aside class="sideBox card reveal" data-reveal="right" style="--d:120ms">
-        <h3>O que você ganha?</h3>
+        <h3>O que você ganha</h3>
         <p>Menos retrabalho. Mais previsibilidade. Texto com decisão editorial.</p>
         <ul class="tickList">
           <li><span class="tick"></span> Conteúdo com foco em SEO e leitura fluida</li>
