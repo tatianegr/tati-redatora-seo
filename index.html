@@ -271,48 +271,40 @@
     .miniCard h3{ margin:0 0 6px; font-size:15px; }
     .miniCard p{ margin:0; font-size:13px; color:var(--muted); }
 
-    /* ✅ TIMELINE (mais “circuito”, menos cardzão) */
+    /* ✅ TIMELINE SEM BARRAS (horizontal no desktop, vertical no mobile) */
     .timelineClean{
       margin-top: 16px;
       border:1px solid var(--line);
       border-radius: var(--radius);
       background: rgba(255,255,255,.02);
       padding: 18px 16px;
+      overflow: hidden; /* mata qualquer barra */
     }
 
+    /* DESKTOP: circuito horizontal, sem scroll */
     .tlWrap{
-      position:relative;
       width:100%;
-      overflow-x: auto;
-      overflow-y: visible;
-      padding: 12px 0 6px;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(255,255,255,.18) transparent;
-      -webkit-overflow-scrolling: touch;
+      overflow: hidden; /* sem barra horizontal/vertical */
+      padding: 10px 0 6px;
     }
-    .tlWrap::-webkit-scrollbar{ height:8px; }
-    .tlWrap::-webkit-scrollbar-track{ background: transparent; }
-    .tlWrap::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.14); border-radius:999px; }
-    .tlWrap::-webkit-scrollbar-thumb:hover{ background: rgba(255,255,255,.18); }
 
     .tl{
       --stem: 40px;
       --dot: 10px;
       --cap: 8px;
+
       position:relative;
-      display:flex;
-      justify-content:space-between;
-      gap: 34px;
-      min-width: 860px; /* só força scroll se precisar */
-      height: 176px;    /* enxuto (sem “caixão”) */
-      padding: 0 10px;
+      display:grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr)); /* cabe na largura */
+      gap: 18px;
+      height: 176px; /* enxuto */
+      padding: 0 8px;
     }
 
-    /* linha central com leve brilho */
     .tl::before{
       content:"";
       position:absolute;
-      left:10px; right:10px;
+      left:8px; right:8px;
       top:50%;
       height:2px;
       transform: translateY(-50%);
@@ -321,32 +313,16 @@
       opacity:.95;
       box-shadow: 0 0 0 6px rgba(109,106,255,.06);
     }
-    /* pontinha “circuito” nas extremidades */
-    .tl::after{
-      content:"";
-      position:absolute;
-      left:10px;
-      top:50%;
-      width: calc(100% - 20px);
-      height: 2px;
-      transform: translateY(-50%);
-      background:
-        radial-gradient(circle at 0 50%, rgba(255,255,255,.20) 0 3px, transparent 4px),
-        radial-gradient(circle at 100% 50%, rgba(255,255,255,.20) 0 3px, transparent 4px);
-      pointer-events:none;
-      opacity:.85;
-    }
 
     .tlItem{
       position:relative;
-      flex: 1 1 0;
-      min-width: 150px;
+      min-width: 0;
       display:flex;
       justify-content:center;
       align-items:center;
+      padding: 0 4px; /* evita label colar nas bordas */
     }
 
-    /* ponto central */
     .tlDot{
       position:absolute;
       top:50%;
@@ -362,7 +338,6 @@
       z-index:3;
     }
 
-    /* haste */
     .tlStem{
       position:absolute;
       left:50%;
@@ -372,8 +347,6 @@
       border-radius:999px;
       z-index:2;
     }
-
-    /* “cap” pequeno na ponta da haste (fica bem circuito) */
     .tlStem::after{
       content:"";
       position:absolute;
@@ -387,17 +360,32 @@
       box-shadow: 0 10px 18px rgba(0,0,0,.18);
     }
 
-    /* label mais leve: sem borda grossa, sem “cardzão” */
+    .tlItem::before{
+      content:"";
+      position:absolute;
+      top:50%;
+      left:50%;
+      width: 18px;
+      height: 2px;
+      transform: translate(-50%,-50%);
+      background: rgba(255,255,255,.16);
+      border-radius:999px;
+      z-index:1;
+      opacity:.9;
+    }
+
+    /* Label leve (menos card, mais “circuito”) */
     .tlLabel{
       position:absolute;
-      width: 200px;
+      width: min(200px, 100%); /* nunca estoura a coluna */
       padding: 10px 10px;
       border-radius: 14px;
-      background: rgba(15,22,41,.28);
+      background: rgba(15,22,41,.22);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255,255,255,.08);
       box-shadow: 0 14px 34px rgba(0,0,0,.22);
     }
+
     .tlYear{
       display:inline-block;
       font-size:12px;
@@ -423,14 +411,12 @@
       line-height:1.25;
     }
 
-    /* alterna cima/baixo (circuito) + cap na ponta correta */
+    /* alterna cima/baixo */
     .tlItem:nth-child(odd) .tlStem{
       top: calc(50% - var(--stem));
       height: var(--stem);
     }
-    .tlItem:nth-child(odd) .tlStem::after{
-      top: -6px; /* cap acima */
-    }
+    .tlItem:nth-child(odd) .tlStem::after{ top:-6px; }
     .tlItem:nth-child(odd) .tlLabel{
       top: calc(50% - var(--stem) - 78px);
       left:50%;
@@ -442,9 +428,7 @@
       top: 50%;
       height: var(--stem);
     }
-    .tlItem:nth-child(even) .tlStem::after{
-      bottom: -6px; /* cap abaixo */
-    }
+    .tlItem:nth-child(even) .tlStem::after{ bottom:-6px; }
     .tlItem:nth-child(even) .tlLabel{
       top: calc(50% + var(--stem) + 18px);
       left:50%;
@@ -452,24 +436,61 @@
       text-align:left;
     }
 
-    /* um “braço” curtinho horizontal saindo do ponto (dá o clima de circuito) */
-    .tlItem::before{
-      content:"";
-      position:absolute;
-      top:50%;
-      left:50%;
-      width: 22px;
-      height: 2px;
-      transform: translate(-50%,-50%);
-      background: rgba(255,255,255,.16);
-      border-radius:999px;
-      z-index:1;
-      opacity:.9;
+    /* evita estourar nas pontas (1º e 5º) */
+    .tlItem:first-child .tlLabel{
+      left: 0;
+      transform: none;
+    }
+    .tlItem:last-child .tlLabel{
+      left: auto;
+      right: 0;
+      transform: none;
     }
 
-    @media (max-width: 560px){
-      .tl{ min-width: 900px; }
-      .tlLabel{ width: 190px; }
+    /* MOBILE: vira timeline vertical (sem barra) */
+    @media (max-width: 720px){
+      .tlWrap{ padding: 6px 0 0; }
+      .tl{
+        height: auto;
+        display:flex;
+        flex-direction:column;
+        gap: 14px;
+        padding: 0;
+      }
+      .tl::before{
+        left: 18px;
+        right: auto;
+        top: 10px;
+        bottom: 10px;
+        width: 2px;
+        height: auto;
+        transform: none;
+        background: linear-gradient(180deg, rgba(109,106,255,.85), rgba(255,45,141,.85));
+        box-shadow: 0 0 0 6px rgba(109,106,255,.05);
+      }
+      .tlItem{
+        justify-content:flex-start;
+        align-items:flex-start;
+        padding: 0 0 0 44px;
+        min-height: 0;
+      }
+      .tlItem::before{ display:none; }
+
+      .tlDot{
+        left: 18px;
+        top: 18px;
+        transform: translate(-50%,-50%);
+      }
+      .tlStem{ display:none; }
+
+      .tlLabel{
+        position: relative;
+        top: 0 !important;
+        left: 0 !important;
+        right: auto !important;
+        transform: none !important;
+        width: 100%;
+      }
     }
 
     /* Articles */
