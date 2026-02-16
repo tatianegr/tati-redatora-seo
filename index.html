@@ -115,7 +115,7 @@
       font-size:16px;
     }
 
-    /* Hero slider (3 banners) */
+    /* Hero slider */
     .heroGrid{
       display:grid;
       grid-template-columns: 1.25fr .75fr;
@@ -131,7 +131,7 @@
       border-radius: var(--radius);
       border:1px solid var(--line);
       background: rgba(255,255,255,.03);
-      min-height: 290px;
+      min-height: 300px;
     }
     .slides{
       display:flex;
@@ -142,15 +142,13 @@
       flex: 0 0 100%;
       width: 100%;
       padding:24px;
+      padding-bottom: 78px; /* espaço pros controles não encostarem nos botões */
       position:relative;
       display:flex;
       flex-direction:column;
       justify-content:space-between;
       gap:12px;
-      /* espaço pro controle do slider não ficar em cima dos botões */
-      padding-bottom: 72px;
     }
-
     .slide:before{
       content:"";
       position:absolute;
@@ -162,8 +160,6 @@
       z-index:0;
     }
     .slide > *{ position:relative; z-index:1; }
-
-    /* ✅ removi “Serviço 1/2/3”: o kicker agora é neutro */
     .kicker{
       display:inline-flex; align-items:center; gap:8px;
       font-size:12px; color:var(--muted);
@@ -173,7 +169,6 @@
       width: fit-content;
     }
     .dot{ width:8px; height:8px; border-radius:999px; background: var(--ok); box-shadow: 0 0 0 6px rgba(46,229,157,.12); }
-
     h1{
       margin:6px 0 6px;
       font-size:40px;
@@ -189,7 +184,6 @@
     }
     .ctaRow{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
 
-    /* ✅ controles do slider não sobrepõem os botões */
     .sliderNav{
       position:absolute;
       left:14px; right:14px; bottom:14px;
@@ -266,19 +260,13 @@
     /* Services grid + icons */
     .grid3{ display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; }
     @media (max-width:900px){ .grid3{ grid-template-columns:1fr } }
-
     .miniCard{
       border:1px solid var(--line);
       background: rgba(255,255,255,.03);
       border-radius: var(--radius);
       padding:16px;
     }
-    .miniHead{
-      display:flex;
-      align-items:flex-start;
-      gap:10px;
-      margin-bottom:8px;
-    }
+    .miniHead{ display:flex; align-items:flex-start; gap:10px; }
     .miniIcon{
       width:36px; height:36px;
       border-radius:14px;
@@ -296,52 +284,56 @@
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-    .miniCard h3{ margin:0; font-size:15px; }
+    .miniCard h3{ margin:0 0 6px; font-size:15px; }
     .miniCard p{ margin:0; font-size:13px; color:var(--muted); }
 
-    /* Timeline (formato circuito) */
+    /* ✅ Timeline circuito (fix: nada cortado) */
     .timelineWrap{
-      margin-top: 14px;
+      margin-top: 16px;
       border:1px solid var(--line);
       background: rgba(255,255,255,.02);
       border-radius: var(--radius);
-      overflow:hidden;
+      padding: 14px 0;
     }
+
+    /* scroll só horizontal, vertical sempre visível */
     .timelineScroll{
-      overflow:auto;
-      padding:18px 16px;
+      overflow-x:auto;
+      overflow-y:visible;
+      padding: 10px 16px 18px;
     }
     .timelineScroll::-webkit-scrollbar{ height:10px; }
     .timelineScroll::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.12); border-radius:999px; }
 
     .timelineCircuit{
       --nodeSize: 12px;
-      --stem: 46px;
-      --gap: 120px;
+      --stem: 58px;
+      --gap: 150px;
       position:relative;
-      min-width: 860px;
+      height: 320px;            /* ✅ altura real do “circuito” */
+      min-width: 980px;         /* cabe 5 marcos com espaço */
       display:flex;
       align-items:center;
       gap: var(--gap);
-      padding: 18px 10px;
+      padding: 0 16px;
     }
     .timelineCircuit::before{
       content:"";
       position:absolute;
-      left:0; right:0;
+      left:16px; right:16px;
       top:50%;
       height:2px;
       transform: translateY(-50%);
       background: linear-gradient(90deg, rgba(109,106,255,.75), rgba(255,45,141,.75));
-      opacity:.9;
+      opacity:.95;
       border-radius:999px;
     }
 
     .tNode{
       position:relative;
+      flex:0 0 auto;
       width: 1px;
       height: 1px;
-      flex:0 0 auto;
     }
     .tDot{
       width: var(--nodeSize);
@@ -352,15 +344,15 @@
       left:50%;
       top:50%;
       transform: translate(-50%,-50%);
-      box-shadow: 0 0 0 6px rgba(255,45,141,.12);
+      box-shadow: 0 0 0 7px rgba(255,45,141,.12);
       z-index:2;
     }
     .tDot::after{
       content:"";
       position:absolute;
-      inset:-4px;
+      inset:-5px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.20);
     }
 
     .tStem{
@@ -370,16 +362,17 @@
       background: rgba(255,255,255,.18);
       transform: translateX(-50%);
       z-index:1;
+      border-radius:999px;
     }
 
     .tCard{
       position:absolute;
-      width: 230px;
+      width: 250px;
       border:1px solid var(--line);
-      background: rgba(17,26,47,.55);
+      background: rgba(17,26,47,.62);
       border-radius: 16px;
       padding: 12px 12px;
-      box-shadow: 0 18px 60px rgba(0,0,0,.20);
+      box-shadow: 0 18px 60px rgba(0,0,0,.22);
     }
     .tYear{
       font-weight:900;
@@ -391,7 +384,7 @@
       border-radius: 999px;
       border:1px solid var(--line);
       background: rgba(255,255,255,.04);
-      margin-bottom:6px;
+      margin-bottom:8px;
       white-space:nowrap;
     }
     .tTitle{
@@ -405,14 +398,13 @@
       font-size:12px;
     }
 
-    /* alterna cima/baixo como na referência */
+    /* alternância cima/baixo */
     .timelineCircuit .tNode:nth-child(odd) .tStem{
       top: 50%;
       height: var(--stem);
-      transform: translate(-50%, 0);
     }
     .timelineCircuit .tNode:nth-child(odd) .tCard{
-      top: calc(50% + var(--stem) + 10px);
+      top: calc(50% + var(--stem) + 12px);
       left: 50%;
       transform: translateX(-50%);
     }
@@ -420,12 +412,20 @@
     .timelineCircuit .tNode:nth-child(even) .tStem{
       bottom: 50%;
       height: var(--stem);
-      transform: translate(-50%, 0);
     }
     .timelineCircuit .tNode:nth-child(even) .tCard{
-      bottom: calc(50% + var(--stem) + 10px);
+      bottom: calc(50% + var(--stem) + 12px);
       left: 50%;
       transform: translateX(-50%);
+    }
+
+    @media (max-width: 520px){
+      .timelineCircuit{
+        height: 340px;
+        --gap: 140px;
+        min-width: 980px;
+      }
+      .tCard{ width: 240px; }
     }
 
     /* Articles carousel */
@@ -509,12 +509,10 @@
       <a class="btn primary" href="#contato">Pedir orçamento</a>
     </header>
 
-    <!-- HERO: slider + box lateral -->
     <div class="heroGrid">
       <main class="slider" aria-label="Banners de serviços">
         <div class="slides" id="slides">
 
-          <!-- Banner 1 -->
           <div class="slide">
             <div class="kicker"><span class="dot"></span> Páginas institucionais</div>
             <div>
@@ -530,7 +528,6 @@
             </div>
           </div>
 
-          <!-- Banner 2 -->
           <div class="slide">
             <div class="kicker"><span class="dot"></span> Produtos e serviços</div>
             <div>
@@ -545,7 +542,6 @@
             </div>
           </div>
 
-          <!-- Banner 3 -->
           <div class="slide">
             <div class="kicker"><span class="dot"></span> Artigos para blog</div>
             <div>
@@ -589,7 +585,6 @@
       </aside>
     </div>
 
-    <!-- Serviços -->
     <section class="card pad" id="servicos">
       <h2 class="sectionTitle">Serviços</h2>
 
@@ -597,7 +592,6 @@
         <div class="miniCard">
           <div class="miniHead">
             <div class="miniIcon" aria-hidden="true">
-              <!-- ícone: prédio (institucional) -->
               <svg viewBox="0 0 24 24">
                 <path d="M4 20V6a2 2 0 0 1 2-2h6v16" />
                 <path d="M10 8h-2" />
@@ -619,7 +613,6 @@
         <div class="miniCard">
           <div class="miniHead">
             <div class="miniIcon" aria-hidden="true">
-              <!-- ícone: tag (produtos/serviços) -->
               <svg viewBox="0 0 24 24">
                 <path d="M20 13l-7 7-11-11V2h7z" />
                 <path d="M7.5 7.5h.01" />
@@ -635,7 +628,6 @@
         <div class="miniCard">
           <div class="miniHead">
             <div class="miniIcon" aria-hidden="true">
-              <!-- ícone: arquivo (artigos) -->
               <svg viewBox="0 0 24 24">
                 <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
                 <path d="M14 2v6h6" />
@@ -652,7 +644,6 @@
       </div>
     </section>
 
-    <!-- Sobre mim + Linha do tempo (formato circuito) -->
     <section class="card pad" id="sobre">
       <h2 class="sectionTitle">Sobre mim</h2>
 
@@ -720,7 +711,6 @@
       </div>
     </section>
 
-    <!-- Artigos em carrossel com capa REAL -->
     <section class="card pad" id="portfolio">
       <h2 class="sectionTitle">Artigos (LinkedIn)</h2>
       <p class="lead" style="margin-top:-4px">
@@ -792,10 +782,8 @@
 
         </div>
       </div>
-      <!-- ✅ removido o texto “Dica: dá pra arrastar…” -->
     </section>
 
-    <!-- Contato -->
     <section class="card pad" id="contato">
       <h2 class="sectionTitle">Contato</h2>
       <p class="lead">Me mande: nicho/empresa, objetivo, páginas ou temas, volume mensal e prazo. Eu respondo com uma proposta objetiva.</p>
@@ -823,10 +811,8 @@
   </div>
 
   <script>
-    // Ano
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Slider (3 banners)
     const slides = document.getElementById("slides");
     const dots = Array.from(document.querySelectorAll(".dotBtn"));
     const prev = document.getElementById("prev");
@@ -854,7 +840,6 @@
     prev.addEventListener("click", () => { go(index - 1); start(); });
     next.addEventListener("click", () => { go(index + 1); start(); });
 
-    // Pausa ao passar o mouse
     const slider = document.querySelector(".slider");
     slider.addEventListener("mouseenter", stop);
     slider.addEventListener("mouseleave", start);
