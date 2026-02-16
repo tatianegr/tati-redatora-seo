@@ -10,16 +10,19 @@
   <style>
     :root{
       --bg:#0b0f19;
-      --panel:#111a2f;
+      --panel:#101a33;
+      --panel2:#0f1629;
       --text:#eaf0ff;
       --muted:#aeb9d8;
       --line:rgba(255,255,255,.10);
       --accent:#ff2d8d;
       --accent2:#6d6aff;
+      --ok:#2ee59d;
       --radius:18px;
-      --max:1020px;
+      --max:1080px;
       --shadow: 0 18px 60px rgba(0,0,0,.35);
     }
+
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
@@ -34,18 +37,21 @@
     }
     a{color:inherit}
     .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 72px}
-
-    header{
+    .card{
       border:1px solid var(--line);
-      background: rgba(17,26,47,.65);
-      backdrop-filter: blur(12px);
-      border-radius: calc(var(--radius) + 6px);
-      padding:14px 16px;
-      display:flex; justify-content:space-between; align-items:center; gap:12px;
-      position: sticky; top: 14px; z-index: 10;
+      background: rgba(17,26,47,.62);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius);
       box-shadow: var(--shadow);
     }
-    .brand{display:flex; align-items:center; gap:10px; min-width: 220px}
+
+    /* Header */
+    header{
+      position: sticky; top: 14px; z-index: 10;
+      display:flex; justify-content:space-between; align-items:center; gap:12px;
+      padding:14px 16px;
+    }
+    .brand{display:flex; align-items:center; gap:10px; min-width: 240px}
     .logo{
       width:38px; height:38px; border-radius:12px;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
@@ -55,31 +61,8 @@
     .brand b{font-size:14px}
     .brand small{display:block; color:var(--muted); font-size:12px; margin-top:2px}
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:10px 14px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.05);
-      text-decoration:none;
-      font-weight:700;
-      transition: .15s transform, .15s filter, .15s background;
-    }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.07); }
-    .btn.primary{
-      border:none;
-      background: linear-gradient(135deg, rgba(255,45,141,.95), rgba(109,106,255,.85));
-      box-shadow: 0 18px 60px rgba(255,45,141,.16);
-    }
-    .btn.primary:hover{ filter:saturate(1.05); }
-
     .nav{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:center;
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:center;
     }
     .nav a{
       color: var(--muted);
@@ -89,76 +72,252 @@
       border-radius: 12px;
       border: 1px solid transparent;
     }
-    .nav a:hover{
-      color: var(--text);
-      border-color: var(--line);
-      background: rgba(255,255,255,.03);
-    }
-    @media (max-width: 920px){
-      .nav{display:none}
-    }
+    .nav a:hover{ color:var(--text); border-color:var(--line); background:rgba(255,255,255,.03); }
+    @media (max-width: 920px){ .nav{display:none} }
 
-    .hero{
-      margin-top:18px;
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:14px;
       border:1px solid var(--line);
-      background: rgba(17,26,47,.55);
-      border-radius: var(--radius);
-      padding:24px;
-      box-shadow: var(--shadow);
+      background: rgba(255,255,255,.05);
+      text-decoration:none;
+      font-weight:800;
+      transition: .15s transform, .15s filter, .15s background;
+      user-select:none;
+      cursor:pointer;
+      white-space:nowrap;
     }
-    h1{margin:0 0 10px; font-size:40px; line-height:1.1; letter-spacing:-.6px}
-    @media (max-width:520px){ h1{font-size:32px} }
-    .lead{margin:0 0 14px; color:var(--muted); font-size:16px}
-
-    .row{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
-
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:12px;
-      margin-top:16px;
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.07); }
+    .btn.primary{
+      border:none;
+      background: linear-gradient(135deg, rgba(255,45,141,.95), rgba(109,106,255,.85));
+      box-shadow: 0 18px 60px rgba(255,45,141,.16);
     }
-    @media (max-width:900px){ .grid{grid-template-columns:1fr} }
+    .btn.primary:hover{ filter:saturate(1.05); }
+    .btn.ghost{ background: rgba(255,255,255,.03); }
 
-    .card{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      border-radius: var(--radius);
-      padding:16px;
-    }
-    .card h2{margin:0 0 6px; font-size:16px; color:var(--text)}
-    .card p{margin:0; font-size:13px; color: var(--muted)}
-
-    section{margin-top:16px}
+    /* Sections */
+    section{ margin-top:16px; }
+    .pad{ padding:22px; }
     .sectionTitle{
       margin:0 0 12px;
       font-size:15px;
       color:var(--text);
       letter-spacing:-.2px;
     }
+    .lead{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:16px;
+    }
 
-    .list{display:grid; gap:10px}
-    .item{
+    /* Hero slider (3 banners) */
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:12px;
+      margin-top:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){ .heroGrid{ grid-template-columns: 1fr; } }
+
+    .slider{
+      position:relative;
+      overflow:hidden;
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      min-height: 260px;
+    }
+    .slides{
+      display:flex;
+      width:300%;
+      transition: transform .45s ease;
+    }
+    .slide{
+      width:100%;
+      padding:24px;
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .slide:before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(700px 260px at 10% 10%, rgba(109,106,255,.24), transparent 60%),
+        radial-gradient(700px 260px at 90% 30%, rgba(255,45,141,.18), transparent 60%);
+      opacity:.9;
+      z-index:0;
+    }
+    .slide > *{ position:relative; z-index:1; }
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:12px; color:var(--muted);
+      border:1px solid var(--line);
+      padding:6px 10px; border-radius:999px;
+      background: rgba(255,255,255,.03);
+      width: fit-content;
+    }
+    .dot{ width:8px; height:8px; border-radius:999px; background: var(--ok); box-shadow: 0 0 0 6px rgba(46,229,157,.12); }
+    h1{
+      margin:6px 0 6px;
+      font-size:40px;
+      line-height:1.1;
+      letter-spacing:-.7px;
+    }
+    @media (max-width:520px){ h1{font-size:32px} }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+      max-width: 60ch;
+    }
+    .ctaRow{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+
+    .sliderNav{
+      position:absolute;
+      left:14px; right:14px; bottom:14px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      z-index:2;
+      pointer-events:none;
+    }
+    .dots{ display:flex; gap:8px; pointer-events:auto; }
+    .dotBtn{
+      width:10px; height:10px; border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.08);
+      cursor:pointer;
+      padding:0;
+    }
+    .dotBtn.active{
+      background: linear-gradient(135deg, rgba(255,45,141,.95), rgba(109,106,255,.85));
+      border-color: transparent;
+    }
+    .arrows{ display:flex; gap:8px; pointer-events:auto; }
+    .iconBtn{
+      width:38px; height:38px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+    }
+    .iconBtn:hover{ background: rgba(255,255,255,.09); }
+
+    /* Side info */
+    .sideBox{
       border:1px solid var(--line);
       background: rgba(255,255,255,.03);
       border-radius: var(--radius);
-      padding:14px 16px;
+      padding:18px;
+      height: 100%;
+    }
+    .sideBox h3{ margin:0 0 8px; font-size:14px; }
+    .sideBox p{ margin:0; color:var(--muted); font-size:13px; }
+    .tickList{ list-style:none; padding:0; margin:12px 0 0; display:grid; gap:8px; }
+    .tickList li{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:10px 10px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:13px;
+    }
+    .tick{
+      width:18px; height:18px; border-radius:8px;
+      background: rgba(46,229,157,.12);
+      border:1px solid rgba(46,229,157,.25);
+      flex:0 0 auto;
+      position:relative;
+      margin-top:1px;
+    }
+    .tick:after{
+      content:"";
+      position:absolute;
+      left:5px; top:3px;
+      width:6px; height:10px;
+      border:2px solid var(--ok);
+      border-top:0; border-left:0;
+      transform: rotate(45deg);
+    }
+
+    /* Services grid */
+    .grid3{ display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; }
+    @media (max-width:900px){ .grid3{ grid-template-columns:1fr } }
+    .miniCard{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius);
+      padding:16px;
+    }
+    .miniCard h3{ margin:0 0 6px; font-size:15px; }
+    .miniCard p{ margin:0; font-size:13px; color:var(--muted); }
+
+    /* Articles carousel */
+    .carousel{
+      position:relative;
+      overflow:hidden;
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .track{
       display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:14px;
-      flex-wrap:wrap;
+      gap:12px;
+      padding:14px;
+      overflow:auto;
+      scroll-snap-type:x mandatory;
+      scroll-behavior:smooth;
     }
-    .item b{display:block; margin-bottom:4px}
-    .item .meta{color:var(--muted); font-size:13px}
-    .item a{font-weight:700}
-
-    .note{
-      color: var(--muted);
-      font-size: 13px;
-      margin: 8px 0 0;
+    .track::-webkit-scrollbar{ height:10px; }
+    .track::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.12); border-radius:999px; }
+    .aCard{
+      flex: 0 0 320px;
+      scroll-snap-align:start;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(17,26,47,.45);
+      overflow:hidden;
     }
+    .cover{
+      height: 150px;
+      padding:14px;
+      display:flex;
+      align-items:flex-end;
+      background:
+        radial-gradient(320px 160px at 20% 20%, rgba(109,106,255,.35), transparent 60%),
+        radial-gradient(340px 180px at 85% 35%, rgba(255,45,141,.28), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border-bottom:1px solid var(--line);
+    }
+    .cover b{
+      font-size:14px;
+      line-height:1.25;
+      letter-spacing:-.2px;
+      display:block;
+      max-height: 3.1em;
+      overflow:hidden;
+    }
+    .aBody{ padding:14px; }
+    .aBody p{ margin:8px 0 12px; color:var(--muted); font-size:13px; }
+    .aMeta{ color:var(--muted); font-size:12px; }
+    .aActions{ display:flex; gap:10px; flex-wrap:wrap; }
 
+    /* Footer */
     footer{
       margin-top:22px;
       color:var(--muted);
@@ -175,7 +334,7 @@
 <body>
   <div class="wrap" id="top">
 
-    <header>
+    <header class="card">
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
         <div>
@@ -186,108 +345,263 @@
 
       <nav class="nav" aria-label="Navegação">
         <a href="#servicos">Serviços</a>
-        <a href="#portfolio">Portfólio</a>
+        <a href="#sobre">Sobre mim</a>
+        <a href="#portfolio">Artigos</a>
         <a href="#contato">Contato</a>
       </nav>
 
       <a class="btn primary" href="#contato">Pedir orçamento</a>
     </header>
 
-    <main class="hero">
-      <h1>Conteúdo SEO que ranqueia<br/>sem perder a voz humana.</h1>
+    <!-- HERO: slider + box lateral -->
+    <div class="heroGrid">
+      <main class="slider" aria-label="Banners de serviços">
+        <div class="slides" id="slides">
 
+          <!-- Banner 1 -->
+          <div class="slide">
+            <div class="kicker"><span class="dot"></span> Serviço 1 • Páginas institucionais</div>
+            <div>
+              <h1>Site bonito é ótimo.<br/>Mas precisa dizer algo.</h1>
+              <p class="sub">
+                Texto institucional com posicionamento e clareza, sem “sobre nós genérico”.
+                Bom pra marca e bom pra busca.
+              </p>
+            </div>
+            <div class="ctaRow">
+              <a class="btn primary" href="#contato">Quero orçamento</a>
+              <a class="btn ghost" href="#servicos">Ver serviços</a>
+            </div>
+          </div>
+
+          <!-- Banner 2 -->
+          <div class="slide">
+            <div class="kicker"><span class="dot"></span> Serviço 2 • Produtos e serviços</div>
+            <div>
+              <h1>Página que ranqueia<br/>e ajuda de verdade.</h1>
+              <p class="sub">
+                Conteúdo pensado pra busca e conversão: argumento, prova e CTA. Sem textão que enrola.
+              </p>
+            </div>
+            <div class="ctaRow">
+              <a class="btn primary" href="#contato">Falar no WhatsApp</a>
+              <a class="btn ghost" href="#portfolio">Ver artigos</a>
+            </div>
+          </div>
+
+          <!-- Banner 3 -->
+          <div class="slide">
+            <div class="kicker"><span class="dot"></span> Serviço 3 • Artigos para blog</div>
+            <div>
+              <h1>SEO com ritmo<br/>de leitura.</h1>
+              <p class="sub">
+                Artigos com estrutura, intenção de busca e linguagem humana. Conteúdo pronto pra publicar.
+              </p>
+            </div>
+            <div class="ctaRow">
+              <a class="btn primary" href="#contato">Pedir orçamento</a>
+              <a class="btn ghost" href="#sobre">Sobre mim</a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="sliderNav">
+          <div class="dots" aria-label="Navegação do slider">
+            <button class="dotBtn active" data-go="0" aria-label="Banner 1"></button>
+            <button class="dotBtn" data-go="1" aria-label="Banner 2"></button>
+            <button class="dotBtn" data-go="2" aria-label="Banner 3"></button>
+          </div>
+
+          <div class="arrows">
+            <button class="iconBtn" id="prev" aria-label="Anterior">‹</button>
+            <button class="iconBtn" id="next" aria-label="Próximo">›</button>
+          </div>
+        </div>
+      </main>
+
+      <aside class="sideBox card">
+        <h3>O que você ganha</h3>
+        <p>Menos retrabalho. Mais previsibilidade. Texto com decisão editorial.</p>
+        <ul class="tickList">
+          <li><span class="tick"></span> Conteúdo com foco em SEO e leitura fluida</li>
+          <li><span class="tick"></span> Estrutura escaneável, sem cara de genérico</li>
+          <li><span class="tick"></span> Entrega pronta pra publicar</li>
+          <li><span class="tick"></span> Comunicação clara (sem mistério)</li>
+        </ul>
+      </aside>
+    </div>
+
+    <!-- Serviços (como você descreveu) -->
+    <section class="card pad" id="servicos">
+      <h2 class="sectionTitle">Serviços</h2>
+
+      <div class="grid3">
+        <div class="miniCard">
+          <h3>Páginas institucionais</h3>
+          <p>Conteúdo para apresentar a empresa com clareza, tom certo e posicionamento.</p>
+        </div>
+        <div class="miniCard">
+          <h3>Páginas de produtos e serviços</h3>
+          <p>Texto pensado para busca e conversão, com argumento, prova e CTA.</p>
+        </div>
+        <div class="miniCard">
+          <h3>Artigos para blog</h3>
+          <p>Artigos com estrutura e intenção de busca, prontos para publicar.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sobre mim (adaptado do Google Sites) -->
+    <section class="card pad" id="sobre">
+      <h2 class="sectionTitle">Sobre mim</h2>
       <p class="lead">
-        Escrevo conteúdos para páginas institucionais, páginas de produtos e serviços e artigos para blogs,
-        sempre com foco em SEO, clareza e intenção. Sem texto inflado, sem “encheção”, sem cara de genérico.
+        Sou Tatiane Gomes, jornalista formada pela USJT (2017) e pós-graduada em Assessoria de Comunicação e Mídias Sociais (2020).
+        Desde 2015, atuo com produção de conteúdo estratégico para posicionamento de marcas, em projetos B2B e B2C. :contentReference[oaicite:2]{index=2}
+      </p>
+      <p class="lead">
+        Meu foco é entender o que cada cliente precisa dizer, para quem, e com qual tom.
+        Aí eu transformo isso em conteúdo otimizado com técnicas de SEO, pensado para melhorar visibilidade, alcance e engajamento
+        sem sacrificar a clareza. :contentReference[oaicite:3]{index=3}
+      </p>
+      <p class="lead" style="margin-bottom:0">
+        Também tenho certificações na área de Comunicação e Marketing e busco atualização constante.
+        Meu objetivo é ajudar empresas a criarem uma conexão autêntica com o público usando as palavras como ferramenta principal. :contentReference[oaicite:4]{index=4}
+      </p>
+    </section>
+
+    <!-- Artigos em carrossel com capa + descritivo -->
+    <section class="card pad" id="portfolio">
+      <h2 class="sectionTitle">Artigos (LinkedIn)</h2>
+      <p class="lead" style="margin-top:-4px">
+        Um recorte do que eu escrevo quando o assunto é SEO, escrita e vida real do conteúdo (a parte que ninguém coloca no “briefing bonitinho”).
       </p>
 
-      <div class="row" id="contato">
-        <a class="btn primary"
-           href="https://wa.me/5511976625245?text=Oi%20Tati!%20Quero%20um%20or%C3%A7amento%20de%20conte%C3%BAdo%20com%20foco%20em%20SEO."
-           target="_blank" rel="noreferrer">Falar no WhatsApp</a>
+      <div class="carousel" aria-label="Carrossel de artigos">
+        <div class="track" id="articleTrack">
+
+          <article class="aCard">
+            <div class="cover"><b>Revisão virou mutirão de sinônimo (e o texto pagou a conta)</b></div>
+            <div class="aBody">
+              <div class="aMeta">Artigo • LinkedIn</div>
+              <p>Sobre quando “melhorar o texto” vira só troca de palavra e o objetivo original morre no caminho.</p>
+              <div class="aActions">
+                <a class="btn primary" target="_blank" rel="noreferrer"
+                   href="https://www.linkedin.com/pulse/revis%C3%A3o-virou-mutir%C3%A3o-de-sin%C3%B4nimo-e-o-texto-pagou-conta-tatiane-gomes-www8f/">Abrir</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="aCard">
+            <div class="cover"><b>SEO e criatividade: uma dupla dinâmica para escrita otimizada</b></div>
+            <div class="aBody">
+              <div class="aMeta">Artigo • LinkedIn</div>
+              <p>Como unir técnica de SEO com escrita boa de verdade, sem virar texto engessado e previsível.</p>
+              <div class="aActions">
+                <a class="btn primary" target="_blank" rel="noreferrer"
+                   href="https://www.linkedin.com/pulse/seo-e-criatividade-uma-dupla-din%25C3%25A2mica-para-escrita-otimizada-gomes">Abrir</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="aCard">
+            <div class="cover"><b>Redação para SEO: por que é tão complexa?</b></div>
+            <div class="aBody">
+              <div class="aMeta">Artigo • LinkedIn</div>
+              <p>O que faz SEO dar trabalho de verdade: intenção, recorte, estrutura e escolha editorial.</p>
+              <div class="aActions">
+                <a class="btn primary" target="_blank" rel="noreferrer"
+                   href="https://www.linkedin.com/pulse/reda%25C3%25A7%25C3%25A3o-para-seo-por-que-t%25C3%25A3o-complexa-tatiane-gomes">Abrir</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="aCard">
+            <div class="cover"><b>Página que ranqueia e não ajuda</b></div>
+            <div class="aBody">
+              <div class="aMeta">Artigo • LinkedIn</div>
+              <p>Quando a página até aparece no Google, mas não resolve nada pro leitor (e não converte).</p>
+              <div class="aActions">
+                <a class="btn primary" target="_blank" rel="noreferrer"
+                   href="https://www.linkedin.com/pulse/p%25C3%25A1gina-que-ranqueia-e-n%25C3%25A3o-ajuda-tatiane-gomes-tctof">Abrir</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <p class="lead" style="margin-top:12px; margin-bottom:0; font-size:13px">
+        Dica: dá pra arrastar pro lado (mouse/trackpad) e ver os cards como carrossel.
+      </p>
+    </section>
+
+    <!-- Contato -->
+    <section class="card pad" id="contato">
+      <h2 class="sectionTitle">Contato</h2>
+      <p class="lead">Me mande: nicho/empresa, objetivo, páginas ou temas, volume mensal e prazo. Eu respondo com uma proposta objetiva.</p>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn primary" target="_blank" rel="noreferrer"
+           href="https://wa.me/5511976625245?text=Oi%20Tati!%20Quero%20um%20or%C3%A7amento%20de%20conte%C3%BAdo%20com%20foco%20em%20SEO.">
+          Falar no WhatsApp
+        </a>
 
         <a class="btn" href="mailto:gomesrodrigues1995@gmail.com">Enviar e-mail</a>
 
-        <a class="btn"
-           href="https://www.linkedin.com/in/tatiane-gomes-rodrigues/"
-           target="_blank" rel="noreferrer">LinkedIn</a>
-      </div>
-
-      <p class="note">
-        Me mande: nicho/empresa, objetivo (tráfego/leads/vendas), páginas ou temas, volume mensal e prazo. Eu respondo com uma proposta objetiva.
-      </p>
-
-      <section id="servicos">
-        <div class="grid">
-          <div class="card">
-            <h2>Páginas institucionais</h2>
-            <p>Texto que apresenta a empresa com clareza, posicionamento e consistência, sem cair no “sobre nós” genérico.</p>
-          </div>
-          <div class="card">
-            <h2>Páginas de produtos e serviços</h2>
-            <p>Conteúdo pensado para busca e conversão, com argumento, prova e CTA bem colocado.</p>
-          </div>
-          <div class="card">
-            <h2>Artigos para blog</h2>
-            <p>Artigos com estrutura e ritmo de leitura, alinhados à intenção de busca e prontos para publicar.</p>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <section class="hero" id="portfolio" style="margin-top:16px">
-      <h2 class="sectionTitle">Portfólio (artigos no LinkedIn)</h2>
-
-      <div class="list">
-        <div class="item">
-          <div>
-            <b>Revisão virou mutirão de sinônimo (e o texto pagou a conta)</b>
-            <div class="meta">Artigo • LinkedIn</div>
-          </div>
-          <a href="https://www.linkedin.com/pulse/revis%C3%A3o-virou-mutir%C3%A3o-de-sin%C3%B4nimo-e-o-texto-pagou-conta-tatiane-gomes-www8f/"
-             target="_blank" rel="noreferrer">Abrir</a>
-        </div>
-
-        <div class="item">
-          <div>
-            <b>SEO e criatividade: uma dupla dinâmica para escrita otimizada</b>
-            <div class="meta">Artigo • LinkedIn</div>
-          </div>
-          <a href="https://www.linkedin.com/pulse/seo-e-criatividade-uma-dupla-din%25C3%25A2mica-para-escrita-otimizada-gomes"
-             target="_blank" rel="noreferrer">Abrir</a>
-        </div>
-
-        <div class="item">
-          <div>
-            <b>Redação para SEO: por que é tão complexa?</b>
-            <div class="meta">Artigo • LinkedIn</div>
-          </div>
-          <a href="https://www.linkedin.com/pulse/reda%25C3%25A7%25C3%25A3o-para-seo-por-que-t%25C3%25A3o-complexa-tatiane-gomes"
-             target="_blank" rel="noreferrer">Abrir</a>
-        </div>
-
-        <div class="item">
-          <div>
-            <b>Página que ranqueia e não ajuda</b>
-            <div class="meta">Artigo • LinkedIn</div>
-          </div>
-          <a href="https://www.linkedin.com/pulse/p%25C3%25A1gina-que-ranqueia-e-n%25C3%25A3o-ajuda-tatiane-gomes-tctof"
-             target="_blank" rel="noreferrer">Abrir</a>
-        </div>
+        <a class="btn" target="_blank" rel="noreferrer"
+           href="https://www.linkedin.com/in/tatiane-gomes-rodrigues/">
+          LinkedIn
+        </a>
       </div>
     </section>
 
     <footer>
       <div>© <span id="y"></span> Tati • Redatora SEO</div>
-      <div>
-        <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">Topo</a>
-      </div>
+      <div><a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">Topo</a></div>
     </footer>
 
   </div>
 
   <script>
+    // Ano
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Slider (3 banners)
+    const slides = document.getElementById("slides");
+    const dots = Array.from(document.querySelectorAll(".dotBtn"));
+    const prev = document.getElementById("prev");
+    const next = document.getElementById("next");
+
+    let index = 0;
+    let timer = null;
+
+    function go(i){
+      index = (i + 3) % 3;
+      slides.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((d, idx) => d.classList.toggle("active", idx === index));
+    }
+
+    function start(){
+      stop();
+      timer = setInterval(() => go(index + 1), 4500);
+    }
+    function stop(){
+      if(timer) clearInterval(timer);
+      timer = null;
+    }
+
+    dots.forEach(d => d.addEventListener("click", () => { go(Number(d.dataset.go)); start(); }));
+    prev.addEventListener("click", () => { go(index - 1); start(); });
+    next.addEventListener("click", () => { go(index + 1); start(); });
+
+    // Pausa ao passar o mouse (pra não irritar)
+    const slider = document.querySelector(".slider");
+    slider.addEventListener("mouseenter", stop);
+    slider.addEventListener("mouseleave", start);
+
+    go(0);
+    start();
   </script>
 </body>
 </html>
