@@ -123,13 +123,16 @@
     @media (max-width: 920px){ .heroGrid{ grid-template-columns: 1fr; } }
 
     .slider{
-      position:relative;
-      overflow:hidden;
-      border-radius: var(--radius);
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      min-height: 300px;
-    }
+  position:relative;
+  overflow:hidden;
+  border-radius: var(--radius);
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.03);
+
+  /* limita o "tamanho visual" do hero */
+  height: clamp(280px, 44vh, 420px);
+}
+
     .slides{display:flex; width:100%; transition: transform .45s ease;}
     .slide{
       flex: 0 0 100%;
