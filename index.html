@@ -4,7 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Tati | Redatora SEO</title>
-  <meta name="description" content="Criação de conteúdo com foco em SEO: artigos, páginas e estratégia editorial. Portfólio e contato." />
+  <meta name="description" content="Redatora SEO | Transformando palavras em sucesso online. Páginas institucionais, páginas de produtos e serviços e artigos para blogs com foco em SEO." />
+  <meta name="theme-color" content="#0b0f19" />
+
   <style>
     :root{
       --bg:#0b0f19;
@@ -15,9 +17,11 @@
       --accent:#ff2d8d;
       --accent2:#6d6aff;
       --radius:18px;
-      --max:980px;
+      --max:1020px;
+      --shadow: 0 18px 60px rgba(0,0,0,.35);
     }
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
@@ -30,6 +34,7 @@
     }
     a{color:inherit}
     .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 72px}
+
     header{
       border:1px solid var(--line);
       background: rgba(17,26,47,.65);
@@ -37,39 +42,76 @@
       border-radius: calc(var(--radius) + 6px);
       padding:14px 16px;
       display:flex; justify-content:space-between; align-items:center; gap:12px;
-      position: sticky; top: 14px;
+      position: sticky; top: 14px; z-index: 10;
+      box-shadow: var(--shadow);
     }
-    .brand{display:flex; align-items:center; gap:10px}
+    .brand{display:flex; align-items:center; gap:10px; min-width: 220px}
     .logo{
       width:38px; height:38px; border-radius:12px;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 12px 30px rgba(255,45,141,.18);
+      flex:0 0 auto;
     }
     .brand b{font-size:14px}
     .brand small{display:block; color:var(--muted); font-size:12px; margin-top:2px}
+
     .btn{
-      display:inline-block;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
       padding:10px 14px;
       border-radius:14px;
       border:1px solid var(--line);
       background: rgba(255,255,255,.05);
       text-decoration:none;
       font-weight:700;
+      transition: .15s transform, .15s filter, .15s background;
     }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.07); }
     .btn.primary{
       border:none;
       background: linear-gradient(135deg, rgba(255,45,141,.95), rgba(109,106,255,.85));
+      box-shadow: 0 18px 60px rgba(255,45,141,.16);
     }
+    .btn.primary:hover{ filter:saturate(1.05); }
+
+    .nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    .nav a{
+      color: var(--muted);
+      font-size: 13px;
+      text-decoration:none;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+    }
+    .nav a:hover{
+      color: var(--text);
+      border-color: var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    @media (max-width: 920px){
+      .nav{display:none}
+    }
+
     .hero{
       margin-top:18px;
       border:1px solid var(--line);
       background: rgba(17,26,47,.55);
       border-radius: var(--radius);
-      padding:22px;
+      padding:24px;
+      box-shadow: var(--shadow);
     }
-    h1{margin:0 0 8px; font-size:38px; line-height:1.1; letter-spacing:-.6px}
+    h1{margin:0 0 10px; font-size:40px; line-height:1.1; letter-spacing:-.6px}
     @media (max-width:520px){ h1{font-size:32px} }
-    p{margin:0 0 12px; color:var(--muted)}
+    .lead{margin:0 0 14px; color:var(--muted); font-size:16px}
+
     .row{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+
     .grid{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -77,6 +119,7 @@
       margin-top:16px;
     }
     @media (max-width:900px){ .grid{grid-template-columns:1fr} }
+
     .card{
       border:1px solid var(--line);
       background: rgba(255,255,255,.03);
@@ -84,25 +127,38 @@
       padding:16px;
     }
     .card h2{margin:0 0 6px; font-size:16px; color:var(--text)}
-    .card p{margin:0; font-size:13px}
+    .card p{margin:0; font-size:13px; color: var(--muted)}
+
     section{margin-top:16px}
     .sectionTitle{
-      margin:0 0 10px;
+      margin:0 0 12px;
       font-size:15px;
       color:var(--text);
       letter-spacing:-.2px;
     }
-    .list{
-      display:grid;
-      gap:10px;
-    }
+
+    .list{display:grid; gap:10px}
     .item{
       border:1px solid var(--line);
       background: rgba(255,255,255,.03);
       border-radius: var(--radius);
       padding:14px 16px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
     }
     .item b{display:block; margin-bottom:4px}
+    .item .meta{color:var(--muted); font-size:13px}
+    .item a{font-weight:700}
+
+    .note{
+      color: var(--muted);
+      font-size: 13px;
+      margin: 8px 0 0;
+    }
+
     footer{
       margin-top:22px;
       color:var(--muted);
@@ -117,77 +173,108 @@
 </head>
 
 <body>
-  <div class="wrap">
+  <div class="wrap" id="top">
+
     <header>
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
         <div>
           <b>Tati • Redatora SEO</b>
-          <small>Conteúdo com foco em SEO, com intenção e ritmo de leitura</small>
+          <small>Transformando palavras em sucesso online</small>
         </div>
       </div>
+
+      <nav class="nav" aria-label="Navegação">
+        <a href="#servicos">Serviços</a>
+        <a href="#portfolio">Portfólio</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
       <a class="btn primary" href="#contato">Pedir orçamento</a>
     </header>
 
     <main class="hero">
       <h1>Conteúdo SEO que ranqueia<br/>sem perder a voz humana.</h1>
-      <p>
-        Eu escrevo artigos, páginas e clusters com estratégia editorial.
-        Menos “texto genérico”, mais clareza, argumento e estrutura que sustenta tráfego e conversão.
+
+      <p class="lead">
+        Escrevo conteúdos para páginas institucionais, páginas de produtos e serviços e artigos para blogs,
+        sempre com foco em SEO, clareza e intenção. Sem texto inflado, sem “encheção”, sem cara de genérico.
       </p>
 
-      <div class="row">
-        <!-- EDITAR links -->
-        <a class="btn primary" id="contato"
-           href="https://wa.me/55SEUNUMERO?text=Oi%20Tati!%20Quero%20um%20or%C3%A7amento%20de%20conte%C3%BAdo%20SEO."
+      <div class="row" id="contato">
+        <a class="btn primary"
+           href="https://wa.me/5511976625245?text=Oi%20Tati!%20Quero%20um%20or%C3%A7amento%20de%20conte%C3%BAdo%20com%20foco%20em%20SEO."
            target="_blank" rel="noreferrer">Falar no WhatsApp</a>
 
-        <a class="btn" href="mailto:SEUEMAIL@DOMINIO.COM">Enviar e-mail</a>
-        <a class="btn" href="https://www.linkedin.com/in/SEU-LINK" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a class="btn" href="mailto:gomesrodrigues1995@gmail.com">Enviar e-mail</a>
+
+        <a class="btn"
+           href="https://www.linkedin.com/in/tatiane-gomes-rodrigues/"
+           target="_blank" rel="noreferrer">LinkedIn</a>
       </div>
 
-      <section>
+      <p class="note">
+        Me mande: nicho/empresa, objetivo (tráfego/leads/vendas), páginas ou temas, volume mensal e prazo. Eu respondo com uma proposta objetiva.
+      </p>
+
+      <section id="servicos">
         <div class="grid">
           <div class="card">
-            <h2>Artigos SEO (blog)</h2>
-            <p>Pauta + outline + escrita + otimização on-page. Conteúdo escaneável, mas com personalidade.</p>
+            <h2>Páginas institucionais</h2>
+            <p>Texto que apresenta a empresa com clareza, posicionamento e consistência, sem cair no “sobre nós” genérico.</p>
           </div>
           <div class="card">
-            <h2>Páginas (serviço/produto)</h2>
-            <p>Texto pensado pra conversão e busca. Argumento, prova e CTA sem enrolação.</p>
+            <h2>Páginas de produtos e serviços</h2>
+            <p>Conteúdo pensado para busca e conversão, com argumento, prova e CTA bem colocado.</p>
           </div>
           <div class="card">
-            <h2>Estratégia editorial</h2>
-            <p>Clusters, calendário, briefs e padrão de escrita pra reduzir retrabalho e escalar.</p>
+            <h2>Artigos para blog</h2>
+            <p>Artigos com estrutura e ritmo de leitura, alinhados à intenção de busca e prontos para publicar.</p>
           </div>
         </div>
       </section>
     </main>
 
-    <section class="hero" style="margin-top:16px">
-      <h2 class="sectionTitle">Portfólio (adicione links reais)</h2>
+    <section class="hero" id="portfolio" style="margin-top:16px">
+      <h2 class="sectionTitle">Portfólio (artigos no LinkedIn)</h2>
+
       <div class="list">
-        <!-- EDITAR: troque título + link -->
         <div class="item">
-          <b>1) [coloque aqui o título do conteúdo]</b>
-          <a href="https://LINK-AQUI" target="_blank" rel="noreferrer">Abrir</a>
+          <div>
+            <b>Revisão virou mutirão de sinônimo (e o texto pagou a conta)</b>
+            <div class="meta">Artigo • LinkedIn</div>
+          </div>
+          <a href="https://www.linkedin.com/pulse/revis%C3%A3o-virou-mutir%C3%A3o-de-sin%C3%B4nimo-e-o-texto-pagou-conta-tatiane-gomes-www8f/"
+             target="_blank" rel="noreferrer">Abrir</a>
         </div>
+
         <div class="item">
-          <b>2) [coloque aqui o título do conteúdo]</b>
-          <a href="https://LINK-AQUI" target="_blank" rel="noreferrer">Abrir</a>
+          <div>
+            <b>SEO e criatividade: uma dupla dinâmica para escrita otimizada</b>
+            <div class="meta">Artigo • LinkedIn</div>
+          </div>
+          <a href="https://www.linkedin.com/pulse/seo-e-criatividade-uma-dupla-din%25C3%25A2mica-para-escrita-otimizada-gomes"
+             target="_blank" rel="noreferrer">Abrir</a>
         </div>
+
         <div class="item">
-          <b>3) [coloque aqui o título do conteúdo]</b>
-          <a href="https://LINK-AQUI" target="_blank" rel="noreferrer">Abrir</a>
+          <div>
+            <b>Redação para SEO: por que é tão complexa?</b>
+            <div class="meta">Artigo • LinkedIn</div>
+          </div>
+          <a href="https://www.linkedin.com/pulse/reda%25C3%25A7%25C3%25A3o-para-seo-por-que-t%25C3%25A3o-complexa-tatiane-gomes"
+             target="_blank" rel="noreferrer">Abrir</a>
+        </div>
+
+        <div class="item">
+          <div>
+            <b>Página que ranqueia e não ajuda</b>
+            <div class="meta">Artigo • LinkedIn</div>
+          </div>
+          <a href="https://www.linkedin.com/pulse/p%25C3%25A1gina-que-ranqueia-e-n%25C3%25A3o-ajuda-tatiane-gomes-tctof"
+             target="_blank" rel="noreferrer">Abrir</a>
         </div>
       </div>
-    </section>
-
-    <section class="hero" style="margin-top:16px">
-      <h2 class="sectionTitle">Briefing rápido (pra eu te responder direito)</h2>
-      <p style="margin-bottom:0">
-        Nicho/empresa • objetivo • serviços/produtos • volume mensal • prazo • links de referência • orçamento aproximado.
-      </p>
     </section>
 
     <footer>
@@ -196,6 +283,7 @@
         <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">Topo</a>
       </div>
     </footer>
+
   </div>
 
   <script>
