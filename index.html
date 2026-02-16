@@ -131,7 +131,7 @@
       border-radius: var(--radius);
       border:1px solid var(--line);
       background: rgba(255,255,255,.03);
-      min-height: 280px;
+      min-height: 290px;
     }
     .slides{
       display:flex;
@@ -147,6 +147,8 @@
       flex-direction:column;
       justify-content:space-between;
       gap:12px;
+      /* espaço pro controle do slider não ficar em cima dos botões */
+      padding-bottom: 72px;
     }
 
     .slide:before{
@@ -160,6 +162,8 @@
       z-index:0;
     }
     .slide > *{ position:relative; z-index:1; }
+
+    /* ✅ removi “Serviço 1/2/3”: o kicker agora é neutro */
     .kicker{
       display:inline-flex; align-items:center; gap:8px;
       font-size:12px; color:var(--muted);
@@ -169,6 +173,7 @@
       width: fit-content;
     }
     .dot{ width:8px; height:8px; border-radius:999px; background: var(--ok); box-shadow: 0 0 0 6px rgba(46,229,157,.12); }
+
     h1{
       margin:6px 0 6px;
       font-size:40px;
@@ -184,6 +189,7 @@
     }
     .ctaRow{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
 
+    /* ✅ controles do slider não sobrepõem os botões */
     .sliderNav{
       position:absolute;
       left:14px; right:14px; bottom:14px;
@@ -191,14 +197,14 @@
       justify-content:space-between;
       align-items:center;
       gap:12px;
-      z-index:2;
+      z-index:3;
       pointer-events:none;
     }
     .dots{ display:flex; gap:8px; pointer-events:auto; }
     .dotBtn{
       width:10px; height:10px; border-radius:999px;
       border:1px solid var(--line);
-      background: rgba(255,255,255,.08);
+      background: rgba(255,255,255,.10);
       cursor:pointer;
       padding:0;
     }
@@ -257,59 +263,169 @@
       transform: rotate(45deg);
     }
 
-    /* Services grid */
+    /* Services grid + icons */
     .grid3{ display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; }
     @media (max-width:900px){ .grid3{ grid-template-columns:1fr } }
+
     .miniCard{
       border:1px solid var(--line);
       background: rgba(255,255,255,.03);
       border-radius: var(--radius);
       padding:16px;
     }
-    .miniCard h3{ margin:0 0 6px; font-size:15px; }
+    .miniHead{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      margin-bottom:8px;
+    }
+    .miniIcon{
+      width:36px; height:36px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      display:grid;
+      place-items:center;
+      flex:0 0 auto;
+    }
+    .miniIcon svg{
+      width:18px; height:18px;
+      fill:none;
+      stroke: rgba(234,240,255,.92);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .miniCard h3{ margin:0; font-size:15px; }
     .miniCard p{ margin:0; font-size:13px; color:var(--muted); }
 
-    /* Timeline */
-    .timeline{
-      display:grid;
-      gap:10px;
-      margin-top:10px;
-    }
-    .tItem{
-      display:grid;
-      grid-template-columns: 92px 1fr;
-      gap:12px;
-      align-items:start;
-      padding:12px 14px;
+    /* Timeline (formato circuito) */
+    .timelineWrap{
+      margin-top: 14px;
       border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
       border-radius: var(--radius);
-      background: rgba(255,255,255,.03);
+      overflow:hidden;
+    }
+    .timelineScroll{
+      overflow:auto;
+      padding:18px 16px;
+    }
+    .timelineScroll::-webkit-scrollbar{ height:10px; }
+    .timelineScroll::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.12); border-radius:999px; }
+
+    .timelineCircuit{
+      --nodeSize: 12px;
+      --stem: 46px;
+      --gap: 120px;
       position:relative;
+      min-width: 860px;
+      display:flex;
+      align-items:center;
+      gap: var(--gap);
+      padding: 18px 10px;
+    }
+    .timelineCircuit::before{
+      content:"";
+      position:absolute;
+      left:0; right:0;
+      top:50%;
+      height:2px;
+      transform: translateY(-50%);
+      background: linear-gradient(90deg, rgba(109,106,255,.75), rgba(255,45,141,.75));
+      opacity:.9;
+      border-radius:999px;
+    }
+
+    .tNode{
+      position:relative;
+      width: 1px;
+      height: 1px;
+      flex:0 0 auto;
+    }
+    .tDot{
+      width: var(--nodeSize);
+      height: var(--nodeSize);
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(255,45,141,.95), rgba(109,106,255,.85));
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform: translate(-50%,-50%);
+      box-shadow: 0 0 0 6px rgba(255,45,141,.12);
+      z-index:2;
+    }
+    .tDot::after{
+      content:"";
+      position:absolute;
+      inset:-4px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+    }
+
+    .tStem{
+      position:absolute;
+      left:50%;
+      width:2px;
+      background: rgba(255,255,255,.18);
+      transform: translateX(-50%);
+      z-index:1;
+    }
+
+    .tCard{
+      position:absolute;
+      width: 230px;
+      border:1px solid var(--line);
+      background: rgba(17,26,47,.55);
+      border-radius: 16px;
+      padding: 12px 12px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.20);
     }
     .tYear{
       font-weight:900;
-      font-size:13px;
+      font-size:12px;
       letter-spacing:-.2px;
       color: var(--text);
-      padding:8px 10px;
-      border-radius: 14px;
+      width: fit-content;
+      padding:6px 10px;
+      border-radius: 999px;
       border:1px solid var(--line);
       background: rgba(255,255,255,.04);
-      text-align:center;
+      margin-bottom:6px;
       white-space:nowrap;
     }
-    .tBody b{
-      display:block;
-      margin-bottom:4px;
-      font-size:14px;
+    .tTitle{
+      margin:0 0 2px;
+      font-size:13px;
+      letter-spacing:-.2px;
     }
     .tMeta{
+      margin:0;
       color: var(--muted);
-      font-size:13px;
+      font-size:12px;
     }
-    @media (max-width:520px){
-      .tItem{ grid-template-columns: 1fr; }
-      .tYear{ width: fit-content; }
+
+    /* alterna cima/baixo como na referência */
+    .timelineCircuit .tNode:nth-child(odd) .tStem{
+      top: 50%;
+      height: var(--stem);
+      transform: translate(-50%, 0);
+    }
+    .timelineCircuit .tNode:nth-child(odd) .tCard{
+      top: calc(50% + var(--stem) + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .timelineCircuit .tNode:nth-child(even) .tStem{
+      bottom: 50%;
+      height: var(--stem);
+      transform: translate(-50%, 0);
+    }
+    .timelineCircuit .tNode:nth-child(even) .tCard{
+      bottom: calc(50% + var(--stem) + 10px);
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     /* Articles carousel */
@@ -400,7 +516,7 @@
 
           <!-- Banner 1 -->
           <div class="slide">
-            <div class="kicker"><span class="dot"></span> Serviço 1 • Páginas institucionais</div>
+            <div class="kicker"><span class="dot"></span> Páginas institucionais</div>
             <div>
               <h1>Site bonito é ótimo.<br/>Mas precisa dizer algo.</h1>
               <p class="sub">
@@ -409,14 +525,14 @@
               </p>
             </div>
             <div class="ctaRow">
-              <a class="btn primary" href="#contato">Quero orçamento</a>
-              <a class="btn ghost" href="#servicos">Ver serviços</a>
+              <a class="btn primary" href="#contato">Pedir orçamento</a>
+              <a class="btn ghost" href="#sobre">Sobre mim</a>
             </div>
           </div>
 
           <!-- Banner 2 -->
           <div class="slide">
-            <div class="kicker"><span class="dot"></span> Serviço 2 • Produtos e serviços</div>
+            <div class="kicker"><span class="dot"></span> Produtos e serviços</div>
             <div>
               <h1>Página que ranqueia<br/>e ajuda de verdade.</h1>
               <p class="sub">
@@ -431,11 +547,12 @@
 
           <!-- Banner 3 -->
           <div class="slide">
-            <div class="kicker"><span class="dot"></span> Serviço 3 • Artigos para blog</div>
+            <div class="kicker"><span class="dot"></span> Artigos para blog</div>
             <div>
               <h1>SEO com ritmo<br/>de leitura.</h1>
               <p class="sub">
-                Artigos com estrutura, intenção de busca e linguagem humana. Conteúdo pronto pra publicar.
+                Artigos com estrutura, intenção de busca e linguagem humana.
+                Conteúdo pronto pra publicar.
               </p>
             </div>
             <div class="ctaRow">
@@ -478,85 +595,126 @@
 
       <div class="grid3">
         <div class="miniCard">
-          <h3>Páginas institucionais</h3>
-          <p>Conteúdo para apresentar a empresa com clareza, tom certo e posicionamento.</p>
+          <div class="miniHead">
+            <div class="miniIcon" aria-hidden="true">
+              <!-- ícone: prédio (institucional) -->
+              <svg viewBox="0 0 24 24">
+                <path d="M4 20V6a2 2 0 0 1 2-2h6v16" />
+                <path d="M10 8h-2" />
+                <path d="M10 12h-2" />
+                <path d="M10 16h-2" />
+                <path d="M12 20V10a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v10" />
+                <path d="M18 12h-2" />
+                <path d="M18 16h-2" />
+                <path d="M2 20h20" />
+              </svg>
+            </div>
+            <div>
+              <h3>Páginas institucionais</h3>
+              <p>Conteúdo para apresentar a empresa com clareza, tom certo e posicionamento.</p>
+            </div>
+          </div>
         </div>
+
         <div class="miniCard">
-          <h3>Páginas de produtos e serviços</h3>
-          <p>Texto pensado para busca e conversão, com argumento, prova e CTA.</p>
+          <div class="miniHead">
+            <div class="miniIcon" aria-hidden="true">
+              <!-- ícone: tag (produtos/serviços) -->
+              <svg viewBox="0 0 24 24">
+                <path d="M20 13l-7 7-11-11V2h7z" />
+                <path d="M7.5 7.5h.01" />
+              </svg>
+            </div>
+            <div>
+              <h3>Páginas de produtos e serviços</h3>
+              <p>Texto pensado para busca e conversão, com argumento, prova e CTA.</p>
+            </div>
+          </div>
         </div>
+
         <div class="miniCard">
-          <h3>Artigos para blog</h3>
-          <p>Artigos com estrutura e intenção de busca, prontos para publicar.</p>
+          <div class="miniHead">
+            <div class="miniIcon" aria-hidden="true">
+              <!-- ícone: arquivo (artigos) -->
+              <svg viewBox="0 0 24 24">
+                <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+                <path d="M14 2v6h6" />
+                <path d="M9 13h6" />
+                <path d="M9 17h6" />
+              </svg>
+            </div>
+            <div>
+              <h3>Artigos para blog</h3>
+              <p>Artigos com estrutura e intenção de busca, prontos para publicar.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Sobre mim + Linha do tempo -->
+    <!-- Sobre mim + Linha do tempo (formato circuito) -->
     <section class="card pad" id="sobre">
       <h2 class="sectionTitle">Sobre mim</h2>
 
-      <p class="lead">
-        Sou formada em Jornalismo e atuo desde 2015 com produção de conteúdo otimizado para SEO, com foco em posicionamento orgânico no Google.
-        Trabalho na criação, otimização e estruturação de conteúdos para blogs e sites institucionais, alinhando pesquisa de palavras-chave,
-        SEO on-page e estratégia editorial.
+      <p class="lead" style="margin-bottom:0">
+        Desde 2015, ajudo marcas a crescerem no orgânico com conteúdo SEO que faz sentido: estrutura, intenção de busca e escrita clara.
+        Trabalho com páginas e artigos, do planejamento à otimização. Uso IA de forma estratégica, mas a direção editorial e a qualidade do texto
+        continuam sendo humanas.
       </p>
 
-      <p class="lead">
-        Utilizo ferramentas de inteligência artificial de forma consciente e estratégica, como apoio ao processo de pesquisa, organização e ganho de eficiência,
-        sem abrir mão da análise crítica, da curadoria e da escrita humana. A IA entra como recurso, não como atalho.
-        O direcionamento editorial, a intenção de busca e a qualidade do texto continuam sendo decisões humanas.
-      </p>
+      <div class="timelineWrap">
+        <div class="timelineScroll" aria-label="Linha do tempo">
+          <div class="timelineCircuit">
+            <div class="tNode">
+              <span class="tDot" aria-hidden="true"></span>
+              <span class="tStem" aria-hidden="true"></span>
+              <div class="tCard">
+                <div class="tYear">2014</div>
+                <p class="tTitle"><strong>Início da faculdade</strong></p>
+                <p class="tMeta">Jornalismo</p>
+              </div>
+            </div>
 
-      <p class="lead">
-        Ao longo da minha trajetória, atuei com empresas de diferentes segmentos, participando de projetos voltados para crescimento orgânico,
-        fortalecimento de marca e suporte a estratégias de marketing digital. Meu foco é desenvolver conteúdos que atendam aos critérios dos mecanismos de busca,
-        mas que também façam sentido para quem lê e para quem contrata.
-      </p>
+            <div class="tNode">
+              <span class="tDot" aria-hidden="true"></span>
+              <span class="tStem" aria-hidden="true"></span>
+              <div class="tCard">
+                <div class="tYear">set/2015</div>
+                <p class="tTitle"><strong>Início da carreira</strong></p>
+                <p class="tMeta">Produção de conteúdo e SEO</p>
+              </div>
+            </div>
 
-      <p class="lead" style="margin-bottom:14px">
-        Também acompanho atualizações de SEO, mudanças nos algoritmos e boas práticas de conteúdo para garantir entregas alinhadas às exigências técnicas
-        e aos objetivos de negócio.
-      </p>
+            <div class="tNode">
+              <span class="tDot" aria-hidden="true"></span>
+              <span class="tStem" aria-hidden="true"></span>
+              <div class="tCard">
+                <div class="tYear">2017</div>
+                <p class="tTitle"><strong>Formação em Jornalismo</strong></p>
+                <p class="tMeta">Graduação concluída</p>
+              </div>
+            </div>
 
-      <div class="timeline" aria-label="Linha do tempo">
-        <div class="tItem">
-          <div class="tYear">2014</div>
-          <div class="tBody">
-            <b>Início da faculdade</b>
-            <div class="tMeta">Jornalismo</div>
-          </div>
-        </div>
+            <div class="tNode">
+              <span class="tDot" aria-hidden="true"></span>
+              <span class="tStem" aria-hidden="true"></span>
+              <div class="tCard">
+                <div class="tYear">jul/2020</div>
+                <p class="tTitle"><strong>Pós-graduação</strong></p>
+                <p class="tMeta">Assessoria de Comunicação e Mídias Sociais</p>
+              </div>
+            </div>
 
-        <div class="tItem">
-          <div class="tYear">set/2015</div>
-          <div class="tBody">
-            <b>Início da carreira</b>
-            <div class="tMeta">Produção de conteúdo e SEO</div>
-          </div>
-        </div>
+            <div class="tNode">
+              <span class="tDot" aria-hidden="true"></span>
+              <span class="tStem" aria-hidden="true"></span>
+              <div class="tCard">
+                <div class="tYear">2025</div>
+                <p class="tTitle"><strong>10 anos de carreira</strong></p>
+                <p class="tMeta">Marco profissional</p>
+              </div>
+            </div>
 
-        <div class="tItem">
-          <div class="tYear">2017</div>
-          <div class="tBody">
-            <b>Formação em Jornalismo</b>
-            <div class="tMeta">Graduação concluída</div>
-          </div>
-        </div>
-
-        <div class="tItem">
-          <div class="tYear">jul/2020</div>
-          <div class="tBody">
-            <b>Pós-graduação</b>
-            <div class="tMeta">Assessoria de Comunicação e Mídias Sociais</div>
-          </div>
-        </div>
-
-        <div class="tItem">
-          <div class="tYear">2025</div>
-          <div class="tBody">
-            <b>10 anos de carreira</b>
-            <div class="tMeta">Marco profissional</div>
           </div>
         </div>
       </div>
@@ -634,10 +792,7 @@
 
         </div>
       </div>
-
-      <p class="lead" style="margin-top:12px; margin-bottom:0; font-size:13px">
-        Dica: dá pra arrastar pro lado (mouse/trackpad) e ver os cards como carrossel.
-      </p>
+      <!-- ✅ removido o texto “Dica: dá pra arrastar…” -->
     </section>
 
     <!-- Contato -->
