@@ -271,7 +271,7 @@
     .miniCard h3{ margin:0 0 6px; font-size:15px; }
     .miniCard p{ margin:0; font-size:13px; color:var(--muted); }
 
-    /* ✅ TIMELINE LIMPA (estilo referência) */
+    /* ✅ TIMELINE (mais “circuito”, menos cardzão) */
     .timelineClean{
       margin-top: 16px;
       border:1px solid var(--line);
@@ -285,45 +285,68 @@
       width:100%;
       overflow-x: auto;
       overflow-y: visible;
-      padding: 10px 0;
+      padding: 12px 0 6px;
       scrollbar-width: thin;
       scrollbar-color: rgba(255,255,255,.18) transparent;
+      -webkit-overflow-scrolling: touch;
     }
     .tlWrap::-webkit-scrollbar{ height:8px; }
+    .tlWrap::-webkit-scrollbar-track{ background: transparent; }
     .tlWrap::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.14); border-radius:999px; }
+    .tlWrap::-webkit-scrollbar-thumb:hover{ background: rgba(255,255,255,.18); }
 
     .tl{
-      --stem: 34px;
+      --stem: 40px;
       --dot: 10px;
+      --cap: 8px;
       position:relative;
       display:flex;
       justify-content:space-between;
-      gap: 28px;
-      min-width: 820px; /* só força scroll se precisar */
-      height: 190px;    /* o suficiente pra cima/baixo sem “caixão” */
-      padding: 0 8px;
+      gap: 34px;
+      min-width: 860px; /* só força scroll se precisar */
+      height: 176px;    /* enxuto (sem “caixão”) */
+      padding: 0 10px;
     }
+
+    /* linha central com leve brilho */
     .tl::before{
       content:"";
       position:absolute;
-      left:8px; right:8px;
+      left:10px; right:10px;
       top:50%;
       height:2px;
       transform: translateY(-50%);
-      background: linear-gradient(90deg, rgba(109,106,255,.75), rgba(255,45,141,.75));
+      background: linear-gradient(90deg, rgba(109,106,255,.85), rgba(255,45,141,.85));
       border-radius:999px;
       opacity:.95;
+      box-shadow: 0 0 0 6px rgba(109,106,255,.06);
+    }
+    /* pontinha “circuito” nas extremidades */
+    .tl::after{
+      content:"";
+      position:absolute;
+      left:10px;
+      top:50%;
+      width: calc(100% - 20px);
+      height: 2px;
+      transform: translateY(-50%);
+      background:
+        radial-gradient(circle at 0 50%, rgba(255,255,255,.20) 0 3px, transparent 4px),
+        radial-gradient(circle at 100% 50%, rgba(255,255,255,.20) 0 3px, transparent 4px);
+      pointer-events:none;
+      opacity:.85;
     }
 
     .tlItem{
       position:relative;
       flex: 1 1 0;
-      min-width: 140px;
+      min-width: 150px;
       display:flex;
       justify-content:center;
       align-items:center;
     }
 
+    /* ponto central */
     .tlDot{
       position:absolute;
       top:50%;
@@ -333,9 +356,13 @@
       transform: translate(-50%,-50%);
       border-radius:999px;
       background: linear-gradient(135deg, rgba(255,45,141,.95), rgba(109,106,255,.85));
-      box-shadow: 0 0 0 5px rgba(255,45,141,.12);
-      z-index:2;
+      box-shadow:
+        0 0 0 6px rgba(255,45,141,.10),
+        0 10px 24px rgba(0,0,0,.25);
+      z-index:3;
     }
+
+    /* haste */
     .tlStem{
       position:absolute;
       left:50%;
@@ -343,17 +370,33 @@
       background: rgba(255,255,255,.18);
       transform: translateX(-50%);
       border-radius:999px;
-      z-index:1;
+      z-index:2;
     }
 
+    /* “cap” pequeno na ponta da haste (fica bem circuito) */
+    .tlStem::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      width: var(--cap);
+      height: var(--cap);
+      border-radius:999px;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 10px 18px rgba(0,0,0,.18);
+    }
+
+    /* label mais leve: sem borda grossa, sem “cardzão” */
     .tlLabel{
       position:absolute;
-      width: 190px;
+      width: 200px;
       padding: 10px 10px;
-      border:1px solid var(--line);
       border-radius: 14px;
-      background: rgba(17,26,47,.40);
-      backdrop-filter: blur(8px);
+      background: rgba(15,22,41,.28);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 14px 34px rgba(0,0,0,.22);
     }
     .tlYear{
       display:inline-block;
@@ -362,7 +405,7 @@
       color: var(--text);
       padding: 5px 9px;
       border-radius: 999px;
-      border:1px solid var(--line);
+      border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
       margin-bottom:6px;
       white-space:nowrap;
@@ -380,13 +423,16 @@
       line-height:1.25;
     }
 
-    /* alterna cima/baixo (como na imagem) */
+    /* alterna cima/baixo (circuito) + cap na ponta correta */
     .tlItem:nth-child(odd) .tlStem{
       top: calc(50% - var(--stem));
       height: var(--stem);
     }
+    .tlItem:nth-child(odd) .tlStem::after{
+      top: -6px; /* cap acima */
+    }
     .tlItem:nth-child(odd) .tlLabel{
-      top: calc(50% - var(--stem) - 68px);
+      top: calc(50% - var(--stem) - 78px);
       left:50%;
       transform: translateX(-50%);
       text-align:left;
@@ -396,6 +442,9 @@
       top: 50%;
       height: var(--stem);
     }
+    .tlItem:nth-child(even) .tlStem::after{
+      bottom: -6px; /* cap abaixo */
+    }
     .tlItem:nth-child(even) .tlLabel{
       top: calc(50% + var(--stem) + 18px);
       left:50%;
@@ -403,9 +452,24 @@
       text-align:left;
     }
 
+    /* um “braço” curtinho horizontal saindo do ponto (dá o clima de circuito) */
+    .tlItem::before{
+      content:"";
+      position:absolute;
+      top:50%;
+      left:50%;
+      width: 22px;
+      height: 2px;
+      transform: translate(-50%,-50%);
+      background: rgba(255,255,255,.16);
+      border-radius:999px;
+      z-index:1;
+      opacity:.9;
+    }
+
     @media (max-width: 560px){
-      .tl{ min-width: 860px; } /* no mobile, deixa rolar sem “esmagar” */
-      .tlLabel{ width: 180px; }
+      .tl{ min-width: 900px; }
+      .tlLabel{ width: 190px; }
     }
 
     /* Articles */
