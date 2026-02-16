@@ -4,9 +4,202 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Tati | Redatora SEO</title>
+  <meta name="description" content="Criação de conteúdo com foco em SEO: artigos, páginas e estratégia editorial. Portfólio e contato." />
+  <style>
+    :root{
+      --bg:#0b0f19;
+      --panel:#111a2f;
+      --text:#eaf0ff;
+      --muted:#aeb9d8;
+      --line:rgba(255,255,255,.10);
+      --accent:#ff2d8d;
+      --accent2:#6d6aff;
+      --radius:18px;
+      --max:980px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background:
+        radial-gradient(900px 600px at 15% 10%, rgba(109,106,255,.18), transparent 55%),
+        radial-gradient(900px 600px at 90% 30%, rgba(255,45,141,.14), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 72px}
+    header{
+      border:1px solid var(--line);
+      background: rgba(17,26,47,.65);
+      backdrop-filter: blur(12px);
+      border-radius: calc(var(--radius) + 6px);
+      padding:14px 16px;
+      display:flex; justify-content:space-between; align-items:center; gap:12px;
+      position: sticky; top: 14px;
+    }
+    .brand{display:flex; align-items:center; gap:10px}
+    .logo{
+      width:38px; height:38px; border-radius:12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+    }
+    .brand b{font-size:14px}
+    .brand small{display:block; color:var(--muted); font-size:12px; margin-top:2px}
+    .btn{
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      text-decoration:none;
+      font-weight:700;
+    }
+    .btn.primary{
+      border:none;
+      background: linear-gradient(135deg, rgba(255,45,141,.95), rgba(109,106,255,.85));
+    }
+    .hero{
+      margin-top:18px;
+      border:1px solid var(--line);
+      background: rgba(17,26,47,.55);
+      border-radius: var(--radius);
+      padding:22px;
+    }
+    h1{margin:0 0 8px; font-size:38px; line-height:1.1; letter-spacing:-.6px}
+    @media (max-width:520px){ h1{font-size:32px} }
+    p{margin:0 0 12px; color:var(--muted)}
+    .row{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+      margin-top:16px;
+    }
+    @media (max-width:900px){ .grid{grid-template-columns:1fr} }
+    .card{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius);
+      padding:16px;
+    }
+    .card h2{margin:0 0 6px; font-size:16px; color:var(--text)}
+    .card p{margin:0; font-size:13px}
+    section{margin-top:16px}
+    .sectionTitle{
+      margin:0 0 10px;
+      font-size:15px;
+      color:var(--text);
+      letter-spacing:-.2px;
+    }
+    .list{
+      display:grid;
+      gap:10px;
+    }
+    .item{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius);
+      padding:14px 16px;
+    }
+    .item b{display:block; margin-bottom:4px}
+    footer{
+      margin-top:22px;
+      color:var(--muted);
+      font-size:12px;
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:10px;
+      padding: 6px 2px 0;
+    }
+  </style>
 </head>
-<body style="font-family: Arial, sans-serif; padding: 24px;">
-  <h1>Site no ar ✅</h1>
-  <p>Este é o começo do meu portfólio/landing page.</p>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <b>Tati • Redatora SEO</b>
+          <small>Conteúdo com foco em SEO, com intenção e ritmo de leitura</small>
+        </div>
+      </div>
+      <a class="btn primary" href="#contato">Pedir orçamento</a>
+    </header>
+
+    <main class="hero">
+      <h1>Conteúdo SEO que ranqueia<br/>sem perder a voz humana.</h1>
+      <p>
+        Eu escrevo artigos, páginas e clusters com estratégia editorial.
+        Menos “texto genérico”, mais clareza, argumento e estrutura que sustenta tráfego e conversão.
+      </p>
+
+      <div class="row">
+        <!-- EDITAR links -->
+        <a class="btn primary" id="contato"
+           href="https://wa.me/55SEUNUMERO?text=Oi%20Tati!%20Quero%20um%20or%C3%A7amento%20de%20conte%C3%BAdo%20SEO."
+           target="_blank" rel="noreferrer">Falar no WhatsApp</a>
+
+        <a class="btn" href="mailto:SEUEMAIL@DOMINIO.COM">Enviar e-mail</a>
+        <a class="btn" href="https://www.linkedin.com/in/SEU-LINK" target="_blank" rel="noreferrer">LinkedIn</a>
+      </div>
+
+      <section>
+        <div class="grid">
+          <div class="card">
+            <h2>Artigos SEO (blog)</h2>
+            <p>Pauta + outline + escrita + otimização on-page. Conteúdo escaneável, mas com personalidade.</p>
+          </div>
+          <div class="card">
+            <h2>Páginas (serviço/produto)</h2>
+            <p>Texto pensado pra conversão e busca. Argumento, prova e CTA sem enrolação.</p>
+          </div>
+          <div class="card">
+            <h2>Estratégia editorial</h2>
+            <p>Clusters, calendário, briefs e padrão de escrita pra reduzir retrabalho e escalar.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="hero" style="margin-top:16px">
+      <h2 class="sectionTitle">Portfólio (adicione links reais)</h2>
+      <div class="list">
+        <!-- EDITAR: troque título + link -->
+        <div class="item">
+          <b>1) [coloque aqui o título do conteúdo]</b>
+          <a href="https://LINK-AQUI" target="_blank" rel="noreferrer">Abrir</a>
+        </div>
+        <div class="item">
+          <b>2) [coloque aqui o título do conteúdo]</b>
+          <a href="https://LINK-AQUI" target="_blank" rel="noreferrer">Abrir</a>
+        </div>
+        <div class="item">
+          <b>3) [coloque aqui o título do conteúdo]</b>
+          <a href="https://LINK-AQUI" target="_blank" rel="noreferrer">Abrir</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero" style="margin-top:16px">
+      <h2 class="sectionTitle">Briefing rápido (pra eu te responder direito)</h2>
+      <p style="margin-bottom:0">
+        Nicho/empresa • objetivo • serviços/produtos • volume mensal • prazo • links de referência • orçamento aproximado.
+      </p>
+    </section>
+
+    <footer>
+      <div>© <span id="y"></span> Tati • Redatora SEO</div>
+      <div>
+        <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">Topo</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
