@@ -238,14 +238,18 @@
       margin-top:1px;
     }
     .tick:after{
-      content:"";
-      position:absolute;
-      left:5px; top:3px;
-      width:6px; height:10px;
-      border:2px solid var(--ok);
-      border-top:0; border-left:0;
-      transform: rotate(45deg);
-    }
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:6px;
+  height:10px;
+  border:2px solid var(--ok);
+  border-top:0;
+  border-left:0;
+  transform: translate(-50%, -55%) rotate(45deg);
+}
+
 
     /* Services */
     .grid3{ display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; }
