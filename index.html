@@ -230,15 +230,21 @@
       font-size:13px;
     }
     .tick{
-      width:18px; height:18px; border-radius:8px;
-      background: rgba(46,229,157,.12);
-      border:1px solid rgba(46,229,157,.25);
-      flex:0 0 auto;
-      position:relative;
-      margin-top:1px;
-    }
+  width:18px;
+  height:18px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  flex:0 0 auto;
+  display:grid;
+  place-items:center;
+  margin-top:1px;
+  line-height:1;
+  font-size:14px;
+}
+
     .tick:after{
-  content:"";
+  content:"✅";
   position:absolute;
   left:50%;
   top:50%;
