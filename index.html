@@ -271,6 +271,83 @@
     .miniCard h3{ margin:0 0 6px; font-size:15px; }
     .miniCard p{ margin:0; font-size:13px; color:var(--muted); }
 
+    /* SOBRE (fotos) */
+    .aboutGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+      align-items: stretch;
+    }
+    @media (max-width: 900px){
+      .aboutGrid{ grid-template-columns: 1fr; }
+    }
+
+    .aboutText{
+      border:1px solid rgba(255,255,255,.06);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.02);
+      padding: 16px;
+    }
+
+    .aboutPhotos{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 12px;
+      align-items: stretch;
+    }
+    @media (max-width: 900px){
+      .aboutPhotos{ grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 520px){
+      .aboutPhotos{ grid-template-columns: 1fr; }
+    }
+
+    .photoCard{
+      position:relative;
+      border-radius: var(--radius);
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      box-shadow: 0 18px 60px rgba(0,0,0,.22);
+      isolation:isolate;
+    }
+
+    .photoCard::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(500px 260px at 10% 10%, rgba(109,106,255,.18), transparent 60%),
+        radial-gradient(500px 260px at 90% 30%, rgba(255,45,141,.14), transparent 60%);
+      opacity:.9;
+      z-index:0;
+      pointer-events:none;
+    }
+
+    .photoCard img{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+      position:relative;
+      z-index:1;
+      transform: scale(1.01);
+      transition: transform .35s ease, filter .35s ease;
+      filter: saturate(1.02) contrast(1.02);
+    }
+
+    .photoCard:hover img{
+      transform: scale(1.05);
+      filter: saturate(1.08) contrast(1.06);
+    }
+
+    .photoMain{ min-height: 260px; }
+    .photoSide{ min-height: 260px; }
+    @media (max-width: 900px){
+      .photoMain, .photoSide{ min-height: 220px; }
+    }
+
     /* Articles */
     .carousel{
       position:relative;
@@ -350,12 +427,10 @@
       filter: blur(0);
     }
 
-    /* stagger suave em grupos */
     .revealGroup .reveal{
       transition-delay: var(--d, 0ms);
     }
 
-    /* acessibilidade */
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior:auto; }
       .reveal, .reveal.in{
@@ -366,6 +441,7 @@
       }
       .slides{ transition:none !important; }
       .btn{ transition:none !important; }
+      .photoCard img{ transition:none !important; transform:none !important; }
     }
   </style>
 </head>
@@ -530,11 +606,35 @@
     <section class="card pad reveal" data-reveal="up" id="sobre">
       <h2 class="sectionTitle">Sobre mim</h2>
 
-      <p class="lead" style="margin-bottom:0">
-        Desde 2015, ajudo marcas a crescerem no orgânico com conteúdo SEO que faz sentido: estrutura, intenção de busca e escrita clara.
-        Trabalho com páginas e artigos, do planejamento à otimização. Uso IA de forma estratégica, mas a direção editorial e a qualidade do texto
-        continuam sendo humanas.
-      </p>
+      <div class="aboutGrid">
+        <div class="aboutText reveal" data-reveal="left" style="--d:0ms">
+          <p class="lead" style="margin:0">
+            Desde 2015, ajudo marcas a crescerem no orgânico com conteúdo SEO que faz sentido: estrutura, intenção de busca e escrita clara.
+            Trabalho com páginas e artigos, do planejamento à otimização. Uso IA de forma estratégica, mas a direção editorial e a qualidade do texto
+            continuam sendo humanas.
+          </p>
+        </div>
+
+        <div class="aboutPhotos revealGroup">
+          <figure class="photoCard photoMain reveal" data-reveal="up" style="--d:60ms; margin:0">
+            <img
+              src="https://picsum.photos/id/1060/900/700"
+              alt="Imagem ilustrativa de bastidores de trabalho"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+            />
+          </figure>
+
+          <figure class="photoCard photoSide reveal" data-reveal="up" style="--d:140ms; margin:0">
+            <img
+              src="https://picsum.photos/id/180/900/700"
+              alt="Imagem ilustrativa relacionada à escrita e conteúdo"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+            />
+          </figure>
+        </div>
+      </div>
     </section>
 
     <section class="card pad reveal" data-reveal="up" id="portfolio">
@@ -662,8 +762,8 @@
     }
 
     dots.forEach(d => d.addEventListener("click", () => { go(Number(d.dataset.go)); start(); }));
-    prev.addEventListener("click", () => { go(index - 1); start(); });
-    next.addEventListener("click", () => { go(index + 1); start(); });
+    prev.addEventListener("click", () => { go(index - 1); start(); }));
+    next.addEventListener("click", () => { go(index + 1); start(); }));
 
     const slider = document.querySelector(".slider");
     slider.addEventListener("mouseenter", stop);
