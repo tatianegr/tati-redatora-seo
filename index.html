@@ -1,829 +1,1407 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tati | Redatora SEO</title>
-  <meta name="description" content="Redatora SEO | Transformando palavras em sucesso online. Páginas institucionais, páginas de produtos e serviços e artigos para blogs com foco em SEO." />
-  <meta name="theme-color" content="#0b0f19" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tati • Redatora SEO</title>
+  <meta name="description" content="Redatora SEO desde 2015. Conteúdos para páginas institucionais, produtos e serviços e artigos para blog — com estrutura, intenção de busca e escrita clara." />
 
   <style>
     :root{
-      --bg:#0b0f19;
-      --panel:#101a33;
-      --panel2:#0f1629;
-      --text:#eaf0ff;
-      --muted:#aeb9d8;
-      --line:rgba(255,255,255,.10);
-      --accent:#ff2d8d;
-      --accent2:#6d6aff;
-      --ok:#2ee59d;
-      --radius:18px;
-      --max:1080px;
-      --shadow: 0 18px 60px rgba(0,0,0,.35);
+      --bg: #0b0d12;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.08);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --muted2: rgba(255,255,255,.55);
+      --line: rgba(255,255,255,.14);
+      --line2: rgba(255,255,255,.22);
+      --accent: #ff3ea5;      /* rosa choque */
+      --accent2: #8a5cff;     /* roxo */
+      --ok: #35d07f;
+      --shadow: 0 16px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --max: 1120px;
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
       background:
-        radial-gradient(900px 600px at 15% 10%, rgba(109,106,255,.18), transparent 55%),
-        radial-gradient(900px 600px at 90% 30%, rgba(255,45,141,.14), transparent 60%),
+        radial-gradient(1200px 600px at 15% 10%, rgba(255,62,165,.18), transparent 60%),
+        radial-gradient(900px 520px at 85% 20%, rgba(138,92,255,.18), transparent 55%),
+        radial-gradient(700px 420px at 50% 90%, rgba(255,255,255,.08), transparent 55%),
         var(--bg);
-      color:var(--text);
-      line-height:1.6;
-    }
-    a{color:inherit}
-    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 72px}
-    .card{
-      border:1px solid var(--line);
-      background: rgba(17,26,47,.62);
-      backdrop-filter: blur(10px);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      overflow-x:hidden;
     }
 
-    header{
-      position: sticky; top: 14px; z-index: 10;
-      display:flex; justify-content:space-between; align-items:center; gap:12px;
-      padding:14px 16px;
-    }
-    .brand{display:flex; align-items:center; gap:10px; min-width: 240px}
-    .logo{
-      width:38px; height:38px; border-radius:12px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 12px 30px rgba(255,45,141,.18);
-      flex:0 0 auto;
-    }
-    .brand b{font-size:14px}
-    .brand small{display:block; color:var(--muted); font-size:12px; margin-top:2px}
+    a{ color:inherit; text-decoration:none; }
+    .container{ width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
 
-    .nav{display:flex; gap:10px; flex-wrap:wrap; justify-content:center;}
+    /* Topbar */
+    .topbar{
+      position: sticky;
+      top:0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(11,13,18,.55);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 220px;
+    }
+    .avatar{
+      width: 38px; height: 38px;
+      border-radius: 12px;
+      background:
+        linear-gradient(135deg, rgba(255,62,165,.9), rgba(138,92,255,.9));
+      box-shadow: 0 10px 25px rgba(255,62,165,.12);
+      position: relative;
+      overflow:hidden;
+    }
+    .avatar::after{
+      content:"";
+      position:absolute; inset:-20%;
+      background: radial-gradient(circle at 30% 25%, rgba(255,255,255,.35), transparent 55%);
+      transform: rotate(10deg);
+    }
+    .brand h1{
+      margin:0;
+      font-size: 14px;
+      letter-spacing:.2px;
+      line-height: 1.15;
+    }
+    .brand p{
+      margin: 2px 0 0;
+      font-size: 12px;
+      color: var(--muted2);
+    }
+
+    .nav{
+      display:flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
     .nav a{
-      color: var(--muted);
       font-size: 13px;
-      text-decoration:none;
+      color: var(--muted);
       padding: 8px 10px;
       border-radius: 12px;
       border: 1px solid transparent;
     }
-    .nav a:hover{ color:var(--text); border-color:var(--line); background:rgba(255,255,255,.03); }
-    @media (max-width: 920px){ .nav{display:none} }
+    .nav a:hover{
+      color: var(--text);
+      border-color: var(--line);
+      background: rgba(255,255,255,.04);
+    }
 
+    .cta{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
     .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:10px 14px; border-radius:14px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.05);
-      text-decoration:none;
-      font-weight:800;
-      transition: .15s transform, .15s filter, .15s background;
-      user-select:none; cursor:pointer; white-space:nowrap;
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 13px;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+      white-space: nowrap;
     }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.07); }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.06);
+      border-color: var(--line2);
+    }
     .btn.primary{
-      border:none;
-      background: linear-gradient(135deg, rgba(255,45,141,.95), rgba(109,106,255,.85));
-      box-shadow: 0 18px 60px rgba(255,45,141,.16);
+      border-color: rgba(255,62,165,.45);
+      background: linear-gradient(135deg, rgba(255,62,165,.22), rgba(138,92,255,.16));
     }
-    .btn.primary:hover{ filter:saturate(1.05); }
-    .btn.ghost{ background: rgba(255,255,255,.03); }
+    .btn svg{ width: 16px; height:16px; opacity:.95; }
 
-    section{ margin-top:16px; }
-    .pad{ padding:22px; }
-    .sectionTitle{
-      margin:0 0 12px;
-      font-size:15px;
-      color:var(--text);
-      letter-spacing:-.2px;
+    /* Hero slider */
+    .hero{
+      padding: 26px 0 10px;
     }
-    .lead{
-      margin:0 0 14px;
-      color:var(--muted);
-      font-size:16px;
-    }
-
-    /* HERO */
-    .heroGrid{
+    .hero-grid{
       display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap:12px;
-      margin-top:18px;
-      align-items:stretch;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 18px;
+      align-items: stretch;
     }
-    @media (max-width: 920px){ .heroGrid{ grid-template-columns: 1fr; } }
 
     .slider{
-      position:relative;
-      overflow:hidden;
+      position: relative;
       border-radius: var(--radius);
-      border:1px solid var(--line);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
       background: rgba(255,255,255,.03);
-      min-height: 300px;
+      min-height: 320px;
     }
-    .slides{display:flex; width:100%; transition: transform .45s ease;}
+    .slides{
+      display:flex;
+      width: 300%;
+      height:100%;
+      transform: translateX(0%);
+      transition: transform .55s cubic-bezier(.2,.8,.2,1);
+    }
     .slide{
-      flex: 0 0 100%;
       width: 100%;
-      padding:24px;
-      padding-bottom: 78px;
-      position:relative;
+      padding: 26px 26px 64px;
+      display:flex;
+      align-items:flex-end;
+      position: relative;
+      isolation: isolate;
+    }
+    .slide::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(900px 420px at 15% 20%, rgba(255,62,165,.28), transparent 60%),
+        radial-gradient(760px 420px at 85% 10%, rgba(138,92,255,.26), transparent 55%),
+        radial-gradient(620px 360px at 50% 120%, rgba(255,255,255,.10), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      z-index:-2;
+    }
+    .slide::after{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,.14), transparent 45%),
+        radial-gradient(circle at 70% 65%, rgba(255,255,255,.10), transparent 42%);
+      transform: rotate(10deg);
+      z-index:-1;
+      opacity:.8;
+    }
+    .slide-content{
+      max-width: 560px;
+    }
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.12);
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 14px;
+    }
+    .kicker .dot{
+      width: 8px; height:8px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255,62,165,.15);
+    }
+    .slide h2{
+      margin:0 0 10px;
+      font-size: 30px;
+      letter-spacing: -.4px;
+      line-height: 1.12;
+    }
+    .slide p{
+      margin:0 0 18px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 15px;
+    }
+    .slide-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+    }
+
+    .slider-controls{
+      position:absolute;
+      inset: auto 16px 14px 16px;
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 12px;
+      pointer-events:none; /* só botões internos recebem clique */
+    }
+    .arrows{
+      display:flex; gap: 8px;
+      pointer-events:auto;
+    }
+    .iconbtn{
+      width: 40px; height:40px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(11,13,18,.35);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+    }
+    .iconbtn:hover{
+      transform: translateY(-1px);
+      border-color: var(--line2);
+      background: rgba(11,13,18,.45);
+    }
+    .iconbtn svg{ width:18px; height:18px; }
+
+    /* Dots: ficam centralizados e com espaço, sem encostar nos CTAs */
+    .dots{
+      pointer-events:auto;
+      display:flex;
+      justify-content:center;
+      gap: 8px;
+      flex: 1;
+    }
+    .dotbtn{
+      width: 10px; height:10px;
+      border-radius:999px;
+      border: 1px solid rgba(255,255,255,.35);
+      background: rgba(255,255,255,.14);
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease, width .12s ease;
+    }
+    .dotbtn.active{
+      width: 26px;
+      background: linear-gradient(90deg, rgba(255,62,165,.9), rgba(138,92,255,.9));
+      border-color: transparent;
+    }
+
+    /* side card */
+    .sidecard{
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      box-shadow: var(--shadow);
+      padding: 18px;
       display:flex;
       flex-direction:column;
       justify-content:space-between;
-      gap:12px;
+      gap: 14px;
+      min-height: 320px;
     }
-    .slide:before{
-      content:"";
-      position:absolute;
-      inset:-1px;
-      background:
-        radial-gradient(700px 260px at 10% 10%, rgba(109,106,255,.24), transparent 60%),
-        radial-gradient(700px 260px at 90% 30%, rgba(255,45,141,.18), transparent 60%);
-      opacity:.9;
-      z-index:0;
-    }
-    .slide > *{ position:relative; z-index:1; }
-
-    .kicker{
-      display:inline-flex; align-items:center; gap:8px;
-      font-size:12px; color:var(--muted);
-      border:1px solid var(--line);
-      padding:6px 10px; border-radius:999px;
-      background: rgba(255,255,255,.03);
-      width: fit-content;
-    }
-    .dot{ width:8px; height:8px; border-radius:999px; background: var(--ok); box-shadow: 0 0 0 6px rgba(46,229,157,.12); }
-
-    h1{
-      margin:6px 0 6px;
-      font-size:40px;
-      line-height:1.1;
-      letter-spacing:-.7px;
-    }
-    @media (max-width:520px){ h1{font-size:32px} }
-    .sub{margin:0; color:var(--muted); font-size:15px; max-width: 60ch;}
-    .ctaRow{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
-
-    .sliderNav{
-      position:absolute;
-      left:14px; right:14px; bottom:14px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      z-index:3;
-      pointer-events:none;
-    }
-    .dots{ display:flex; gap:8px; pointer-events:auto; }
-    .dotBtn{
-      width:10px; height:10px; border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.10);
-      cursor:pointer;
-      padding:0;
-    }
-    .dotBtn.active{
-      background: linear-gradient(135deg, rgba(255,45,141,.95), rgba(109,106,255,.85));
-      border-color: transparent;
-    }
-    .arrows{ display:flex; gap:8px; pointer-events:auto; }
-    .iconBtn{
-      width:38px; height:38px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.06);
-      cursor:pointer;
+    .sidecard h3{ margin:0; font-size: 16px; letter-spacing:-.2px; }
+    .sidecard p{ margin:0; color: var(--muted); line-height:1.55; font-size: 14px; }
+    .quicklist{
       display:grid;
-      place-items:center;
-      font-weight:900;
+      gap: 10px;
+      margin-top: 6px;
     }
-    .iconBtn:hover{ background: rgba(255,255,255,.09); }
+    .ql{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.10);
+    }
+    .ql svg{ width: 18px; height: 18px; margin-top: 2px; opacity:.95; }
+    .ql strong{ display:block; font-size: 13px; margin-bottom: 2px; }
+    .ql span{ display:block; font-size: 12px; color: var(--muted2); line-height:1.35; }
 
-    /* Side box */
-    .sideBox{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      border-radius: var(--radius);
-      padding:18px;
-      height: 100%;
+    /* Sections */
+    section{ padding: 26px 0; }
+    .section-title{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 16px;
+      margin-bottom: 14px;
     }
-    .sideBox h3{ margin:0 0 8px; font-size:14px; }
-    .sideBox p{ margin:0; color:var(--muted); font-size:13px; }
-    .tickList{ list-style:none; padding:0; margin:12px 0 0; display:grid; gap:8px; }
-    .tickList li{
-      display:flex; gap:10px; align-items:flex-start;
-      padding:10px 10px;
-      border:1px solid var(--line);
-      border-radius:14px;
-      background: rgba(255,255,255,.03);
-      color:var(--muted);
-      font-size:13px;
+    .section-title h2{
+      margin:0;
+      font-size: 20px;
+      letter-spacing: -.2px;
     }
-    .tick{
-      width:18px; height:18px; border-radius:8px;
-      background: rgba(46,229,157,.12);
-      border:1px solid rgba(46,229,157,.25);
-      flex:0 0 auto;
-      position:relative;
-      margin-top:1px;
-    }
-    .tick:after{
-      content:"";
-      position:absolute;
-      left:5px; top:3px;
-      width:6px; height:10px;
-      border:2px solid var(--ok);
-      border-top:0; border-left:0;
-      transform: rotate(45deg);
+    .section-title p{
+      margin:0;
+      color: var(--muted2);
+      font-size: 13px;
+      line-height: 1.4;
     }
 
     /* Services */
-    .grid3{ display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; }
-    @media (max-width:900px){ .grid3{ grid-template-columns:1fr } }
-
-    .miniCard{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      border-radius: var(--radius);
-      padding:16px;
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
     }
-    .miniHead{ display:flex; align-items:flex-start; gap:10px; }
-    .miniIcon{
-      width:36px; height:36px;
-      border-radius:14px;
-      border:1px solid var(--line);
+    .card{
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
       background: rgba(255,255,255,.04);
+      box-shadow: 0 12px 26px rgba(0,0,0,.22);
+      padding: 16px;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      position: relative;
+      overflow:hidden;
+      min-height: 160px;
+    }
+    .card::after{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: radial-gradient(circle at 15% 20%, rgba(255,62,165,.10), transparent 45%);
+      transform: rotate(12deg);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: var(--line2);
+      background: rgba(255,255,255,.05);
+    }
+    .card-top{
+      display:flex;
+      align-items:flex-start;
+      gap: 12px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+    .badge{
+      width: 42px; height:42px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,62,165,.28);
+      background: linear-gradient(135deg, rgba(255,62,165,.20), rgba(138,92,255,.12));
       display:grid;
       place-items:center;
-      flex:0 0 auto;
+      flex: 0 0 auto;
     }
-    .miniIcon svg{
-      width:18px; height:18px;
-      fill:none;
-      stroke: rgba(234,240,255,.92);
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .miniCard h3{ margin:0 0 6px; font-size:15px; }
-    .miniCard p{ margin:0; font-size:13px; color:var(--muted); }
+    .badge svg{ width: 20px; height:20px; }
+    .card h3{ margin:0; font-size: 16px; letter-spacing:-.2px; }
+    .card p{ margin:6px 0 0; color: var(--muted); line-height:1.5; font-size: 13px; position: relative; z-index:1; }
 
-    /* ✅ TIMELINE LIMPA (estilo referência) */
-    .timelineClean{
-      margin-top: 16px;
-      border:1px solid var(--line);
+    /* About + timeline */
+    .about-wrap{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .about{
       border-radius: var(--radius);
-      background: rgba(255,255,255,.02);
-      padding: 18px 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .about p{
+      margin:0;
+      color: var(--muted);
+      line-height:1.7;
+      font-size: 15px;
     }
 
-    .tlWrap{
-      position:relative;
-      width:100%;
+    /* Circuit Timeline (horizontal, leve, sem "caixão") */
+    .timeline{
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+      padding: 18px 16px 10px;
+      overflow: hidden; /* sem scrollbar gritante */
+    }
+    .timeline-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .timeline-head h3{
+      margin:0;
+      font-size: 16px;
+      letter-spacing:-.2px;
+    }
+    .timeline-head span{
+      font-size: 12px;
+      color: var(--muted2);
+    }
+
+    .timeline-scroll{
       overflow-x: auto;
-      overflow-y: visible;
-      padding: 10px 0;
+      overflow-y: hidden;
+      padding: 10px 6px 18px;
       scrollbar-width: thin;
       scrollbar-color: rgba(255,255,255,.18) transparent;
     }
-    .tlWrap::-webkit-scrollbar{ height:8px; }
-    .tlWrap::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.14); border-radius:999px; }
-
-    .tl{
-      --stem: 34px;
-      --dot: 10px;
-      position:relative;
-      display:flex;
-      justify-content:space-between;
-      gap: 28px;
-      min-width: 820px; /* só força scroll se precisar */
-      height: 190px;    /* o suficiente pra cima/baixo sem “caixão” */
-      padding: 0 8px;
+    .timeline-scroll::-webkit-scrollbar{ height: 10px; }
+    .timeline-scroll::-webkit-scrollbar-track{ background: transparent; }
+    .timeline-scroll::-webkit-scrollbar-thumb{
+      background: rgba(255,255,255,.14);
+      border-radius: 999px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
     }
-    .tl::before{
+    .timeline-scroll::-webkit-scrollbar-thumb:hover{ background: rgba(255,255,255,.20); }
+
+    .circuit{
+      position: relative;
+      min-width: 960px; /* mantém horizontal com respiro */
+      height: 240px;
+      margin: 0 auto;
+    }
+    .circuit::before{
       content:"";
       position:absolute;
-      left:8px; right:8px;
-      top:50%;
-      height:2px;
-      transform: translateY(-50%);
-      background: linear-gradient(90deg, rgba(109,106,255,.75), rgba(255,45,141,.75));
-      border-radius:999px;
+      left: 60px;
+      right: 60px;
+      top: 50%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+    }
+
+    .node{
+      position:absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 1px;
+    }
+
+    /* ponto central */
+    .node .point{
+      width: 14px; height: 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(255,62,165,.95), rgba(138,92,255,.95));
+      box-shadow:
+        0 0 0 4px rgba(255,62,165,.12),
+        0 10px 22px rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.22);
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform: translate(-50%, -50%);
+    }
+    /* haste */
+    .node .stem{
+      position:absolute;
+      left: 0;
+      width: 2px;
+      background: linear-gradient(180deg, rgba(255,255,255,.00), rgba(255,255,255,.25), rgba(255,255,255,.00));
+      transform: translateX(-50%);
+      border-radius: 99px;
       opacity:.95;
     }
-
-    .tlItem{
-      position:relative;
-      flex: 1 1 0;
-      min-width: 140px;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
-
-    .tlDot{
+    /* caps nas pontas da haste */
+    .node .cap{
       position:absolute;
-      top:50%;
-      left:50%;
-      width: var(--dot);
-      height: var(--dot);
-      transform: translate(-50%,-50%);
-      border-radius:999px;
-      background: linear-gradient(135deg, rgba(255,45,141,.95), rgba(109,106,255,.85));
-      box-shadow: 0 0 0 5px rgba(255,45,141,.12);
-      z-index:2;
-    }
-    .tlStem{
-      position:absolute;
-      left:50%;
-      width:2px;
-      background: rgba(255,255,255,.18);
-      transform: translateX(-50%);
-      border-radius:999px;
-      z-index:1;
-    }
-
-    .tlLabel{
-      position:absolute;
-      width: 190px;
-      padding: 10px 10px;
-      border:1px solid var(--line);
-      border-radius: 14px;
-      background: rgba(17,26,47,.40);
-      backdrop-filter: blur(8px);
-    }
-    .tlYear{
-      display:inline-block;
-      font-size:12px;
-      font-weight:900;
-      color: var(--text);
-      padding: 5px 9px;
+      left: 0;
+      width: 10px; height: 10px;
       border-radius: 999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      margin-bottom:6px;
-      white-space:nowrap;
+      background: rgba(255,255,255,.16);
+      border: 1px solid rgba(255,255,255,.25);
+      transform: translateX(-50%);
+      box-shadow: 0 10px 22px rgba(0,0,0,.22);
     }
-    .tlTitle{
+    /* caixa de texto (leve, sem virar cardzão) */
+    .node .label{
+      position:absolute;
+      width: 210px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.14);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 14px 30px rgba(0,0,0,.24);
+    }
+    .node .label strong{
+      display:block;
+      font-size: 13px;
+      letter-spacing: -.15px;
+      margin-bottom: 4px;
+    }
+    .node .label span{
+      display:block;
+      color: var(--muted2);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    /* Layout alternando acima/abaixo (estilo circuito) */
+    .node.up .stem{ top: -74px; height: 64px; }
+    .node.up .cap{ top: -74px; }
+    .node.up .label{ top: -170px; left: 10px; transform: translateX(-50%); }
+
+    .node.down .stem{ top: 74px; height: 64px; }
+    .node.down .cap{ top: 138px; }
+    .node.down .label{ top: 92px; left: 10px; transform: translateX(-50%); }
+
+    /* pequenos “ticks” na linha */
+    .node .tick{
+      position:absolute;
+      left: 0;
+      top: 0;
+      width: 26px;
+      height: 2px;
+      background: rgba(255,255,255,.16);
+      transform: translate(-50%, -50%);
+      border-radius: 999px;
+      opacity:.9;
+    }
+
+    /* Articles carousel */
+    .carousel{
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+      padding: 14px;
+    }
+    .carousel-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .carousel-head h3{
       margin:0;
-      font-size:13px;
-      line-height:1.25;
+      font-size: 16px;
       letter-spacing:-.2px;
     }
-    .tlMeta{
-      margin:3px 0 0;
-      font-size:12px;
-      color: var(--muted);
-      line-height:1.25;
+    .carousel-controls{
+      display:flex;
+      gap: 8px;
     }
 
-    /* alterna cima/baixo (como na imagem) */
-    .tlItem:nth-child(odd) .tlStem{
-      top: calc(50% - var(--stem));
-      height: var(--stem);
-    }
-    .tlItem:nth-child(odd) .tlLabel{
-      top: calc(50% - var(--stem) - 68px);
-      left:50%;
-      transform: translateX(-50%);
-      text-align:left;
-    }
-
-    .tlItem:nth-child(even) .tlStem{
-      top: 50%;
-      height: var(--stem);
-    }
-    .tlItem:nth-child(even) .tlLabel{
-      top: calc(50% + var(--stem) + 18px);
-      left:50%;
-      transform: translateX(-50%);
-      text-align:left;
-    }
-
-    @media (max-width: 560px){
-      .tl{ min-width: 860px; } /* no mobile, deixa rolar sem “esmagar” */
-      .tlLabel{ width: 180px; }
-    }
-
-    /* Articles */
-    .carousel{
-      position:relative;
-      overflow:hidden;
-      border-radius: var(--radius);
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-    }
     .track{
       display:flex;
-      gap:12px;
-      padding:14px;
-      overflow:auto;
-      scroll-snap-type:x mandatory;
-      scroll-behavior:smooth;
+      gap: 12px;
+      overflow-x: auto;
+      padding: 6px 4px 12px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,.18) transparent;
     }
-    .track::-webkit-scrollbar{ height:10px; }
-    .track::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.12); border-radius:999px; }
-    .aCard{
-      flex: 0 0 340px;
-      scroll-snap-align:start;
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      background: rgba(17,26,47,.45);
-      overflow:hidden;
+    .track::-webkit-scrollbar{ height: 10px; }
+    .track::-webkit-scrollbar-track{ background: transparent; }
+    .track::-webkit-scrollbar-thumb{
+      background: rgba(255,255,255,.14);
+      border-radius: 999px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
     }
-    .coverImg{
-      width:100%;
-      height:160px;
-      display:block;
-      object-fit:cover;
-      border-bottom:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-    }
-    .aBody{ padding:14px; }
-    .aTitle{
-      margin:0;
-      font-size:14px;
-      line-height:1.25;
-      letter-spacing:-.2px;
-    }
-    .aBody p{ margin:8px 0 12px; color:var(--muted); font-size:13px; }
-    .aMeta{ color:var(--muted); font-size:12px; }
-    .aActions{ display:flex; gap:10px; flex-wrap:wrap; }
+    .track::-webkit-scrollbar-thumb:hover{ background: rgba(255,255,255,.20); }
 
-    footer{
-      margin-top:22px;
-      color:var(--muted);
-      font-size:12px;
+    .article{
+      flex: 0 0 320px;
+      scroll-snap-align: start;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      overflow:hidden;
+      box-shadow: 0 12px 26px rgba(0,0,0,.22);
+      display:flex;
+      flex-direction:column;
+      min-height: 300px;
+    }
+    .cover{
+      height: 140px;
+      position: relative;
+      overflow:hidden;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .cover svg{ width: 100%; height: 100%; display:block; }
+    .article-body{
+      padding: 12px;
+      display:flex;
+      flex-direction:column;
+      gap: 8px;
+      flex:1;
+    }
+    .article h4{
+      margin:0;
+      font-size: 14px;
+      letter-spacing:-.15px;
+      line-height: 1.3;
+    }
+    .article p{
+      margin:0;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.45;
+      flex:1;
+    }
+    .article .article-actions{
       display:flex;
       justify-content:space-between;
-      flex-wrap:wrap;
-      gap:10px;
-      padding: 6px 2px 0;
+      align-items:center;
+      gap: 10px;
+      margin-top: 2px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--muted2);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.10);
+      white-space:nowrap;
+    }
+    .chip svg{ width: 14px; height: 14px; opacity:.9; }
+
+    /* Footer / contact */
+    .contact{
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+    }
+    .contact .row{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .small{
+      font-size: 12px;
+      color: var(--muted2);
+      margin: 0;
+      line-height: 1.45;
+    }
+
+    .footer{
+      padding: 24px 0 34px;
+      color: var(--muted2);
+      font-size: 12px;
+      text-align:center;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .sidecard{ min-height: unset; }
+      .cards{ grid-template-columns: 1fr; }
+      .slide{ padding: 22px 18px 64px; }
+      .slide h2{ font-size: 26px; }
+      .nav{ display:none; }
+      .brand{ min-width: unset; }
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap" id="top">
+  <header class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <div class="brand">
+          <div class="avatar" aria-hidden="true"></div>
+          <div>
+            <h1>Redatora SEO | Transformando palavras em sucesso online</h1>
+            <p>Tatiane Gomes Rodrigues (Tati) • desde 2015</p>
+          </div>
+        </div>
 
-    <header class="card">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <b>Tati • Redatora SEO</b>
-          <small>Transformando palavras em sucesso online</small>
+        <nav class="nav" aria-label="Navegação">
+          <a href="#servicos">Serviços</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#trajetoria">Trajetória</a>
+          <a href="#artigos">Artigos</a>
+          <a href="#contato">Contato</a>
+        </nav>
+
+        <div class="cta">
+          <a class="btn primary" href="https://wa.me/5511976625245" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M20.5 11.9a8.6 8.6 0 0 1-12.7 7.5L3.5 20.5l1.2-4.1A8.6 8.6 0 1 1 20.5 11.9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M8.4 8.8c.3-.7.6-.8 1.1-.8h.8c.2 0 .4 0 .5.3l.9 2.1c.1.2.1.4 0 .6l-.6.7c-.2.2-.1.5 0 .7.7 1.2 1.7 2.1 2.9 2.7.2.1.5.1.7 0l.8-.6c.2-.1.4-.1.6 0l2 .9c.3.1.3.3.3.5v.8c0 .5-.1.8-.8 1.1-.5.2-1.7.6-4.1-.4-2.9-1.2-4.7-4.3-4.9-4.7-.1-.2-1.1-1.5-.7-2.9Z" fill="currentColor" opacity=".9"/>
+            </svg>
+            WhatsApp
+          </a>
+          <a class="btn" href="mailto:gomesrodrigues1995@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4.5 7.2h15c.9 0 1.6.7 1.6 1.6v8c0 .9-.7 1.6-1.6 1.6h-15c-.9 0-1.6-.7-1.6-1.6v-8c0-.9.7-1.6 1.6-1.6Z" stroke="currentColor" stroke-width="1.6"/>
+              <path d="m5.2 8 6.4 5a.7.7 0 0 0 .9 0l6.3-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            E-mail
+          </a>
         </div>
       </div>
-
-      <nav class="nav" aria-label="Navegação">
-        <a href="#servicos">Serviços</a>
-        <a href="#sobre">Sobre mim</a>
-        <a href="#portfolio">Artigos</a>
-        <a href="#contato">Contato</a>
-      </nav>
-
-      <a class="btn primary" href="#contato">Pedir orçamento</a>
-    </header>
-
-    <div class="heroGrid">
-      <main class="slider" aria-label="Banners de serviços">
-        <div class="slides" id="slides">
-
-          <div class="slide">
-            <div class="kicker"><span class="dot"></span> Páginas institucionais</div>
-            <div>
-              <h1>Site bonito é ótimo.<br/>Mas precisa dizer algo.</h1>
-              <p class="sub">
-                Texto institucional com posicionamento e clareza, sem “sobre nós genérico”.
-                Bom pra marca e bom pra busca.
-              </p>
-            </div>
-            <div class="ctaRow">
-              <a class="btn primary" href="#contato">Pedir orçamento</a>
-              <a class="btn ghost" href="#sobre">Sobre mim</a>
-            </div>
-          </div>
-
-          <div class="slide">
-            <div class="kicker"><span class="dot"></span> Produtos e serviços</div>
-            <div>
-              <h1>Página que ranqueia<br/>e ajuda de verdade.</h1>
-              <p class="sub">
-                Conteúdo pensado pra busca e conversão: argumento, prova e CTA. Sem textão que enrola.
-              </p>
-            </div>
-            <div class="ctaRow">
-              <a class="btn primary" href="#contato">Falar no WhatsApp</a>
-              <a class="btn ghost" href="#portfolio">Ver artigos</a>
-            </div>
-          </div>
-
-          <div class="slide">
-            <div class="kicker"><span class="dot"></span> Artigos para blog</div>
-            <div>
-              <h1>SEO com ritmo<br/>de leitura.</h1>
-              <p class="sub">
-                Artigos com estrutura, intenção de busca e linguagem humana.
-                Conteúdo pronto pra publicar.
-              </p>
-            </div>
-            <div class="ctaRow">
-              <a class="btn primary" href="#contato">Pedir orçamento</a>
-              <a class="btn ghost" href="#sobre">Sobre mim</a>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="sliderNav">
-          <div class="dots" aria-label="Navegação do slider">
-            <button class="dotBtn active" data-go="0" aria-label="Banner 1"></button>
-            <button class="dotBtn" data-go="1" aria-label="Banner 2"></button>
-            <button class="dotBtn" data-go="2" aria-label="Banner 3"></button>
-          </div>
-
-          <div class="arrows">
-            <button class="iconBtn" id="prev" aria-label="Anterior">‹</button>
-            <button class="iconBtn" id="next" aria-label="Próximo">›</button>
-          </div>
-        </div>
-      </main>
-
-      <aside class="sideBox card">
-        <h3>O que você ganha</h3>
-        <p>Menos retrabalho. Mais previsibilidade. Texto com decisão editorial.</p>
-        <ul class="tickList">
-          <li><span class="tick"></span> Conteúdo com foco em SEO e leitura fluida</li>
-          <li><span class="tick"></span> Estrutura escaneável, sem cara de genérico</li>
-          <li><span class="tick"></span> Entrega pronta pra publicar</li>
-          <li><span class="tick"></span> Comunicação clara (sem mistério)</li>
-        </ul>
-      </aside>
     </div>
+  </header>
 
-    <section class="card pad" id="servicos">
-      <h2 class="sectionTitle">Serviços</h2>
+  <main>
+    <!-- HERO / SLIDER -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="slider" aria-label="Banners iniciais">
+            <div class="slides" id="slides">
+              <!-- Slide 1 -->
+              <article class="slide" aria-roledescription="slide" aria-label="Páginas institucionais">
+                <div class="slide-content">
+                  <div class="kicker"><span class="dot" aria-hidden="true"></span>Páginas institucionais</div>
+                  <h2>Texto com cara de marca, mas com cérebro de SEO</h2>
+                  <p>Estrutura, intenção de busca e clareza. O tipo de conteúdo que conversa com gente de verdade e também com o Google (sem ficar parecendo um robô tentando ser simpático).</p>
+                  <div class="slide-actions">
+                    <a class="btn primary" href="#contato">
+                      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="1.6"/>
+                        <path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                      </svg>
+                      Pedir orçamento
+                    </a>
+                    <a class="btn" href="#servicos">
+                      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M12 21S4 16.5 4 10.2C4 7.3 6.3 5 9.2 5c1.5 0 2.9.6 3.8 1.6C13.9 5.6 15.3 5 16.8 5 19.7 5 22 7.3 22 10.2 22 16.5 12 21 12 21Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                      </svg>
+                      Ver serviços
+                    </a>
+                  </div>
+                </div>
+              </article>
 
-      <div class="grid3">
-        <div class="miniCard">
-          <div class="miniHead">
-            <div class="miniIcon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M4 20V6a2 2 0 0 1 2-2h6v16" />
-                <path d="M10 8h-2" />
-                <path d="M10 12h-2" />
-                <path d="M10 16h-2" />
-                <path d="M12 20V10a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v10" />
-                <path d="M18 12h-2" />
-                <path d="M18 16h-2" />
-                <path d="M2 20h20" />
-              </svg>
+              <!-- Slide 2 -->
+              <article class="slide" aria-roledescription="slide" aria-label="Páginas de produtos e serviços">
+                <div class="slide-content">
+                  <div class="kicker"><span class="dot" aria-hidden="true"></span>Produtos e serviços</div>
+                  <h2>Conteúdo que explica, convence e posiciona</h2>
+                  <p>Descrição boa não é a que “enche linguiça”. É a que organiza a decisão: benefícios, diferenciais e respostas que o cliente já está procurando.</p>
+                  <div class="slide-actions">
+                    <a class="btn primary" href="https://wa.me/5511976625245" target="_blank" rel="noopener">
+                      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M20.5 11.9a8.6 8.6 0 0 1-12.7 7.5L3.5 20.5l1.2-4.1A8.6 8.6 0 1 1 20.5 11.9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                        <path d="M8.4 8.8c.3-.7.6-.8 1.1-.8h.8c.2 0 .4 0 .5.3l.9 2.1c.1.2.1.4 0 .6l-.6.7c-.2.2-.1.5 0 .7.7 1.2 1.7 2.1 2.9 2.7.2.1.5.1.7 0l.8-.6c.2-.1.4-.1.6 0l2 .9c.3.1.3.3.3.5v.8c0 .5-.1.8-.8 1.1-.5.2-1.7.6-4.1-.4-2.9-1.2-4.7-4.3-4.9-4.7-.1-.2-1.1-1.5-.7-2.9Z" fill="currentColor" opacity=".9"/>
+                      </svg>
+                      Chamar no WhatsApp
+                    </a>
+                    <a class="btn" href="#artigos">
+                      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M7 4h10a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-4 2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                        <path d="M8 8h8M8 11h8M8 14h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                      </svg>
+                      Ver artigos
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Slide 3 -->
+              <article class="slide" aria-roledescription="slide" aria-label="Artigos para blog">
+                <div class="slide-content">
+                  <div class="kicker"><span class="dot" aria-hidden="true"></span>Artigos para blog</div>
+                  <h2>Artigo SEO com ritmo, recorte e intenção (sem aula chata)</h2>
+                  <p>Conteúdo pensado para ranquear e sustentar autoridade. Com estrutura, semântica e uma voz que não parece um formulário preenchido.</p>
+                  <div class="slide-actions">
+                    <a class="btn primary" href="mailto:gomesrodrigues1995@gmail.com">
+                      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M4.5 7.2h15c.9 0 1.6.7 1.6 1.6v8c0 .9-.7 1.6-1.6 1.6h-15c-.9 0-1.6-.7-1.6-1.6v-8c0-.9.7-1.6 1.6-1.6Z" stroke="currentColor" stroke-width="1.6"/>
+                        <path d="m5.2 8 6.4 5a.7.7 0 0 0 .9 0l6.3-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Pedir proposta
+                    </a>
+                    <a class="btn" href="#trajetoria">
+                      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M4 19V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                        <path d="M7 8h10M7 12h10M7 16h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                      </svg>
+                      Ver trajetória
+                    </a>
+                  </div>
+                </div>
+              </article>
             </div>
+
+            <div class="slider-controls" aria-label="Controles do slider">
+              <div class="arrows">
+                <button class="iconbtn" id="prev" aria-label="Banner anterior" type="button">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M14.5 6 8.5 12l6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <button class="iconbtn" id="next" aria-label="Próximo banner" type="button">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M9.5 6 15.5 12l-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="dots" aria-label="Seleção de banner">
+                <button class="dotbtn active" data-slide="0" aria-label="Ir para banner 1" type="button"></button>
+                <button class="dotbtn" data-slide="1" aria-label="Ir para banner 2" type="button"></button>
+                <button class="dotbtn" data-slide="2" aria-label="Ir para banner 3" type="button"></button>
+              </div>
+
+              <div style="width:88px;"></div>
+            </div>
+          </div>
+
+          <aside class="sidecard" aria-label="Resumo rápido">
             <div>
-              <h3>Páginas institucionais</h3>
-              <p>Conteúdo para apresentar a empresa com clareza, tom certo e posicionamento.</p>
+              <h3>O que você leva daqui</h3>
+              <p>Conteúdo SEO que não se apoia em fórmula. Ele tem direção: intenção, estrutura e decisões editoriais claras.</p>
+
+              <div class="quicklist">
+                <div class="ql">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M8 12.5 10.8 15.3 16.5 9.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 21a9 9 0 1 0-9-9 9 9 0 0 0 9 9Z" stroke="currentColor" stroke-width="1.6" opacity=".9"/>
+                  </svg>
+                  <div>
+                    <strong>Estrutura que ranqueia</strong>
+                    <span>Sem virar “texto enfeitado” que não responde nada.</span>
+                  </div>
+                </div>
+
+                <div class="ql">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M7 17h10M7 13h10M7 9h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M6 21h12a2 2 0 0 0 2-2V7l-4-4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  </svg>
+                  <div>
+                    <strong>Escrita clara</strong>
+                    <span>Direta, humana e com boa leitura (sem firula).</span>
+                  </div>
+                </div>
+
+                <div class="ql">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    <path d="M12 17a5 5 0 1 0-5-5 5 5 0 0 0 5 5Z" stroke="currentColor" stroke-width="1.6"/>
+                  </svg>
+                  <div>
+                    <strong>IA como ferramenta</strong>
+                    <span>Estratégica, mas sem terceirizar a direção editorial.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <a class="btn" href="https://www.linkedin.com/in/tatiane-gomes-rodrigues/" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M6.5 9.5V19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  <path d="M6.5 6.2h0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M10.5 19v-5.1c0-2.6 3.9-2.8 3.9.2V19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M14.4 13.4c.3-2.8 4.1-2.8 4.1.2V19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                LinkedIn
+              </a>
+              <a class="btn" href="#artigos">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M7 4h10a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-4 2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <path d="M8 8h8M8 11h8M8 14h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+                Artigos
+              </a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section id="servicos">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h2>Serviços</h2>
+            <p>Conteúdo para quem quer crescer no orgânico com consistência.</p>
+          </div>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <div class="card-top">
+              <div class="badge" aria-hidden="true">
+                <!-- SVG inline: prédio / institucional -->
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 20h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                  <path d="M6 20V7.8c0-.4.2-.7.6-.9L12 4l5.4 2.9c.4.2.6.5.6.9V20" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <path d="M9 10h.01M9 13h.01M9 16h.01M12 10h.01M12 13h.01M12 16h.01M15 10h.01M15 13h.01M15 16h.01" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <h3>Páginas institucionais</h3>
+                <p>Quem você é, o que faz e por que isso importa. Com SEO e sem discurso vazio.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-top">
+              <div class="badge" aria-hidden="true">
+                <!-- SVG inline: tag / produto e serviço -->
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M20 13l-7 7a2 2 0 0 1-2.8 0L4 13V4h9l7 7Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <path d="M7.5 7.5h0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M12 9.5l2.5 2.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <h3>Páginas de produtos e serviços</h3>
+                <p>Benefícios, diferenciais, objeções e intenção de busca — do jeito certo (e legível).</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-top">
+              <div class="badge" aria-hidden="true">
+                <!-- SVG inline: artigo / blog -->
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M7 4h10a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-4 2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <path d="M8 8h8M8 11h8M8 14h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <h3>Artigos para blog</h3>
+                <p>Conteúdo que sustenta autoridade e ranqueia com consistência, sem soar “fabricado”.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h2>Sobre mim</h2>
+            <p>Menos “sobre”, mais “por que funciona”.</p>
+          </div>
+        </div>
+
+        <div class="about-wrap">
+          <div class="about">
+            <p>
+              Desde 2015, ajudo marcas a crescerem no orgânico com conteúdo SEO que faz sentido: estrutura, intenção de busca e escrita clara…
+              Uso IA de forma estratégica, mas a direção editorial e a qualidade do texto continuam sendo humanas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section id="trajetoria">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h2>Trajetória</h2>
+            <p>Linha do tempo no estilo “circuito”: leve, horizontal e sem blocão pesado.</p>
+          </div>
+        </div>
+
+        <div class="timeline" aria-label="Linha do tempo">
+          <div class="timeline-head">
+            <h3>Marcos principais</h3>
+            <span>arraste para o lado se estiver no celular</span>
+          </div>
+
+          <div class="timeline-scroll">
+            <div class="circuit" role="list" aria-label="Circuito de marcos">
+              <!-- posições calculadas manualmente para ficar bonito -->
+              <div class="node up" style="left: 10%;" role="listitem">
+                <div class="tick" aria-hidden="true"></div>
+                <div class="point" aria-hidden="true"></div>
+                <div class="stem" aria-hidden="true"></div>
+                <div class="cap" aria-hidden="true"></div>
+                <div class="label">
+                  <strong>2014 • Início da faculdade</strong>
+                  <span>Jornalismo</span>
+                </div>
+              </div>
+
+              <div class="node down" style="left: 30%;" role="listitem">
+                <div class="tick" aria-hidden="true"></div>
+                <div class="point" aria-hidden="true"></div>
+                <div class="stem" aria-hidden="true"></div>
+                <div class="cap" aria-hidden="true"></div>
+                <div class="label">
+                  <strong>set/2015 • Início da carreira</strong>
+                  <span>Produção de conteúdo e SEO</span>
+                </div>
+              </div>
+
+              <div class="node up" style="left: 50%;" role="listitem">
+                <div class="tick" aria-hidden="true"></div>
+                <div class="point" aria-hidden="true"></div>
+                <div class="stem" aria-hidden="true"></div>
+                <div class="cap" aria-hidden="true"></div>
+                <div class="label">
+                  <strong>2017 • Formação em Jornalismo</strong>
+                  <span>Graduação concluída</span>
+                </div>
+              </div>
+
+              <div class="node down" style="left: 70%;" role="listitem">
+                <div class="tick" aria-hidden="true"></div>
+                <div class="point" aria-hidden="true"></div>
+                <div class="stem" aria-hidden="true"></div>
+                <div class="cap" aria-hidden="true"></div>
+                <div class="label">
+                  <strong>jul/2020 • Pós-graduação</strong>
+                  <span>Assessoria de Comunicação e Mídias Sociais</span>
+                </div>
+              </div>
+
+              <div class="node up" style="left: 90%;" role="listitem">
+                <div class="tick" aria-hidden="true"></div>
+                <div class="point" aria-hidden="true"></div>
+                <div class="stem" aria-hidden="true"></div>
+                <div class="cap" aria-hidden="true"></div>
+                <div class="label">
+                  <strong>2025 • 10 anos de carreira</strong>
+                  <span>Marco profissional</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="miniCard">
-          <div class="miniHead">
-            <div class="miniIcon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M20 13l-7 7-11-11V2h7z" />
-                <path d="M7.5 7.5h.01" />
+      </div>
+    </section>
+
+    <!-- ARTIGOS -->
+    <section id="artigos">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h2>Artigos no LinkedIn</h2>
+            <p>Alguns textos que mostram meu jeito de pensar (e de decidir conteúdo).</p>
+          </div>
+        </div>
+
+        <div class="carousel" aria-label="Carrossel de artigos">
+          <div class="carousel-head">
+            <h3>Seleção</h3>
+            <div class="carousel-controls">
+              <button class="iconbtn" id="artPrev" aria-label="Voltar artigos" type="button">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M14.5 6 8.5 12l6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <button class="iconbtn" id="artNext" aria-label="Avançar artigos" type="button">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M9.5 6 15.5 12l-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="track" id="articlesTrack">
+            <!-- Artigo 1 -->
+            <article class="article">
+              <div class="cover" aria-hidden="true">
+                <!-- “capa” em SVG (não depende do LinkedIn e não quebra) -->
+                <svg viewBox="0 0 640 280" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stop-color="rgba(255,62,165,.95)"/>
+                      <stop offset="1" stop-color="rgba(138,92,255,.85)"/>
+                    </linearGradient>
+                  </defs>
+                  <rect width="640" height="280" fill="url(#g1)"/>
+                  <circle cx="120" cy="90" r="120" fill="rgba(255,255,255,.12)"/>
+                  <circle cx="520" cy="210" r="140" fill="rgba(255,255,255,.10)"/>
+                  <text x="28" y="62" fill="rgba(255,255,255,.92)" font-size="22" font-family="ui-sans-serif, system-ui" font-weight="700">SEO na prática</text>
+                  <text x="28" y="98" fill="rgba(255,255,255,.82)" font-size="16" font-family="ui-sans-serif, system-ui">Quando “revisão” vira mutirão de sinônimo</text>
+                </svg>
+              </div>
+              <div class="article-body">
+                <h4>Revisão virou mutirão de sinônimo… e o texto pagou a conta</h4>
+                <p>Um retrato do retrabalho “bonito”, que parece capricho, mas às vezes só esconde falta de decisão editorial.</p>
+                <div class="article-actions">
+                  <span class="chip">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M7 4h10a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-4 2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                    </svg>
+                    LinkedIn Pulse
+                  </span>
+                  <a class="btn primary" target="_blank" rel="noopener"
+                     href="https://www.linkedin.com/pulse/revis%C3%A3o-virou-mutir%C3%A3o-de-sin%C3%B4nimo-e-o-texto-pagou-conta-tatiane-gomes-www8f/">
+                    Abrir
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Artigo 2 -->
+            <article class="article">
+              <div class="cover" aria-hidden="true">
+                <svg viewBox="0 0 640 280" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stop-color="rgba(138,92,255,.95)"/>
+                      <stop offset="1" stop-color="rgba(255,62,165,.85)"/>
+                    </linearGradient>
+                  </defs>
+                  <rect width="640" height="280" fill="url(#g2)"/>
+                  <path d="M0,210 C120,150 200,250 320,200 C460,140 520,240 640,190 L640,280 L0,280 Z" fill="rgba(255,255,255,.10)"/>
+                  <text x="28" y="62" fill="rgba(255,255,255,.92)" font-size="22" font-family="ui-sans-serif, system-ui" font-weight="700">SEO + Criatividade</text>
+                  <text x="28" y="98" fill="rgba(255,255,255,.82)" font-size="16" font-family="ui-sans-serif, system-ui">Dá pra ser estratégico sem ficar engessado</text>
+                </svg>
+              </div>
+              <div class="article-body">
+                <h4>SEO e criatividade: uma dupla dinâmica para escrita otimizada</h4>
+                <p>Como unir intenção de busca e voz humana, sem transformar texto em checklist.</p>
+                <div class="article-actions">
+                  <span class="chip">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M7 4h10a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-4 2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                    </svg>
+                    LinkedIn Pulse
+                  </span>
+                  <a class="btn primary" target="_blank" rel="noopener"
+                     href="https://www.linkedin.com/pulse/seo-e-criatividade-uma-dupla-din%25C3%25A2mica-para-escrita-otimizada-gomes">
+                    Abrir
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Artigo 3 -->
+            <article class="article">
+              <div class="cover" aria-hidden="true">
+                <svg viewBox="0 0 640 280" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stop-color="rgba(255,255,255,.12)"/>
+                      <stop offset="1" stop-color="rgba(255,255,255,.06)"/>
+                    </linearGradient>
+                  </defs>
+                  <rect width="640" height="280" fill="rgba(11,13,18,.25)"/>
+                  <rect x="0" y="0" width="640" height="280" fill="url(#g3)"/>
+                  <circle cx="520" cy="80" r="110" fill="rgba(255,62,165,.20)"/>
+                  <circle cx="150" cy="210" r="140" fill="rgba(138,92,255,.18)"/>
+                  <text x="28" y="62" fill="rgba(255,255,255,.92)" font-size="22" font-family="ui-sans-serif, system-ui" font-weight="700">Bastidores do SEO</text>
+                  <text x="28" y="98" fill="rgba(255,255,255,.82)" font-size="16" font-family="ui-sans-serif, system-ui">Por que escrever pra SEO vira um problema?</text>
+                </svg>
+              </div>
+              <div class="article-body">
+                <h4>Redação para SEO: por que é tão complexa?</h4>
+                <p>O desafio real não é “usar palavra-chave”. É tomar decisões editoriais que sustentem o objetivo.</p>
+                <div class="article-actions">
+                  <span class="chip">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M7 4h10a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-4 2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                    </svg>
+                    LinkedIn Pulse
+                  </span>
+                  <a class="btn primary" target="_blank" rel="noopener"
+                     href="https://www.linkedin.com/pulse/reda%25C3%25A7%25C3%25A3o-para-seo-por-que-t%25C3%25A3o-complexa-tatiane-gomes">
+                    Abrir
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Artigo 4 -->
+            <article class="article">
+              <div class="cover" aria-hidden="true">
+                <svg viewBox="0 0 640 280" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stop-color="rgba(255,62,165,.92)"/>
+                      <stop offset="1" stop-color="rgba(11,13,18,.10)"/>
+                    </linearGradient>
+                  </defs>
+                  <rect width="640" height="280" fill="rgba(11,13,18,.25)"/>
+                  <rect width="640" height="280" fill="url(#g4)" opacity=".9"/>
+                  <path d="M0,150 C120,120 200,190 320,160 C460,120 520,190 640,150" stroke="rgba(255,255,255,.22)" stroke-width="4" fill="none"/>
+                  <text x="28" y="62" fill="rgba(255,255,255,.92)" font-size="22" font-family="ui-sans-serif, system-ui" font-weight="700">Rankear não basta</text>
+                  <text x="28" y="98" fill="rgba(255,255,255,.82)" font-size="16" font-family="ui-sans-serif, system-ui">Página que ranqueia e não ajuda</text>
+                </svg>
+              </div>
+              <div class="article-body">
+                <h4>Página que ranqueia e não ajuda</h4>
+                <p>Quando o SEO “funciona”, mas a experiência não. E aí você tem tráfego… e frustração.</p>
+                <div class="article-actions">
+                  <span class="chip">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M7 4h10a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-4 2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                    </svg>
+                    LinkedIn Pulse
+                  </span>
+                  <a class="btn primary" target="_blank" rel="noopener"
+                     href="https://www.linkedin.com/pulse/p%25C3%25A1gina-que-ranqueia-e-n%25C3%25A3o-ajuda-tatiane-gomes-tctof">
+                    Abrir
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h2>Contato</h2>
+            <p>Se você quer conteúdo SEO com direção editorial, a gente se entende rápido.</p>
+          </div>
+        </div>
+
+        <div class="contact">
+          <p class="small"><strong>WhatsApp:</strong> (11) 97662-5245 • <strong>E-mail:</strong> gomesrodrigues1995@gmail.com</p>
+          <p class="small"><strong>LinkedIn:</strong> tatiane-gomes-rodrigues</p>
+
+          <div class="row">
+            <a class="btn primary" href="https://wa.me/5511976625245" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M20.5 11.9a8.6 8.6 0 0 1-12.7 7.5L3.5 20.5l1.2-4.1A8.6 8.6 0 1 1 20.5 11.9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M8.4 8.8c.3-.7.6-.8 1.1-.8h.8c.2 0 .4 0 .5.3l.9 2.1c.1.2.1.4 0 .6l-.6.7c-.2.2-.1.5 0 .7.7 1.2 1.7 2.1 2.9 2.7.2.1.5.1.7 0l.8-.6c.2-.1.4-.1.6 0l2 .9c.3.1.3.3.3.5v.8c0 .5-.1.8-.8 1.1-.5.2-1.7.6-4.1-.4-2.9-1.2-4.7-4.3-4.9-4.7-.1-.2-1.1-1.5-.7-2.9Z" fill="currentColor" opacity=".9"/>
               </svg>
-            </div>
-            <div>
-              <h3>Páginas de produtos e serviços</h3>
-              <p>Texto pensado para busca e conversão, com argumento, prova e CTA.</p>
-            </div>
-          </div>
-        </div>
+              Falar no WhatsApp
+            </a>
 
-        <div class="miniCard">
-          <div class="miniHead">
-            <div class="miniIcon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
-                <path d="M14 2v6h6" />
-                <path d="M9 13h6" />
-                <path d="M9 17h6" />
+            <a class="btn" href="mailto:gomesrodrigues1995@gmail.com">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4.5 7.2h15c.9 0 1.6.7 1.6 1.6v8c0 .9-.7 1.6-1.6 1.6h-15c-.9 0-1.6-.7-1.6-1.6v-8c0-.9.7-1.6 1.6-1.6Z" stroke="currentColor" stroke-width="1.6"/>
+                <path d="m5.2 8 6.4 5a.7.7 0 0 0 .9 0l6.3-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-            </div>
-            <div>
-              <h3>Artigos para blog</h3>
-              <p>Artigos com estrutura e intenção de busca, prontos para publicar.</p>
-            </div>
+              Enviar e-mail
+            </a>
+
+            <a class="btn" href="https://www.linkedin.com/in/tatiane-gomes-rodrigues/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6.5 9.5V19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M6.5 6.2h0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                <path d="M10.5 19v-5.1c0-2.6 3.9-2.8 3.9.2V19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14.4 13.4c.3-2.8 4.1-2.8 4.1.2V19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Ver LinkedIn
+            </a>
           </div>
+
+          <p class="small">Hospedado no GitHub Pages • Repo: <strong>tati-redatora-seo</strong></p>
+        </div>
+
+        <div class="footer">
+          © <span id="year"></span> • Tati • Redatora SEO
         </div>
       </div>
     </section>
-
-    <section class="card pad" id="sobre">
-      <h2 class="sectionTitle">Sobre mim</h2>
-
-      <p class="lead" style="margin-bottom:0">
-        Desde 2015, ajudo marcas a crescerem no orgânico com conteúdo SEO que faz sentido: estrutura, intenção de busca e escrita clara.
-        Trabalho com páginas e artigos, do planejamento à otimização. Uso IA de forma estratégica, mas a direção editorial e a qualidade do texto
-        continuam sendo humanas.
-      </p>
-
-      <div class="timelineClean">
-        <div class="tlWrap" aria-label="Linha do tempo">
-          <div class="tl">
-
-            <div class="tlItem">
-              <span class="tlDot" aria-hidden="true"></span>
-              <span class="tlStem" aria-hidden="true"></span>
-              <div class="tlLabel">
-                <span class="tlYear">2014</span>
-                <p class="tlTitle"><strong>Início da faculdade</strong></p>
-                <p class="tlMeta">Jornalismo</p>
-              </div>
-            </div>
-
-            <div class="tlItem">
-              <span class="tlDot" aria-hidden="true"></span>
-              <span class="tlStem" aria-hidden="true"></span>
-              <div class="tlLabel">
-                <span class="tlYear">set/2015</span>
-                <p class="tlTitle"><strong>Início da carreira</strong></p>
-                <p class="tlMeta">Produção de conteúdo e SEO</p>
-              </div>
-            </div>
-
-            <div class="tlItem">
-              <span class="tlDot" aria-hidden="true"></span>
-              <span class="tlStem" aria-hidden="true"></span>
-              <div class="tlLabel">
-                <span class="tlYear">2017</span>
-                <p class="tlTitle"><strong>Formação em Jornalismo</strong></p>
-                <p class="tlMeta">Graduação concluída</p>
-              </div>
-            </div>
-
-            <div class="tlItem">
-              <span class="tlDot" aria-hidden="true"></span>
-              <span class="tlStem" aria-hidden="true"></span>
-              <div class="tlLabel">
-                <span class="tlYear">jul/2020</span>
-                <p class="tlTitle"><strong>Pós-graduação</strong></p>
-                <p class="tlMeta">Assessoria de Comunicação e Mídias Sociais</p>
-              </div>
-            </div>
-
-            <div class="tlItem">
-              <span class="tlDot" aria-hidden="true"></span>
-              <span class="tlStem" aria-hidden="true"></span>
-              <div class="tlLabel">
-                <span class="tlYear">2025</span>
-                <p class="tlTitle"><strong>10 anos de carreira</strong></p>
-                <p class="tlMeta">Marco profissional</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="card pad" id="portfolio">
-      <h2 class="sectionTitle">Artigos (LinkedIn)</h2>
-      <p class="lead" style="margin-top:-4px">
-        Um recorte do que eu escrevo quando o assunto é SEO, escrita e vida real do conteúdo.
-      </p>
-
-      <div class="carousel" aria-label="Carrossel de artigos">
-        <div class="track" id="articleTrack">
-
-          <article class="aCard">
-            <img class="coverImg"
-              src="https://media.licdn.com/dms/image/v2/D4D12AQGfAZ85CVdxYg/article-cover_image-shrink_720_1280/B4DZxC8o6FJkAI-/0/1770649722200?e=2147483647&t=SnsEGuGo-7EyEu8n_Qq_MQk_wW6-e0_ZkEdvY6o5eII&v=beta"
-              alt="Capa do artigo: Revisão virou mutirão de sinônimo (e o texto pagou a conta)" loading="lazy" />
-            <div class="aBody">
-              <div class="aMeta">Artigo • LinkedIn</div>
-              <h3 class="aTitle">Revisão virou mutirão de sinônimo (e o texto pagou a conta)</h3>
-              <p>Quando “melhorar o texto” vira só troca de palavra, e a clareza vai embora no processo.</p>
-              <div class="aActions">
-                <a class="btn primary" target="_blank" rel="noreferrer"
-                  href="https://www.linkedin.com/pulse/revis%C3%A3o-virou-mutir%C3%A3o-de-sin%C3%B4nimo-e-o-texto-pagou-conta-tatiane-gomes-www8f/">Abrir</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="aCard">
-            <img class="coverImg"
-              src="https://media.licdn.com/dms/image/v2/C5612AQF9HTZUJubLNQ/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1623939995486?e=2147483647&t=0NMzijNRgB2nJHqtRasxx3CT0fTl3HmQGFJkEfplgII&v=beta"
-              alt="Capa do artigo: SEO e criatividade: uma dupla dinâmica para escrita otimizada" loading="lazy" />
-            <div class="aBody">
-              <div class="aMeta">Artigo • LinkedIn</div>
-              <h3 class="aTitle">SEO e criatividade: uma dupla dinâmica para escrita otimizada</h3>
-              <p>Como juntar técnica e escrita boa sem cair no texto engessado que “passa no checklist”.</p>
-              <div class="aActions">
-                <a class="btn primary" target="_blank" rel="noreferrer"
-                  href="https://www.linkedin.com/pulse/seo-e-criatividade-uma-dupla-din%25C3%25A2mica-para-escrita-otimizada-gomes">Abrir</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="aCard">
-            <img class="coverImg"
-              src="https://media.licdn.com/dms/image/v2/C5612AQEy9BN8pKBzvQ/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1623082810549?e=2147483647&t=gqdld3zA8XHMJcA7KkljTw5hDU1MaTO0SecXNr3gp-k&v=beta"
-              alt="Capa do artigo: Redação para SEO: por que é tão complexa?" loading="lazy" />
-            <div class="aBody">
-              <div class="aMeta">Artigo • LinkedIn</div>
-              <h3 class="aTitle">Redação para SEO: por que é tão complexa?</h3>
-              <p>O que faz SEO dar trabalho de verdade: intenção, estrutura e escolhas editoriais.</p>
-              <div class="aActions">
-                <a class="btn primary" target="_blank" rel="noreferrer"
-                  href="https://www.linkedin.com/pulse/reda%25C3%25A7%25C3%25A3o-para-seo-por-que-t%25C3%25A3o-complexa-tatiane-gomes">Abrir</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="aCard">
-            <img class="coverImg"
-              src="https://media.licdn.com/dms/image/v2/D4D12AQG5YUiUIG2Xzw/article-cover_image-shrink_720_1280/B4DZvrZmYeIAAI-/0/1769180918166?e=2147483647&t=1Mpn-ox6oja25Yxkv2gEXwGErR3nR2bZgsJbc2C_Nqs&v=beta"
-              alt="Capa do artigo: Página que ranqueia e não ajuda" loading="lazy" />
-            <div class="aBody">
-              <div class="aMeta">Artigo • LinkedIn</div>
-              <h3 class="aTitle">Página que ranqueia e não ajuda</h3>
-              <p>Quando a página até aparece no Google, mas não orienta o leitor e não converte.</p>
-              <div class="aActions">
-                <a class="btn primary" target="_blank" rel="noreferrer"
-                  href="https://www.linkedin.com/pulse/p%25C3%25A1gina-que-ranqueia-e-n%25C3%25A3o-ajuda-tatiane-gomes-tctof">Abrir</a>
-              </div>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="card pad" id="contato">
-      <h2 class="sectionTitle">Contato</h2>
-      <p class="lead">Me mande: nicho/empresa, objetivo, páginas ou temas, volume mensal e prazo. Eu respondo com uma proposta objetiva.</p>
-
-      <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <a class="btn primary" target="_blank" rel="noreferrer"
-          href="https://wa.me/5511976625245?text=Oi%20Tati!%20Quero%20um%20or%C3%A7amento%20de%20conte%C3%BAdo%20com%20foco%20em%20SEO.">
-          Falar no WhatsApp
-        </a>
-        <a class="btn" href="mailto:gomesrodrigues1995@gmail.com">Enviar e-mail</a>
-        <a class="btn" target="_blank" rel="noreferrer"
-          href="https://www.linkedin.com/in/tatiane-gomes-rodrigues/">
-          LinkedIn
-        </a>
-      </div>
-    </section>
-
-    <footer>
-      <div>© <span id="y"></span> Tati • Redatora SEO</div>
-      <div><a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">Topo</a></div>
-    </footer>
-
-  </div>
+  </main>
 
   <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
+    // ===== Slider (auto rotate) =====
+    (function(){
+      const slidesEl = document.getElementById('slides');
+      const dots = Array.from(document.querySelectorAll('.dotbtn'));
+      const prev = document.getElementById('prev');
+      const next = document.getElementById('next');
 
-    const slides = document.getElementById("slides");
-    const dots = Array.from(document.querySelectorAll(".dotBtn"));
-    const prev = document.getElementById("prev");
-    const next = document.getElementById("next");
+      let idx = 0;
+      let timer = null;
 
-    let index = 0;
-    let timer = null;
+      function go(i){
+        idx = (i + 3) % 3;
+        slidesEl.style.transform = `translateX(${-idx * 100}%)`;
+        dots.forEach((d, n) => d.classList.toggle('active', n === idx));
+      }
 
-    function go(i){
-      index = (i + 3) % 3;
-      slides.style.transform = `translateX(-${index * 100}%)`;
-      dots.forEach((d, idx) => d.classList.toggle("active", idx === index));
-    }
+      function start(){
+        stop();
+        timer = setInterval(() => go(idx + 1), 5200);
+      }
+      function stop(){
+        if(timer) clearInterval(timer);
+        timer = null;
+      }
 
-    function start(){
-      stop();
-      timer = setInterval(() => go(index + 1), 4500);
-    }
-    function stop(){
-      if(timer) clearInterval(timer);
-      timer = null;
-    }
+      prev.addEventListener('click', () => { go(idx - 1); start(); });
+      next.addEventListener('click', () => { go(idx + 1); start(); });
+      dots.forEach(d => d.addEventListener('click', () => { go(Number(d.dataset.slide)); start(); }));
 
-    dots.forEach(d => d.addEventListener("click", () => { go(Number(d.dataset.go)); start(); }));
-    prev.addEventListener("click", () => { go(index - 1); start(); });
-    next.addEventListener("click", () => { go(index + 1); start(); });
+      // pausa ao passar o mouse (desktop)
+      const slider = document.querySelector('.slider');
+      slider.addEventListener('mouseenter', stop);
+      slider.addEventListener('mouseleave', start);
 
-    const slider = document.querySelector(".slider");
-    slider.addEventListener("mouseenter", stop);
-    slider.addEventListener("mouseleave", start);
+      // swipe simples (mobile)
+      let x0 = null;
+      slider.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, {passive:true});
+      slider.addEventListener('touchend', (e) => {
+        if(x0 === null) return;
+        const x1 = e.changedTouches[0].clientX;
+        const dx = x1 - x0;
+        x0 = null;
+        if(Math.abs(dx) > 40){
+          go(idx + (dx < 0 ? 1 : -1));
+          start();
+        }
+      }, {passive:true});
 
-    go(0);
-    start();
+      go(0);
+      start();
+    })();
+
+    // ===== Articles carousel buttons =====
+    (function(){
+      const track = document.getElementById('articlesTrack');
+      const prev = document.getElementById('artPrev');
+      const next = document.getElementById('artNext');
+
+      function scrollByCard(dir){
+        const card = track.querySelector('.article');
+        if(!card) return;
+        const step = card.getBoundingClientRect().width + 12; // gap
+        track.scrollBy({ left: dir * step, behavior: 'smooth' });
+      }
+
+      prev.addEventListener('click', () => scrollByCard(-1));
+      next.addEventListener('click', () => scrollByCard(1));
+    })();
+
+    // ===== Footer year =====
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ===== Smooth anchor (leve) =====
+    (function(){
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', (e)=>{
+          const id = a.getAttribute('href');
+          if(!id || id === '#') return;
+          const el = document.querySelector(id);
+          if(!el) return;
+          e.preventDefault();
+          el.scrollIntoView({ behavior:'smooth', block:'start' });
+        });
+      });
+    })();
   </script>
 </body>
 </html>
