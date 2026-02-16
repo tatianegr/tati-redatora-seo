@@ -7,6 +7,11 @@
   <meta name="description" content="Redatora SEO | Transformando palavras em sucesso online. Páginas institucionais, páginas de produtos e serviços e artigos para blogs com foco em SEO." />
   <meta name="theme-color" content="#0b0f19" />
 
+  <!-- Se JS estiver ativo, adiciona classe "js" pra habilitar as animações com segurança -->
+  <script>
+    document.documentElement.classList.add('js');
+  </script>
+
   <style>
     :root{
       --bg:#0b0f19;
@@ -312,7 +317,6 @@
       box-shadow: 0 18px 60px rgba(0,0,0,.22);
       isolation:isolate;
     }
-
     .photoCard::before{
       content:"";
       position:absolute;
@@ -324,7 +328,6 @@
       z-index:0;
       pointer-events:none;
     }
-
     .photoCard img{
       width:100%;
       height:100%;
@@ -336,12 +339,10 @@
       transition: transform .35s ease, filter .35s ease;
       filter: saturate(1.02) contrast(1.02);
     }
-
     .photoCard:hover img{
       transform: scale(1.05);
       filter: saturate(1.08) contrast(1.06);
     }
-
     .photoMain{ min-height: 260px; }
     .photoSide{ min-height: 260px; }
     @media (max-width: 900px){
@@ -405,9 +406,12 @@
     }
 
     /* ==========================
-       SCROLL REVEAL (animações)
+       SCROLL REVEAL (seguro)
+       - sem JS: tudo aparece normal
+       - com JS: anima ao entrar
        ========================== */
-    .reveal{
+    .reveal{ opacity:1; transform:none; filter:none; } /* fallback */
+    html.js .reveal{
       opacity: 0;
       transform: translateY(14px);
       filter: blur(2px);
@@ -417,23 +421,20 @@
         filter .65s ease;
       will-change: opacity, transform, filter;
     }
-    .reveal[data-reveal="left"]{ transform: translateX(-16px); }
-    .reveal[data-reveal="right"]{ transform: translateX(16px); }
-    .reveal[data-reveal="up"]{ transform: translateY(18px); }
+    html.js .reveal[data-reveal="left"]{ transform: translateX(-16px); }
+    html.js .reveal[data-reveal="right"]{ transform: translateX(16px); }
+    html.js .reveal[data-reveal="up"]{ transform: translateY(18px); }
 
-    .reveal.in{
+    html.js .reveal.in{
       opacity: 1;
       transform: translate(0,0);
       filter: blur(0);
     }
-
-    .revealGroup .reveal{
-      transition-delay: var(--d, 0ms);
-    }
+    .revealGroup .reveal{ transition-delay: var(--d, 0ms); }
 
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior:auto; }
-      .reveal, .reveal.in{
+      html.js .reveal, html.js .reveal.in{
         opacity: 1 !important;
         transform: none !important;
         filter: none !important;
@@ -762,8 +763,8 @@
     }
 
     dots.forEach(d => d.addEventListener("click", () => { go(Number(d.dataset.go)); start(); }));
-    prev.addEventListener("click", () => { go(index - 1); start(); }));
-    next.addEventListener("click", () => { go(index + 1); start(); }));
+    prev.addEventListener("click", () => { go(index - 1); start(); });
+    next.addEventListener("click", () => { go(index + 1); start(); });
 
     const slider = document.querySelector(".slider");
     slider.addEventListener("mouseenter", stop);
@@ -780,11 +781,11 @@
         return;
       }
 
-      // aplica delays automáticos em grupos (quando não foi setado inline)
+      // delays automáticos em grupos (se não tiver --d definido)
       document.querySelectorAll(".revealGroup").forEach(group => {
         const kids = Array.from(group.querySelectorAll(".reveal"));
         kids.forEach((el, i) => {
-          const hasInlineDelay = (el.style && String(el.style.getPropertyValue("--d")).trim() !== "");
+          const hasInlineDelay = String(el.style.getPropertyValue("--d")).trim() !== "";
           if(!hasInlineDelay) el.style.setProperty("--d", `${i * 90}ms`);
         });
       });
