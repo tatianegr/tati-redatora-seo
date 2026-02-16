@@ -326,13 +326,54 @@
       gap:10px;
       padding: 6px 2px 0;
     }
+
+    /* ==========================
+       SCROLL REVEAL (animações)
+       ========================== */
+    .reveal{
+      opacity: 0;
+      transform: translateY(14px);
+      filter: blur(2px);
+      transition:
+        opacity .65s ease,
+        transform .65s cubic-bezier(.2,.75,.2,1),
+        filter .65s ease;
+      will-change: opacity, transform, filter;
+    }
+    .reveal[data-reveal="left"]{ transform: translateX(-16px); }
+    .reveal[data-reveal="right"]{ transform: translateX(16px); }
+    .reveal[data-reveal="up"]{ transform: translateY(18px); }
+
+    .reveal.in{
+      opacity: 1;
+      transform: translate(0,0);
+      filter: blur(0);
+    }
+
+    /* stagger suave em grupos */
+    .revealGroup .reveal{
+      transition-delay: var(--d, 0ms);
+    }
+
+    /* acessibilidade */
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior:auto; }
+      .reveal, .reveal.in{
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+        transition: none !important;
+      }
+      .slides{ transition:none !important; }
+      .btn{ transition:none !important; }
+    }
   </style>
 </head>
 
 <body>
   <div class="wrap" id="top">
 
-    <header class="card">
+    <header class="card reveal" data-reveal="up">
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
         <div>
@@ -351,8 +392,8 @@
       <a class="btn primary" href="#contato">Pedir orçamento</a>
     </header>
 
-    <div class="heroGrid">
-      <main class="slider" aria-label="Banners de serviços">
+    <div class="heroGrid revealGroup">
+      <main class="slider reveal" data-reveal="left" style="--d:0ms" aria-label="Banners de serviços">
         <div class="slides" id="slides">
 
           <div class="slide">
@@ -415,7 +456,7 @@
         </div>
       </main>
 
-      <aside class="sideBox card">
+      <aside class="sideBox card reveal" data-reveal="right" style="--d:120ms">
         <h3>O que você ganha</h3>
         <p>Menos retrabalho. Mais previsibilidade. Texto com decisão editorial.</p>
         <ul class="tickList">
@@ -427,11 +468,11 @@
       </aside>
     </div>
 
-    <section class="card pad" id="servicos">
+    <section class="card pad reveal" data-reveal="up" id="servicos">
       <h2 class="sectionTitle">Serviços</h2>
 
-      <div class="grid3">
-        <div class="miniCard">
+      <div class="grid3 revealGroup">
+        <div class="miniCard reveal" data-reveal="up" style="--d:0ms">
           <div class="miniHead">
             <div class="miniIcon" aria-hidden="true">
               <svg viewBox="0 0 24 24">
@@ -452,7 +493,7 @@
           </div>
         </div>
 
-        <div class="miniCard">
+        <div class="miniCard reveal" data-reveal="up" style="--d:90ms">
           <div class="miniHead">
             <div class="miniIcon" aria-hidden="true">
               <svg viewBox="0 0 24 24">
@@ -467,7 +508,7 @@
           </div>
         </div>
 
-        <div class="miniCard">
+        <div class="miniCard reveal" data-reveal="up" style="--d:180ms">
           <div class="miniHead">
             <div class="miniIcon" aria-hidden="true">
               <svg viewBox="0 0 24 24">
@@ -486,7 +527,7 @@
       </div>
     </section>
 
-    <section class="card pad" id="sobre">
+    <section class="card pad reveal" data-reveal="up" id="sobre">
       <h2 class="sectionTitle">Sobre mim</h2>
 
       <p class="lead" style="margin-bottom:0">
@@ -496,13 +537,13 @@
       </p>
     </section>
 
-    <section class="card pad" id="portfolio">
+    <section class="card pad reveal" data-reveal="up" id="portfolio">
       <h2 class="sectionTitle">Artigos (LinkedIn)</h2>
       <p class="lead" style="margin-top:-4px">
         Um recorte do que eu escrevo quando o assunto é SEO, escrita e vida real do conteúdo.
       </p>
 
-      <div class="carousel" aria-label="Carrossel de artigos">
+      <div class="carousel reveal" data-reveal="up" aria-label="Carrossel de artigos">
         <div class="track" id="articleTrack">
 
           <article class="aCard">
@@ -569,7 +610,7 @@
       </div>
     </section>
 
-    <section class="card pad" id="contato">
+    <section class="card pad reveal" data-reveal="up" id="contato">
       <h2 class="sectionTitle">Contato</h2>
       <p class="lead">Me mande: nicho/empresa, objetivo, páginas ou temas, volume mensal e prazo. Eu respondo com uma proposta objetiva.</p>
 
@@ -586,7 +627,7 @@
       </div>
     </section>
 
-    <footer>
+    <footer class="reveal" data-reveal="up">
       <div>© <span id="y"></span> Tati • Redatora SEO</div>
       <div><a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">Topo</a></div>
     </footer>
@@ -596,6 +637,7 @@
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
+    // Slider
     const slides = document.getElementById("slides");
     const dots = Array.from(document.querySelectorAll(".dotBtn"));
     const prev = document.getElementById("prev");
@@ -629,6 +671,35 @@
 
     go(0);
     start();
+
+    // Scroll Reveal
+    (function(){
+      const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if(prefersReduced){
+        document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
+        return;
+      }
+
+      // aplica delays automáticos em grupos (quando não foi setado inline)
+      document.querySelectorAll(".revealGroup").forEach(group => {
+        const kids = Array.from(group.querySelectorAll(".reveal"));
+        kids.forEach((el, i) => {
+          const hasInlineDelay = (el.style && String(el.style.getPropertyValue("--d")).trim() !== "");
+          if(!hasInlineDelay) el.style.setProperty("--d", `${i * 90}ms`);
+        });
+      });
+
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add("in");
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.14, rootMargin: "0px 0px -8% 0px" });
+
+      document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
+    })();
   </script>
 </body>
 </html>
