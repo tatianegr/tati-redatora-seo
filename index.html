@@ -45,7 +45,6 @@
       box-shadow: var(--shadow);
     }
 
-    /* Header */
     header{
       position: sticky; top: 14px; z-index: 10;
       display:flex; justify-content:space-between; align-items:center; gap:12px;
@@ -61,9 +60,7 @@
     .brand b{font-size:14px}
     .brand small{display:block; color:var(--muted); font-size:12px; margin-top:2px}
 
-    .nav{
-      display:flex; gap:10px; flex-wrap:wrap; justify-content:center;
-    }
+    .nav{display:flex; gap:10px; flex-wrap:wrap; justify-content:center;}
     .nav a{
       color: var(--muted);
       font-size: 13px;
@@ -76,20 +73,14 @@
     @media (max-width: 920px){ .nav{display:none} }
 
     .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:10px 14px;
-      border-radius:14px;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:10px 14px; border-radius:14px;
       border:1px solid var(--line);
       background: rgba(255,255,255,.05);
       text-decoration:none;
       font-weight:800;
       transition: .15s transform, .15s filter, .15s background;
-      user-select:none;
-      cursor:pointer;
-      white-space:nowrap;
+      user-select:none; cursor:pointer; white-space:nowrap;
     }
     .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.07); }
     .btn.primary{
@@ -100,7 +91,6 @@
     .btn.primary:hover{ filter:saturate(1.05); }
     .btn.ghost{ background: rgba(255,255,255,.03); }
 
-    /* Sections */
     section{ margin-top:16px; }
     .pad{ padding:22px; }
     .sectionTitle{
@@ -115,7 +105,7 @@
       font-size:16px;
     }
 
-    /* Hero slider */
+    /* HERO */
     .heroGrid{
       display:grid;
       grid-template-columns: 1.25fr .75fr;
@@ -133,16 +123,12 @@
       background: rgba(255,255,255,.03);
       min-height: 300px;
     }
-    .slides{
-      display:flex;
-      width:100%;
-      transition: transform .45s ease;
-    }
+    .slides{display:flex; width:100%; transition: transform .45s ease;}
     .slide{
       flex: 0 0 100%;
       width: 100%;
       padding:24px;
-      padding-bottom: 78px; /* espaço pros controles não encostarem nos botões */
+      padding-bottom: 78px;
       position:relative;
       display:flex;
       flex-direction:column;
@@ -160,6 +146,7 @@
       z-index:0;
     }
     .slide > *{ position:relative; z-index:1; }
+
     .kicker{
       display:inline-flex; align-items:center; gap:8px;
       font-size:12px; color:var(--muted);
@@ -169,6 +156,7 @@
       width: fit-content;
     }
     .dot{ width:8px; height:8px; border-radius:999px; background: var(--ok); box-shadow: 0 0 0 6px rgba(46,229,157,.12); }
+
     h1{
       margin:6px 0 6px;
       font-size:40px;
@@ -176,12 +164,7 @@
       letter-spacing:-.7px;
     }
     @media (max-width:520px){ h1{font-size:32px} }
-    .sub{
-      margin:0;
-      color:var(--muted);
-      font-size:15px;
-      max-width: 60ch;
-    }
+    .sub{margin:0; color:var(--muted); font-size:15px; max-width: 60ch;}
     .ctaRow{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
 
     .sliderNav{
@@ -219,7 +202,7 @@
     }
     .iconBtn:hover{ background: rgba(255,255,255,.09); }
 
-    /* Side info */
+    /* Side box */
     .sideBox{
       border:1px solid var(--line);
       background: rgba(255,255,255,.03);
@@ -257,9 +240,10 @@
       transform: rotate(45deg);
     }
 
-    /* Services grid + icons */
+    /* Services */
     .grid3{ display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; }
     @media (max-width:900px){ .grid3{ grid-template-columns:1fr } }
+
     .miniCard{
       border:1px solid var(--line);
       background: rgba(255,255,255,.03);
@@ -287,148 +271,144 @@
     .miniCard h3{ margin:0 0 6px; font-size:15px; }
     .miniCard p{ margin:0; font-size:13px; color:var(--muted); }
 
-    /* ✅ Timeline circuito (fix: nada cortado) */
-    .timelineWrap{
+    /* ✅ TIMELINE LIMPA (estilo referência) */
+    .timelineClean{
       margin-top: 16px;
       border:1px solid var(--line);
-      background: rgba(255,255,255,.02);
       border-radius: var(--radius);
-      padding: 14px 0;
+      background: rgba(255,255,255,.02);
+      padding: 18px 16px;
     }
 
-    /* scroll só horizontal, vertical sempre visível */
-    .timelineScroll{
-      overflow-x:auto;
-      overflow-y:visible;
-      padding: 10px 16px 18px;
-    }
-    .timelineScroll::-webkit-scrollbar{ height:10px; }
-    .timelineScroll::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.12); border-radius:999px; }
-
-    .timelineCircuit{
-      --nodeSize: 12px;
-      --stem: 58px;
-      --gap: 150px;
+    .tlWrap{
       position:relative;
-      height: 320px;            /* ✅ altura real do “circuito” */
-      min-width: 980px;         /* cabe 5 marcos com espaço */
-      display:flex;
-      align-items:center;
-      gap: var(--gap);
-      padding: 0 16px;
+      width:100%;
+      overflow-x: auto;
+      overflow-y: visible;
+      padding: 10px 0;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,.18) transparent;
     }
-    .timelineCircuit::before{
+    .tlWrap::-webkit-scrollbar{ height:8px; }
+    .tlWrap::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.14); border-radius:999px; }
+
+    .tl{
+      --stem: 34px;
+      --dot: 10px;
+      position:relative;
+      display:flex;
+      justify-content:space-between;
+      gap: 28px;
+      min-width: 820px; /* só força scroll se precisar */
+      height: 190px;    /* o suficiente pra cima/baixo sem “caixão” */
+      padding: 0 8px;
+    }
+    .tl::before{
       content:"";
       position:absolute;
-      left:16px; right:16px;
+      left:8px; right:8px;
       top:50%;
       height:2px;
       transform: translateY(-50%);
       background: linear-gradient(90deg, rgba(109,106,255,.75), rgba(255,45,141,.75));
-      opacity:.95;
       border-radius:999px;
+      opacity:.95;
     }
 
-    .tNode{
+    .tlItem{
       position:relative;
-      flex:0 0 auto;
-      width: 1px;
-      height: 1px;
+      flex: 1 1 0;
+      min-width: 140px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
     }
-    .tDot{
-      width: var(--nodeSize);
-      height: var(--nodeSize);
-      border-radius: 999px;
-      background: linear-gradient(135deg, rgba(255,45,141,.95), rgba(109,106,255,.85));
+
+    .tlDot{
       position:absolute;
-      left:50%;
       top:50%;
+      left:50%;
+      width: var(--dot);
+      height: var(--dot);
       transform: translate(-50%,-50%);
-      box-shadow: 0 0 0 7px rgba(255,45,141,.12);
+      border-radius:999px;
+      background: linear-gradient(135deg, rgba(255,45,141,.95), rgba(109,106,255,.85));
+      box-shadow: 0 0 0 5px rgba(255,45,141,.12);
       z-index:2;
     }
-    .tDot::after{
-      content:"";
-      position:absolute;
-      inset:-5px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.20);
-    }
-
-    .tStem{
+    .tlStem{
       position:absolute;
       left:50%;
       width:2px;
       background: rgba(255,255,255,.18);
       transform: translateX(-50%);
-      z-index:1;
       border-radius:999px;
+      z-index:1;
     }
 
-    .tCard{
+    .tlLabel{
       position:absolute;
-      width: 250px;
+      width: 190px;
+      padding: 10px 10px;
       border:1px solid var(--line);
-      background: rgba(17,26,47,.62);
-      border-radius: 16px;
-      padding: 12px 12px;
-      box-shadow: 0 18px 60px rgba(0,0,0,.22);
+      border-radius: 14px;
+      background: rgba(17,26,47,.40);
+      backdrop-filter: blur(8px);
     }
-    .tYear{
-      font-weight:900;
+    .tlYear{
+      display:inline-block;
       font-size:12px;
-      letter-spacing:-.2px;
+      font-weight:900;
       color: var(--text);
-      width: fit-content;
-      padding:6px 10px;
+      padding: 5px 9px;
       border-radius: 999px;
       border:1px solid var(--line);
       background: rgba(255,255,255,.04);
-      margin-bottom:8px;
+      margin-bottom:6px;
       white-space:nowrap;
     }
-    .tTitle{
-      margin:0 0 2px;
+    .tlTitle{
+      margin:0;
       font-size:13px;
+      line-height:1.25;
       letter-spacing:-.2px;
     }
-    .tMeta{
-      margin:0;
-      color: var(--muted);
+    .tlMeta{
+      margin:3px 0 0;
       font-size:12px;
+      color: var(--muted);
+      line-height:1.25;
     }
 
-    /* alternância cima/baixo */
-    .timelineCircuit .tNode:nth-child(odd) .tStem{
+    /* alterna cima/baixo (como na imagem) */
+    .tlItem:nth-child(odd) .tlStem{
+      top: calc(50% - var(--stem));
+      height: var(--stem);
+    }
+    .tlItem:nth-child(odd) .tlLabel{
+      top: calc(50% - var(--stem) - 68px);
+      left:50%;
+      transform: translateX(-50%);
+      text-align:left;
+    }
+
+    .tlItem:nth-child(even) .tlStem{
       top: 50%;
       height: var(--stem);
     }
-    .timelineCircuit .tNode:nth-child(odd) .tCard{
-      top: calc(50% + var(--stem) + 12px);
-      left: 50%;
+    .tlItem:nth-child(even) .tlLabel{
+      top: calc(50% + var(--stem) + 18px);
+      left:50%;
       transform: translateX(-50%);
+      text-align:left;
     }
 
-    .timelineCircuit .tNode:nth-child(even) .tStem{
-      bottom: 50%;
-      height: var(--stem);
-    }
-    .timelineCircuit .tNode:nth-child(even) .tCard{
-      bottom: calc(50% + var(--stem) + 12px);
-      left: 50%;
-      transform: translateX(-50%);
+    @media (max-width: 560px){
+      .tl{ min-width: 860px; } /* no mobile, deixa rolar sem “esmagar” */
+      .tlLabel{ width: 180px; }
     }
 
-    @media (max-width: 520px){
-      .timelineCircuit{
-        height: 340px;
-        --gap: 140px;
-        min-width: 980px;
-      }
-      .tCard{ width: 240px; }
-    }
-
-    /* Articles carousel */
+    /* Articles */
     .carousel{
       position:relative;
       overflow:hidden;
@@ -473,7 +453,6 @@
     .aMeta{ color:var(--muted); font-size:12px; }
     .aActions{ display:flex; gap:10px; flex-wrap:wrap; }
 
-    /* Footer */
     footer{
       margin-top:22px;
       color:var(--muted);
@@ -653,56 +632,57 @@
         continuam sendo humanas.
       </p>
 
-      <div class="timelineWrap">
-        <div class="timelineScroll" aria-label="Linha do tempo">
-          <div class="timelineCircuit">
-            <div class="tNode">
-              <span class="tDot" aria-hidden="true"></span>
-              <span class="tStem" aria-hidden="true"></span>
-              <div class="tCard">
-                <div class="tYear">2014</div>
-                <p class="tTitle"><strong>Início da faculdade</strong></p>
-                <p class="tMeta">Jornalismo</p>
+      <div class="timelineClean">
+        <div class="tlWrap" aria-label="Linha do tempo">
+          <div class="tl">
+
+            <div class="tlItem">
+              <span class="tlDot" aria-hidden="true"></span>
+              <span class="tlStem" aria-hidden="true"></span>
+              <div class="tlLabel">
+                <span class="tlYear">2014</span>
+                <p class="tlTitle"><strong>Início da faculdade</strong></p>
+                <p class="tlMeta">Jornalismo</p>
               </div>
             </div>
 
-            <div class="tNode">
-              <span class="tDot" aria-hidden="true"></span>
-              <span class="tStem" aria-hidden="true"></span>
-              <div class="tCard">
-                <div class="tYear">set/2015</div>
-                <p class="tTitle"><strong>Início da carreira</strong></p>
-                <p class="tMeta">Produção de conteúdo e SEO</p>
+            <div class="tlItem">
+              <span class="tlDot" aria-hidden="true"></span>
+              <span class="tlStem" aria-hidden="true"></span>
+              <div class="tlLabel">
+                <span class="tlYear">set/2015</span>
+                <p class="tlTitle"><strong>Início da carreira</strong></p>
+                <p class="tlMeta">Produção de conteúdo e SEO</p>
               </div>
             </div>
 
-            <div class="tNode">
-              <span class="tDot" aria-hidden="true"></span>
-              <span class="tStem" aria-hidden="true"></span>
-              <div class="tCard">
-                <div class="tYear">2017</div>
-                <p class="tTitle"><strong>Formação em Jornalismo</strong></p>
-                <p class="tMeta">Graduação concluída</p>
+            <div class="tlItem">
+              <span class="tlDot" aria-hidden="true"></span>
+              <span class="tlStem" aria-hidden="true"></span>
+              <div class="tlLabel">
+                <span class="tlYear">2017</span>
+                <p class="tlTitle"><strong>Formação em Jornalismo</strong></p>
+                <p class="tlMeta">Graduação concluída</p>
               </div>
             </div>
 
-            <div class="tNode">
-              <span class="tDot" aria-hidden="true"></span>
-              <span class="tStem" aria-hidden="true"></span>
-              <div class="tCard">
-                <div class="tYear">jul/2020</div>
-                <p class="tTitle"><strong>Pós-graduação</strong></p>
-                <p class="tMeta">Assessoria de Comunicação e Mídias Sociais</p>
+            <div class="tlItem">
+              <span class="tlDot" aria-hidden="true"></span>
+              <span class="tlStem" aria-hidden="true"></span>
+              <div class="tlLabel">
+                <span class="tlYear">jul/2020</span>
+                <p class="tlTitle"><strong>Pós-graduação</strong></p>
+                <p class="tlMeta">Assessoria de Comunicação e Mídias Sociais</p>
               </div>
             </div>
 
-            <div class="tNode">
-              <span class="tDot" aria-hidden="true"></span>
-              <span class="tStem" aria-hidden="true"></span>
-              <div class="tCard">
-                <div class="tYear">2025</div>
-                <p class="tTitle"><strong>10 anos de carreira</strong></p>
-                <p class="tMeta">Marco profissional</p>
+            <div class="tlItem">
+              <span class="tlDot" aria-hidden="true"></span>
+              <span class="tlStem" aria-hidden="true"></span>
+              <div class="tlLabel">
+                <span class="tlYear">2025</span>
+                <p class="tlTitle"><strong>10 anos de carreira</strong></p>
+                <p class="tlMeta">Marco profissional</p>
               </div>
             </div>
 
@@ -730,7 +710,7 @@
               <p>Quando “melhorar o texto” vira só troca de palavra, e a clareza vai embora no processo.</p>
               <div class="aActions">
                 <a class="btn primary" target="_blank" rel="noreferrer"
-                   href="https://www.linkedin.com/pulse/revis%C3%A3o-virou-mutir%C3%A3o-de-sin%C3%B4nimo-e-o-texto-pagou-conta-tatiane-gomes-www8f/">Abrir</a>
+                  href="https://www.linkedin.com/pulse/revis%C3%A3o-virou-mutir%C3%A3o-de-sin%C3%B4nimo-e-o-texto-pagou-conta-tatiane-gomes-www8f/">Abrir</a>
               </div>
             </div>
           </article>
@@ -745,7 +725,7 @@
               <p>Como juntar técnica e escrita boa sem cair no texto engessado que “passa no checklist”.</p>
               <div class="aActions">
                 <a class="btn primary" target="_blank" rel="noreferrer"
-                   href="https://www.linkedin.com/pulse/seo-e-criatividade-uma-dupla-din%25C3%25A2mica-para-escrita-otimizada-gomes">Abrir</a>
+                  href="https://www.linkedin.com/pulse/seo-e-criatividade-uma-dupla-din%25C3%25A2mica-para-escrita-otimizada-gomes">Abrir</a>
               </div>
             </div>
           </article>
@@ -760,7 +740,7 @@
               <p>O que faz SEO dar trabalho de verdade: intenção, estrutura e escolhas editoriais.</p>
               <div class="aActions">
                 <a class="btn primary" target="_blank" rel="noreferrer"
-                   href="https://www.linkedin.com/pulse/reda%25C3%25A7%25C3%25A3o-para-seo-por-que-t%25C3%25A3o-complexa-tatiane-gomes">Abrir</a>
+                  href="https://www.linkedin.com/pulse/reda%25C3%25A7%25C3%25A3o-para-seo-por-que-t%25C3%25A3o-complexa-tatiane-gomes">Abrir</a>
               </div>
             </div>
           </article>
@@ -775,7 +755,7 @@
               <p>Quando a página até aparece no Google, mas não orienta o leitor e não converte.</p>
               <div class="aActions">
                 <a class="btn primary" target="_blank" rel="noreferrer"
-                   href="https://www.linkedin.com/pulse/p%25C3%25A1gina-que-ranqueia-e-n%25C3%25A3o-ajuda-tatiane-gomes-tctof">Abrir</a>
+                  href="https://www.linkedin.com/pulse/p%25C3%25A1gina-que-ranqueia-e-n%25C3%25A3o-ajuda-tatiane-gomes-tctof">Abrir</a>
               </div>
             </div>
           </article>
@@ -790,14 +770,12 @@
 
       <div style="display:flex; gap:10px; flex-wrap:wrap;">
         <a class="btn primary" target="_blank" rel="noreferrer"
-           href="https://wa.me/5511976625245?text=Oi%20Tati!%20Quero%20um%20or%C3%A7amento%20de%20conte%C3%BAdo%20com%20foco%20em%20SEO.">
+          href="https://wa.me/5511976625245?text=Oi%20Tati!%20Quero%20um%20or%C3%A7amento%20de%20conte%C3%BAdo%20com%20foco%20em%20SEO.">
           Falar no WhatsApp
         </a>
-
         <a class="btn" href="mailto:gomesrodrigues1995@gmail.com">Enviar e-mail</a>
-
         <a class="btn" target="_blank" rel="noreferrer"
-           href="https://www.linkedin.com/in/tatiane-gomes-rodrigues/">
+          href="https://www.linkedin.com/in/tatiane-gomes-rodrigues/">
           LinkedIn
         </a>
       </div>
