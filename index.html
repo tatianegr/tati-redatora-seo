@@ -133,8 +133,6 @@
       background: rgba(255,255,255,.03);
       min-height: 280px;
     }
-
-    /* ✅ FIX do slider */
     .slides{
       display:flex;
       width:100%;
@@ -271,6 +269,49 @@
     .miniCard h3{ margin:0 0 6px; font-size:15px; }
     .miniCard p{ margin:0; font-size:13px; color:var(--muted); }
 
+    /* Timeline */
+    .timeline{
+      display:grid;
+      gap:10px;
+      margin-top:10px;
+    }
+    .tItem{
+      display:grid;
+      grid-template-columns: 92px 1fr;
+      gap:12px;
+      align-items:start;
+      padding:12px 14px;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.03);
+      position:relative;
+    }
+    .tYear{
+      font-weight:900;
+      font-size:13px;
+      letter-spacing:-.2px;
+      color: var(--text);
+      padding:8px 10px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      text-align:center;
+      white-space:nowrap;
+    }
+    .tBody b{
+      display:block;
+      margin-bottom:4px;
+      font-size:14px;
+    }
+    .tMeta{
+      color: var(--muted);
+      font-size:13px;
+    }
+    @media (max-width:520px){
+      .tItem{ grid-template-columns: 1fr; }
+      .tYear{ width: fit-content; }
+    }
+
     /* Articles carousel */
     .carousel{
       position:relative;
@@ -297,8 +338,6 @@
       background: rgba(17,26,47,.45);
       overflow:hidden;
     }
-
-    /* ✅ capa com imagem real */
     .coverImg{
       width:100%;
       height:160px;
@@ -453,17 +492,74 @@
       </div>
     </section>
 
-    <!-- Sobre mim -->
+    <!-- Sobre mim + Linha do tempo -->
     <section class="card pad" id="sobre">
       <h2 class="sectionTitle">Sobre mim</h2>
+
       <p class="lead">
-        Sou Tatiane Gomes, jornalista formada (USJT) e pós-graduada em Assessoria de Comunicação e Mídias Sociais.
-        Desde 2015, atuo com produção de conteúdo estratégico para posicionamento de marcas, em projetos B2B e B2C.
+        Sou formada em Jornalismo e atuo desde 2015 com produção de conteúdo otimizado para SEO, com foco em posicionamento orgânico no Google.
+        Trabalho na criação, otimização e estruturação de conteúdos para blogs e sites institucionais, alinhando pesquisa de palavras-chave,
+        SEO on-page e estratégia editorial.
       </p>
-      <p class="lead" style="margin-bottom:0">
-        Meu foco é entender o que cada cliente precisa dizer, para quem, e com qual tom.
-        Aí eu transformo isso em conteúdo otimizado com técnicas de SEO, pensado para melhorar visibilidade e resultado sem sacrificar clareza.
+
+      <p class="lead">
+        Utilizo ferramentas de inteligência artificial de forma consciente e estratégica, como apoio ao processo de pesquisa, organização e ganho de eficiência,
+        sem abrir mão da análise crítica, da curadoria e da escrita humana. A IA entra como recurso, não como atalho.
+        O direcionamento editorial, a intenção de busca e a qualidade do texto continuam sendo decisões humanas.
       </p>
+
+      <p class="lead">
+        Ao longo da minha trajetória, atuei com empresas de diferentes segmentos, participando de projetos voltados para crescimento orgânico,
+        fortalecimento de marca e suporte a estratégias de marketing digital. Meu foco é desenvolver conteúdos que atendam aos critérios dos mecanismos de busca,
+        mas que também façam sentido para quem lê e para quem contrata.
+      </p>
+
+      <p class="lead" style="margin-bottom:14px">
+        Também acompanho atualizações de SEO, mudanças nos algoritmos e boas práticas de conteúdo para garantir entregas alinhadas às exigências técnicas
+        e aos objetivos de negócio.
+      </p>
+
+      <div class="timeline" aria-label="Linha do tempo">
+        <div class="tItem">
+          <div class="tYear">2014</div>
+          <div class="tBody">
+            <b>Início da faculdade</b>
+            <div class="tMeta">Jornalismo</div>
+          </div>
+        </div>
+
+        <div class="tItem">
+          <div class="tYear">set/2015</div>
+          <div class="tBody">
+            <b>Início da carreira</b>
+            <div class="tMeta">Produção de conteúdo e SEO</div>
+          </div>
+        </div>
+
+        <div class="tItem">
+          <div class="tYear">2017</div>
+          <div class="tBody">
+            <b>Formação em Jornalismo</b>
+            <div class="tMeta">Graduação concluída</div>
+          </div>
+        </div>
+
+        <div class="tItem">
+          <div class="tYear">jul/2020</div>
+          <div class="tBody">
+            <b>Pós-graduação</b>
+            <div class="tMeta">Assessoria de Comunicação e Mídias Sociais</div>
+          </div>
+        </div>
+
+        <div class="tItem">
+          <div class="tYear">2025</div>
+          <div class="tBody">
+            <b>10 anos de carreira</b>
+            <div class="tMeta">Marco profissional</div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Artigos em carrossel com capa REAL -->
@@ -479,7 +575,7 @@
           <article class="aCard">
             <img class="coverImg"
               src="https://media.licdn.com/dms/image/v2/D4D12AQGfAZ85CVdxYg/article-cover_image-shrink_720_1280/B4DZxC8o6FJkAI-/0/1770649722200?e=2147483647&t=SnsEGuGo-7EyEu8n_Qq_MQk_wW6-e0_ZkEdvY6o5eII&v=beta"
-              alt="Capa do artigo: A revisão virou mutirão de sinônimo e o texto pagou a conta" loading="lazy" />
+              alt="Capa do artigo: Revisão virou mutirão de sinônimo (e o texto pagou a conta)" loading="lazy" />
             <div class="aBody">
               <div class="aMeta">Artigo • LinkedIn</div>
               <h3 class="aTitle">Revisão virou mutirão de sinônimo (e o texto pagou a conta)</h3>
@@ -494,7 +590,7 @@
           <article class="aCard">
             <img class="coverImg"
               src="https://media.licdn.com/dms/image/v2/C5612AQF9HTZUJubLNQ/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1623939995486?e=2147483647&t=0NMzijNRgB2nJHqtRasxx3CT0fTl3HmQGFJkEfplgII&v=beta"
-              alt="Capa do artigo: SEO e Criatividade: uma dupla dinâmica para a escrita otimizada" loading="lazy" />
+              alt="Capa do artigo: SEO e criatividade: uma dupla dinâmica para escrita otimizada" loading="lazy" />
             <div class="aBody">
               <div class="aMeta">Artigo • LinkedIn</div>
               <h3 class="aTitle">SEO e criatividade: uma dupla dinâmica para escrita otimizada</h3>
@@ -509,7 +605,7 @@
           <article class="aCard">
             <img class="coverImg"
               src="https://media.licdn.com/dms/image/v2/C5612AQEy9BN8pKBzvQ/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1623082810549?e=2147483647&t=gqdld3zA8XHMJcA7KkljTw5hDU1MaTO0SecXNr3gp-k&v=beta"
-              alt="Capa do artigo: Redação para SEO: por que tão complexa?" loading="lazy" />
+              alt="Capa do artigo: Redação para SEO: por que é tão complexa?" loading="lazy" />
             <div class="aBody">
               <div class="aMeta">Artigo • LinkedIn</div>
               <h3 class="aTitle">Redação para SEO: por que é tão complexa?</h3>
@@ -524,10 +620,10 @@
           <article class="aCard">
             <img class="coverImg"
               src="https://media.licdn.com/dms/image/v2/D4D12AQG5YUiUIG2Xzw/article-cover_image-shrink_720_1280/B4DZvrZmYeIAAI-/0/1769180918166?e=2147483647&t=1Mpn-ox6oja25Yxkv2gEXwGErR3nR2bZgsJbc2C_Nqs&v=beta"
-              alt="Capa do artigo: A página que ranqueia e não ajuda" loading="lazy" />
+              alt="Capa do artigo: Página que ranqueia e não ajuda" loading="lazy" />
             <div class="aBody">
               <div class="aMeta">Artigo • LinkedIn</div>
-              <h3 class="aTitle">A página que ranqueia e não ajuda</h3>
+              <h3 class="aTitle">Página que ranqueia e não ajuda</h3>
               <p>Quando a página até aparece no Google, mas não orienta o leitor e não converte.</p>
               <div class="aActions">
                 <a class="btn primary" target="_blank" rel="noreferrer"
