@@ -131,15 +131,18 @@
       border-radius: var(--radius);
       border:1px solid var(--line);
       background: rgba(255,255,255,.03);
-      min-height: 260px;
+      min-height: 280px;
     }
+
+    /* ✅ FIX do slider */
     .slides{
       display:flex;
-      width:300%;
+      width:100%;
       transition: transform .45s ease;
     }
     .slide{
-      width:100%;
+      flex: 0 0 100%;
+      width: 100%;
       padding:24px;
       position:relative;
       display:flex;
@@ -147,6 +150,7 @@
       justify-content:space-between;
       gap:12px;
     }
+
     .slide:before{
       content:"";
       position:absolute;
@@ -286,33 +290,30 @@
     .track::-webkit-scrollbar{ height:10px; }
     .track::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.12); border-radius:999px; }
     .aCard{
-      flex: 0 0 320px;
+      flex: 0 0 340px;
       scroll-snap-align:start;
       border:1px solid var(--line);
       border-radius: var(--radius);
       background: rgba(17,26,47,.45);
       overflow:hidden;
     }
-    .cover{
-      height: 150px;
-      padding:14px;
-      display:flex;
-      align-items:flex-end;
-      background:
-        radial-gradient(320px 160px at 20% 20%, rgba(109,106,255,.35), transparent 60%),
-        radial-gradient(340px 180px at 85% 35%, rgba(255,45,141,.28), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+
+    /* ✅ capa com imagem real */
+    .coverImg{
+      width:100%;
+      height:160px;
+      display:block;
+      object-fit:cover;
       border-bottom:1px solid var(--line);
+      background: rgba(255,255,255,.03);
     }
-    .cover b{
+    .aBody{ padding:14px; }
+    .aTitle{
+      margin:0;
       font-size:14px;
       line-height:1.25;
       letter-spacing:-.2px;
-      display:block;
-      max-height: 3.1em;
-      overflow:hidden;
     }
-    .aBody{ padding:14px; }
     .aBody p{ margin:8px 0 12px; color:var(--muted); font-size:13px; }
     .aMeta{ color:var(--muted); font-size:12px; }
     .aActions{ display:flex; gap:10px; flex-wrap:wrap; }
@@ -432,7 +433,7 @@
       </aside>
     </div>
 
-    <!-- Serviços (como você descreveu) -->
+    <!-- Serviços -->
     <section class="card pad" id="servicos">
       <h2 class="sectionTitle">Serviços</h2>
 
@@ -452,39 +453,37 @@
       </div>
     </section>
 
-    <!-- Sobre mim (adaptado do Google Sites) -->
+    <!-- Sobre mim -->
     <section class="card pad" id="sobre">
       <h2 class="sectionTitle">Sobre mim</h2>
       <p class="lead">
-        Sou Tatiane Gomes, jornalista formada pela USJT (2017) e pós-graduada em Assessoria de Comunicação e Mídias Sociais (2020).
-        Desde 2015, atuo com produção de conteúdo estratégico para posicionamento de marcas, em projetos B2B e B2C. :contentReference[oaicite:2]{index=2}
-      </p>
-      <p class="lead">
-        Meu foco é entender o que cada cliente precisa dizer, para quem, e com qual tom.
-        Aí eu transformo isso em conteúdo otimizado com técnicas de SEO, pensado para melhorar visibilidade, alcance e engajamento
-        sem sacrificar a clareza. :contentReference[oaicite:3]{index=3}
+        Sou Tatiane Gomes, jornalista formada (USJT) e pós-graduada em Assessoria de Comunicação e Mídias Sociais.
+        Desde 2015, atuo com produção de conteúdo estratégico para posicionamento de marcas, em projetos B2B e B2C.
       </p>
       <p class="lead" style="margin-bottom:0">
-        Também tenho certificações na área de Comunicação e Marketing e busco atualização constante.
-        Meu objetivo é ajudar empresas a criarem uma conexão autêntica com o público usando as palavras como ferramenta principal. :contentReference[oaicite:4]{index=4}
+        Meu foco é entender o que cada cliente precisa dizer, para quem, e com qual tom.
+        Aí eu transformo isso em conteúdo otimizado com técnicas de SEO, pensado para melhorar visibilidade e resultado sem sacrificar clareza.
       </p>
     </section>
 
-    <!-- Artigos em carrossel com capa + descritivo -->
+    <!-- Artigos em carrossel com capa REAL -->
     <section class="card pad" id="portfolio">
       <h2 class="sectionTitle">Artigos (LinkedIn)</h2>
       <p class="lead" style="margin-top:-4px">
-        Um recorte do que eu escrevo quando o assunto é SEO, escrita e vida real do conteúdo (a parte que ninguém coloca no “briefing bonitinho”).
+        Um recorte do que eu escrevo quando o assunto é SEO, escrita e vida real do conteúdo.
       </p>
 
       <div class="carousel" aria-label="Carrossel de artigos">
         <div class="track" id="articleTrack">
 
           <article class="aCard">
-            <div class="cover"><b>Revisão virou mutirão de sinônimo (e o texto pagou a conta)</b></div>
+            <img class="coverImg"
+              src="https://media.licdn.com/dms/image/v2/D4D12AQGfAZ85CVdxYg/article-cover_image-shrink_720_1280/B4DZxC8o6FJkAI-/0/1770649722200?e=2147483647&t=SnsEGuGo-7EyEu8n_Qq_MQk_wW6-e0_ZkEdvY6o5eII&v=beta"
+              alt="Capa do artigo: A revisão virou mutirão de sinônimo e o texto pagou a conta" loading="lazy" />
             <div class="aBody">
               <div class="aMeta">Artigo • LinkedIn</div>
-              <p>Sobre quando “melhorar o texto” vira só troca de palavra e o objetivo original morre no caminho.</p>
+              <h3 class="aTitle">Revisão virou mutirão de sinônimo (e o texto pagou a conta)</h3>
+              <p>Quando “melhorar o texto” vira só troca de palavra, e a clareza vai embora no processo.</p>
               <div class="aActions">
                 <a class="btn primary" target="_blank" rel="noreferrer"
                    href="https://www.linkedin.com/pulse/revis%C3%A3o-virou-mutir%C3%A3o-de-sin%C3%B4nimo-e-o-texto-pagou-conta-tatiane-gomes-www8f/">Abrir</a>
@@ -493,10 +492,13 @@
           </article>
 
           <article class="aCard">
-            <div class="cover"><b>SEO e criatividade: uma dupla dinâmica para escrita otimizada</b></div>
+            <img class="coverImg"
+              src="https://media.licdn.com/dms/image/v2/C5612AQF9HTZUJubLNQ/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1623939995486?e=2147483647&t=0NMzijNRgB2nJHqtRasxx3CT0fTl3HmQGFJkEfplgII&v=beta"
+              alt="Capa do artigo: SEO e Criatividade: uma dupla dinâmica para a escrita otimizada" loading="lazy" />
             <div class="aBody">
               <div class="aMeta">Artigo • LinkedIn</div>
-              <p>Como unir técnica de SEO com escrita boa de verdade, sem virar texto engessado e previsível.</p>
+              <h3 class="aTitle">SEO e criatividade: uma dupla dinâmica para escrita otimizada</h3>
+              <p>Como juntar técnica e escrita boa sem cair no texto engessado que “passa no checklist”.</p>
               <div class="aActions">
                 <a class="btn primary" target="_blank" rel="noreferrer"
                    href="https://www.linkedin.com/pulse/seo-e-criatividade-uma-dupla-din%25C3%25A2mica-para-escrita-otimizada-gomes">Abrir</a>
@@ -505,10 +507,13 @@
           </article>
 
           <article class="aCard">
-            <div class="cover"><b>Redação para SEO: por que é tão complexa?</b></div>
+            <img class="coverImg"
+              src="https://media.licdn.com/dms/image/v2/C5612AQEy9BN8pKBzvQ/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1623082810549?e=2147483647&t=gqdld3zA8XHMJcA7KkljTw5hDU1MaTO0SecXNr3gp-k&v=beta"
+              alt="Capa do artigo: Redação para SEO: por que tão complexa?" loading="lazy" />
             <div class="aBody">
               <div class="aMeta">Artigo • LinkedIn</div>
-              <p>O que faz SEO dar trabalho de verdade: intenção, recorte, estrutura e escolha editorial.</p>
+              <h3 class="aTitle">Redação para SEO: por que é tão complexa?</h3>
+              <p>O que faz SEO dar trabalho de verdade: intenção, estrutura e escolhas editoriais.</p>
               <div class="aActions">
                 <a class="btn primary" target="_blank" rel="noreferrer"
                    href="https://www.linkedin.com/pulse/reda%25C3%25A7%25C3%25A3o-para-seo-por-que-t%25C3%25A3o-complexa-tatiane-gomes">Abrir</a>
@@ -517,10 +522,13 @@
           </article>
 
           <article class="aCard">
-            <div class="cover"><b>Página que ranqueia e não ajuda</b></div>
+            <img class="coverImg"
+              src="https://media.licdn.com/dms/image/v2/D4D12AQG5YUiUIG2Xzw/article-cover_image-shrink_720_1280/B4DZvrZmYeIAAI-/0/1769180918166?e=2147483647&t=1Mpn-ox6oja25Yxkv2gEXwGErR3nR2bZgsJbc2C_Nqs&v=beta"
+              alt="Capa do artigo: A página que ranqueia e não ajuda" loading="lazy" />
             <div class="aBody">
               <div class="aMeta">Artigo • LinkedIn</div>
-              <p>Quando a página até aparece no Google, mas não resolve nada pro leitor (e não converte).</p>
+              <h3 class="aTitle">A página que ranqueia e não ajuda</h3>
+              <p>Quando a página até aparece no Google, mas não orienta o leitor e não converte.</p>
               <div class="aActions">
                 <a class="btn primary" target="_blank" rel="noreferrer"
                    href="https://www.linkedin.com/pulse/p%25C3%25A1gina-que-ranqueia-e-n%25C3%25A3o-ajuda-tatiane-gomes-tctof">Abrir</a>
@@ -595,7 +603,7 @@
     prev.addEventListener("click", () => { go(index - 1); start(); });
     next.addEventListener("click", () => { go(index + 1); start(); });
 
-    // Pausa ao passar o mouse (pra não irritar)
+    // Pausa ao passar o mouse
     const slider = document.querySelector(".slider");
     slider.addEventListener("mouseenter", stop);
     slider.addEventListener("mouseleave", start);
