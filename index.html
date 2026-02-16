@@ -228,20 +228,18 @@
       background: rgba(255,255,255,.03);
       color:var(--muted);
       font-size:13px;
-    }
     .tick{
-  width:18px;
-  height:18px;
-  border-radius:8px;
-  border:1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.04);
+  width:auto;
+  height:auto;
+  border:0;
+  background:transparent;
   flex:0 0 auto;
-  display:grid;
-  place-items:center;
+  display:inline-block;
   margin-top:1px;
   line-height:1;
-  font-size:14px;
+  font-size:16px;
 }
+
 
 .tick:after{
   content:"✅";
@@ -467,7 +465,7 @@
       </main>
 
       <aside class="sideBox card reveal" data-reveal="right" style="--d:120ms">
-        <h3>O que você ganha</h3>
+        <h3>O que você ganha?</h3>
         <p>Menos retrabalho. Mais previsibilidade. Texto com decisão editorial.</p>
         <ul class="tickList">
           <li><span class="tick"></span> Conteúdo com foco em SEO e leitura fluida</li>
