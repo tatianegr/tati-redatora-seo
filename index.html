@@ -243,18 +243,13 @@
   font-size:14px;
 }
 
-    .tick:after{
+.tick:after{
   content:"✅";
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:6px;
-  height:10px;
-  border:2px solid var(--ok);
-  border-top:0;
-  border-left:0;
-  transform: translate(-50%, -55%) rotate(45deg);
+  position: static;
+  transform: none;
+  line-height: 1;
 }
+
 
 
     /* Services */
