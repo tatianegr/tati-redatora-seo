@@ -30,7 +30,7 @@
       --radius:18px;
       --max:1080px;
       --shadow: 0 18px 60px rgba(0,0,0,.35);
-      --anchorOffset: 118px; /* ajuste do scroll do menu (header sticky) */
+      --anchorOffset: 118px;
     }
 
     *{box-sizing:border-box}
@@ -297,6 +297,95 @@
     .miniCard h3{ margin:0 0 6px; font-size:15px; }
     .miniCard p{ margin:0; font-size:13px; color:var(--muted); }
 
+    /* ===== SOBRE MIM (formato foto + texto) ===== */
+    .about{ padding-top: 20px; }
+    .aboutRow{
+      display:grid;
+      grid-template-columns: 340px 1fr;
+      gap:18px;
+      align-items:start;
+      margin-top: 10px;
+    }
+    .aboutRow.reverse{
+      grid-template-columns: 1fr 340px;
+    }
+    .aboutPhoto{
+      margin:0;
+      border-radius: 18px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      box-shadow: 0 18px 60px rgba(0,0,0,.25);
+    }
+    .aboutPhoto img{
+      width:100%;
+      height:100%;
+      max-height: 360px;
+      object-fit: cover;
+    }
+    .aboutText h3{
+      margin: 0 0 10px;
+      font-size: 16px;
+      letter-spacing: -.2px;
+    }
+    .aboutText p{
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .aboutList{
+      list-style:none;
+      padding:0;
+      margin: 12px 0 0;
+      display:grid;
+      gap:8px;
+    }
+    .aboutList li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      color: var(--muted);
+      font-size: 13px;
+      padding: 10px 10px;
+      border:1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+    }
+    .aboutBullet{
+      line-height:1;
+      margin-top: 1px;
+    }
+    .aboutDivider{
+      border:0;
+      height:1px;
+      background: rgba(255,255,255,.10);
+      margin: 18px 0;
+    }
+    .aboutChips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top: 10px;
+    }
+    .chip{
+      font-size: 12px;
+      color: var(--muted);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+    @media (max-width: 900px){
+      .aboutRow,
+      .aboutRow.reverse{
+        grid-template-columns: 1fr;
+      }
+      .aboutPhoto img{
+        max-height: 420px;
+      }
+    }
+
     /* Articles */
     .carousel{
       overflow:hidden;
@@ -325,7 +414,7 @@
       overflow:hidden;
       display:flex;
       flex-direction:column;
-      min-height: 0; /* ✅ remove o “tamanho gigante” */
+      min-height: 0;
     }
     .coverImg{
       width:100%;
@@ -432,7 +521,7 @@
           </svg>
         </div>
         <div>
-          <b>Tatiane Gomes • Redatora SEO</b>
+          <b>Tati • Redatora SEO</b>
           <small>Transformando palavras em sucesso online</small>
         </div>
       </div>
@@ -524,14 +613,68 @@
       </aside>
     </div>
 
-    <section class="card pad reveal" data-reveal="up" id="sobre">
+    <!-- SOBRE MIM (novo formato) -->
+    <section class="card pad reveal about" data-reveal="up" id="sobre">
       <h2 class="sectionTitle">Sobre mim</h2>
 
-      <p class="lead" style="margin-bottom:0">
-        Desde 2015, ajudo marcas a crescerem no orgânico com conteúdo SEO que faz sentido: estrutura, intenção de busca e escrita clara.
-        Trabalho com páginas e artigos, do planejamento à otimização. Uso IA de forma estratégica, mas a direção editorial e a qualidade do texto
-        continuam sendo humanas.
-      </p>
+      <div class="aboutRow">
+        <figure class="aboutPhoto">
+          <img
+            src="https://lh3.googleusercontent.com/sitesv/APaQ0SRf25tQ_KxFmolxi7_dL4aK-n7xpgZ9GGH8vETebcLlAV5GnoH40altmvG-kbxZd8cDRAdjN63jhfBhms8oYHB6Tyhyh60k6eAEHCXjDDaxlH96cs477SbXxrqAN1eEmHPYx-qc_1nDsxHZt96qgQPVXdfZAEf4uhTiysn0vteR4pEMg8gKef48o6ktkn0-9Gl1o54Sre3mhF6Vwb4EWGJRjgMcXOFs3mja=w1280"
+            alt="Foto de Tatiane Gomes"
+            loading="lazy">
+        </figure>
+
+        <div class="aboutText">
+          <h3>Sou a Tatiane (Tati) Gomes</h3>
+          <p>
+            Desde 2015, ajudo marcas a crescerem no orgânico com conteúdo SEO que faz sentido:
+            estrutura, intenção de busca e escrita clara. Trabalho com páginas e artigos, do planejamento
+            à otimização.
+          </p>
+          <p>
+            Uso IA de forma estratégica, mas a direção editorial e a qualidade do texto continuam sendo humanas.
+            O meu foco é entregar conteúdo pronto pra publicar e fácil de defender internamente: argumento,
+            prova e CTA no lugar certo.
+          </p>
+
+          <ul class="aboutList">
+            <li><span class="aboutBullet">✅</span> Conteúdo com estrutura e leitura fluida</li>
+            <li><span class="aboutBullet">✅</span> SEO com intenção (não com checklist)</li>
+            <li><span class="aboutBullet">✅</span> Entrega organizada e previsível</li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="aboutDivider">
+
+      <div class="aboutRow reverse">
+        <div class="aboutText">
+          <h3>Como eu trabalho</h3>
+          <p>
+            Eu gosto de processos simples: entendo objetivo, leio o que já existe, defino o recorte e organizo a estrutura.
+            Aí o texto sai com mais “cara de decisão” e menos “cara de encheção”.
+          </p>
+          <p>
+            Se você tiver um time interno, eu escrevo pensando na realidade do time:
+            fácil de aprovar, fácil de atualizar, fácil de manter.
+          </p>
+
+          <div class="aboutChips">
+            <span class="chip">SEO on-page</span>
+            <span class="chip">Briefing</span>
+            <span class="chip">Páginas institucionais</span>
+            <span class="chip">Artigos</span>
+          </div>
+        </div>
+
+        <figure class="aboutPhoto">
+          <img
+            src="https://lh3.googleusercontent.com/sitesv/APaQ0SRvsIbeQTkFm_WMc6lUNbuTV0EoJyACT82vooSCHVVMQT0MWK_fANETpnMLxxvVstAQWdgiO_lLekPwCMLbdOdDKP-ZJw25ctfhgBCJ-3qA2WeRwcTc7hmopTOSTPDeMoA531XBHsr2ee9Iv5PjgheOG_-X7KCf172HqMHkX0V09zdgWMWG-4Hah-bgkrECA2WTc7pcyQTG8zFpGsEZKnYS_n-nLlbkrwCf=w1280"
+            alt="Foto de Tatiane Gomes"
+            loading="lazy">
+        </figure>
+      </div>
     </section>
 
     <section class="card pad reveal" data-reveal="up" id="servicos">
