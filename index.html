@@ -46,7 +46,7 @@
       line-height:1.6;
     }
     a{color:inherit}
-    img{max-width:100%; height:auto; display:block;} /* defesa extra */
+    img{max-width:100%; height:auto; display:block;}
     .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 72px}
     .card{
       border:1px solid var(--line);
@@ -104,7 +104,7 @@
 
     section{
       margin-top:16px;
-      scroll-margin-top: var(--anchorOffset); /* ✅ corrige menu/âncoras com header sticky */
+      scroll-margin-top: var(--anchorOffset);
     }
     .pad{ padding:22px; }
     .sectionTitle{
@@ -215,10 +215,7 @@
       font-weight:900;
     }
     .iconBtn:hover{ background: rgba(255,255,255,.09); }
-    .iconBtn:disabled{
-      opacity:.35;
-      cursor:not-allowed;
-    }
+    .iconBtn:disabled{ opacity:.35; cursor:not-allowed; }
 
     /* Side box */
     .sideBox{
@@ -240,8 +237,6 @@
       color:var(--muted);
       font-size:13px;
     }
-
-    /* ✅ sem bolinha */
     .tick{
       width:auto;
       height:auto;
@@ -288,7 +283,6 @@
 
     /* Articles */
     .carousel{
-      position:relative;
       overflow:hidden;
       border-radius: var(--radius);
       border:1px solid var(--line);
@@ -302,11 +296,11 @@
       scroll-snap-type:x mandatory;
       scroll-behavior:smooth;
 
-      /* ✅ some com a barra */
-      scrollbar-width: none;          /* Firefox */
-      -ms-overflow-style: none;       /* IE/Edge antigo */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
-    .track::-webkit-scrollbar{ display:none; } /* Chrome/Safari */
+    .track::-webkit-scrollbar{ display:none; }
+
     .aCard{
       flex: 0 0 340px;
       scroll-snap-align:start;
@@ -333,27 +327,17 @@
     .aMeta{ color:var(--muted); font-size:12px; }
     .aActions{ display:flex; gap:10px; flex-wrap:wrap; }
 
-    /* ✅ setas do carrossel de artigos */
-    .carNav{
-      position:absolute;
-      inset:0;
-      pointer-events:none;
+    /* ✅ setas embaixo, centralizadas */
+    .articleArrows{
       display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:0 10px;
-      z-index:2;
+      justify-content:center;
+      gap:10px;
+      margin-top:12px;
     }
-    .carNav .iconBtn{
-      pointer-events:auto;
-      width:42px;
-      height:42px;
+    .articleArrows .iconBtn{
+      width:44px;
+      height:44px;
       border-radius:16px;
-      background: rgba(11,15,25,.40);
-      backdrop-filter: blur(6px);
-    }
-    @media (max-width: 520px){
-      .carNav{ display:none; } /* no mobile, dedo resolve melhor */
     }
 
     footer{
@@ -367,12 +351,8 @@
       padding: 6px 2px 0;
     }
 
-    /* ==========================
-       SCROLL REVEAL (seguro)
-       - sem JS: tudo aparece normal
-       - com JS: anima ao entrar
-       ========================== */
-    .reveal{ opacity:1; transform:none; filter:none; } /* fallback */
+    /* Scroll Reveal */
+    .reveal{ opacity:1; transform:none; filter:none; }
     html.js .reveal{
       opacity: 0;
       transform: translateY(14px);
@@ -421,7 +401,6 @@
         </div>
       </div>
 
-      <!-- ✅ ordem do menu ajustada + "Início" -->
       <nav class="nav" aria-label="Navegação">
         <a href="#top">Início</a>
         <a href="#sobre">Sobre mim</a>
@@ -509,10 +488,8 @@
       </aside>
     </div>
 
-    <!-- ✅ SOBRE primeiro -->
     <section class="card pad reveal" data-reveal="up" id="sobre">
       <h2 class="sectionTitle">Sobre mim</h2>
-
       <p class="lead" style="margin-bottom:0">
         Desde 2015, ajudo marcas a crescerem no orgânico com conteúdo SEO que faz sentido: estrutura, intenção de busca e escrita clara.
         Trabalho com páginas e artigos, do planejamento à otimização. Uso IA de forma estratégica, mas a direção editorial e a qualidade do texto
@@ -520,7 +497,6 @@
       </p>
     </section>
 
-    <!-- ✅ SERVIÇOS depois -->
     <section class="card pad reveal" data-reveal="up" id="servicos">
       <h2 class="sectionTitle">Serviços</h2>
 
@@ -587,13 +563,8 @@
       </p>
 
       <div class="carousel reveal" data-reveal="up" aria-label="Carrossel de artigos">
-        <!-- ✅ setas -->
-        <div class="carNav" aria-hidden="true">
-          <button class="iconBtn" id="aPrev" aria-label="Voltar artigos">‹</button>
-          <button class="iconBtn" id="aNext" aria-label="Avançar artigos">›</button>
-        </div>
-
         <div class="track" id="articleTrack" aria-label="Lista de artigos">
+
           <article class="aCard">
             <img class="coverImg"
               src="https://media.licdn.com/dms/image/v2/D4D12AQGfAZ85CVdxYg/article-cover_image-shrink_720_1280/B4DZxC8o6FJkAI-/0/1770649722200?e=2147483647&t=SnsEGuGo-7EyEu8n_Qq_MQk_wW6-e0_ZkEdvY6o5eII&v=beta"
@@ -655,6 +626,12 @@
           </article>
 
         </div>
+      </div>
+
+      <!-- ✅ setas embaixo e centralizadas -->
+      <div class="articleArrows reveal" data-reveal="up">
+        <button class="iconBtn" id="aPrev" aria-label="Voltar artigos">‹</button>
+        <button class="iconBtn" id="aNext" aria-label="Avançar artigos">›</button>
       </div>
     </section>
 
@@ -720,7 +697,7 @@
     go(0);
     start();
 
-    // Carrossel de artigos (setas)
+    // Carrossel de artigos (setas embaixo)
     (function(){
       const track = document.getElementById("articleTrack");
       const aPrev = document.getElementById("aPrev");
@@ -737,22 +714,14 @@
       function updateArrows(){
         const maxScroll = track.scrollWidth - track.clientWidth;
         const left = track.scrollLeft;
-
         aPrev.disabled = left <= 2;
         aNext.disabled = left >= (maxScroll - 2);
       }
 
-      aPrev.addEventListener("click", () => {
-        track.scrollBy({ left: -step(), behavior: "smooth" });
-      });
-      aNext.addEventListener("click", () => {
-        track.scrollBy({ left: step(), behavior: "smooth" });
-      });
+      aPrev.addEventListener("click", () => track.scrollBy({ left: -step(), behavior: "smooth" }));
+      aNext.addEventListener("click", () => track.scrollBy({ left: step(), behavior: "smooth" }));
 
-      track.addEventListener("scroll", () => {
-        window.requestAnimationFrame(updateArrows);
-      });
-
+      track.addEventListener("scroll", () => window.requestAnimationFrame(updateArrows));
       window.addEventListener("resize", updateArrows);
 
       updateArrows();
