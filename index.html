@@ -297,17 +297,18 @@
     .miniCard h3{ margin:0 0 6px; font-size:15px; }
     .miniCard p{ margin:0; font-size:13px; color:var(--muted); }
 
-    /* ===== SOBRE MIM (formato foto + texto) ===== */
+    /* ===== SOBRE MIM (foto + texto) ===== */
     .about{ padding-top: 20px; }
+
     .aboutRow{
       display:grid;
-      grid-template-columns: minmax(280px, 360px) 1fr;
+      grid-template-columns: minmax(260px, 340px) 1fr;
       gap:18px;
       align-items:start;
       margin-top: 10px;
     }
     .aboutRow.reverse{
-      grid-template-columns: 1fr minmax(280px, 360px);
+      grid-template-columns: 1fr minmax(260px, 340px);
     }
 
     .aboutPhoto{
@@ -317,21 +318,28 @@
       border:1px solid var(--line);
       background: rgba(255,255,255,.03);
       box-shadow: 0 18px 60px rgba(0,0,0,.25);
-      position:relative;
+
+      /* “trava” a proporção do card */
+      aspect-ratio: 4 / 5;
+      max-height: 420px;
+      position: relative;
     }
-    /* leve “acabamento” pra foto casar com o tema escuro */
-    .aboutPhoto:after{
+    /* overlay sutil pra casar com o tema escuro */
+    .aboutPhoto::after{
       content:"";
       position:absolute;
       inset:0;
-      background: linear-gradient(180deg, rgba(11,15,25,0) 0%, rgba(11,15,25,.26) 100%);
+      background: linear-gradient(180deg, rgba(11,15,25,0) 0%, rgba(11,15,25,.28) 100%);
       pointer-events:none;
+      z-index:2;
     }
     .aboutPhoto img{
       width:100%;
-      aspect-ratio: 4 / 5;       /* mantém proporção consistente */
+      height:100%;
       object-fit: cover;
       object-position: center;
+      position: relative;
+      z-index:1;
     }
 
     .aboutText h3{
@@ -393,8 +401,9 @@
       .aboutRow.reverse{
         grid-template-columns: 1fr;
       }
-      .aboutPhoto img{
-        aspect-ratio: 16 / 10; /* no mobile, mais “wide” costuma ficar mais bonito */
+      .aboutPhoto{
+        aspect-ratio: 16 / 10;
+        max-height: 420px;
       }
     }
 
@@ -632,7 +641,7 @@
       <div class="aboutRow">
         <figure class="aboutPhoto">
           <img
-            src="https://lh3.googleusercontent.com/sitesv/APaQ0SRf25tQ_KxFmolxi7_dL4aK-n7xpgZ9GGH8vETebcLlAV5GnoH40altmvG-kbxZd8cDRAdjN63jhfBhms8oYHB6Tyhyh60k6eAEHCXjDDaxlH96cs477SbXxrqAN1eEmHPYx-qc_1nDsxHZt96qgQPVXdfZAEf4uhTiysn0vteR4pEMg8gKef48o6ktkn0-9Gl1o54Sre3mhF6Vwb4EWGJRjgMcXOFs3mja=w1280"
+            src="assets/img/tati-1.png"
             alt="Foto de Tatiane Gomes"
             loading="lazy">
         </figure>
@@ -682,7 +691,7 @@
 
         <figure class="aboutPhoto">
           <img
-            src="https://lh3.googleusercontent.com/sitesv/APaQ0SRvsIbeQTkFm_WMc6lUNbuTV0EoJyACT82vooSCHVVMQT0MWK_fANETpnMLxxvVstAQWdgiO_lLekPwCMLbdOdDKP-ZJw25ctfhgBCJ-3qA2WeRwcTc7hmopTOSTPDeMoA531XBHsr2ee9Iv5PjgheOG_-X7KCf172HqMHkX0V09zdgWMWG-4Hah-bgkrECA2WTc7pcyQTG8zFpGsEZKnYS_n-nLlbkrwCf=w1280"
+            src="assets/img/tati-2.png"
             alt="Foto de Tatiane Gomes"
             loading="lazy">
         </figure>
@@ -859,14 +868,12 @@
       if(!header) return;
 
       function setOffset(){
-        // top (14px) + altura do header + uma folguinha
         const h = header.getBoundingClientRect().height;
         const offset = Math.round(14 + h + 10);
         document.documentElement.style.setProperty("--anchorOffset", offset + "px");
       }
 
       window.addEventListener("resize", setOffset);
-      // um pequeno delay ajuda depois do layout estabilizar
       setTimeout(setOffset, 60);
     })();
 
@@ -929,7 +936,6 @@
       }
 
       function nudgeUpdate(){
-        // scroll smooth é assíncrono, então atualiza depois também
         updateArrows();
         setTimeout(updateArrows, 220);
         setTimeout(updateArrows, 520);
@@ -941,7 +947,6 @@
       track.addEventListener("scroll", () => window.requestAnimationFrame(updateArrows));
       window.addEventListener("resize", updateArrows);
 
-      // inicial
       updateArrows();
       setTimeout(updateArrows, 80);
     })();
