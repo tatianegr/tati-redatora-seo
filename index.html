@@ -11,7 +11,6 @@
   <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/4659/4659027.png?v=2">
   <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/4659/4659027.png?v=2">
 
-  <!-- Se JS estiver ativo, adiciona classe "js" pra habilitar as animações com segurança -->
   <script>
     document.documentElement.classList.add('js');
   </script>
@@ -67,7 +66,6 @@
     }
     .brand{display:flex; align-items:center; gap:10px; min-width: 240px}
 
-    /* Logo (quadradinho + ícone) */
     .logo{
       width:38px; height:38px; border-radius:12px;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
@@ -301,18 +299,19 @@
     .miniCard h3{ margin:0 0 6px; font-size:15px; }
     .miniCard p{ margin:0; font-size:13px; color:var(--muted); }
 
-    /* ===== SOBRE MIM (foto + texto) ===== */
+    /* ===== SOBRE MIM ===== */
     .about{ padding-top: 20px; }
 
     .aboutRow{
       display:grid;
       grid-template-columns: minmax(260px, 340px) 1fr;
       gap:18px;
-      align-items:start;
+      align-items:stretch; /* garante que as duas colunas “compartilhem” a mesma altura */
       margin-top: 10px;
     }
     .aboutRow.reverse{
       grid-template-columns: 1fr minmax(260px, 340px);
+      align-items:stretch; /* mantém o mesmo comportamento no bloco de baixo */
     }
 
     .aboutPhoto{
@@ -326,7 +325,15 @@
       aspect-ratio: 1 / 1;
       max-width: 340px;
       position: relative;
+
+      align-self: start; /* evita qualquer “centralização” estranha */
+      justify-self: start;
     }
+    .aboutRow.reverse .aboutPhoto{
+      justify-self: end;  /* foto da direita “encosta” no lado certo */
+      align-self: start;  /* e alinha no topo como no bloco de cima */
+    }
+
     .aboutPhoto::after{
       content:"";
       position:absolute;
@@ -376,10 +383,8 @@
       border-radius: 14px;
       background: rgba(255,255,255,.03);
     }
-    .aboutBullet{
-      line-height:1;
-      margin-top: 1px;
-    }
+    .aboutBullet{ line-height:1; margin-top: 1px; }
+
     .aboutDivider{
       border:0;
       height:1px;
@@ -407,6 +412,7 @@
       }
       .aboutPhoto{
         max-width: 100%;
+        justify-self: start !important;
       }
     }
 
@@ -472,7 +478,6 @@
       font-size:12px;
       margin-bottom: 2px;
     }
-
     .aActions{
       display:flex;
       gap:10px;
@@ -678,32 +683,25 @@
 
       <hr class="aboutDivider">
 
+      <!-- AQUI: texto ajustado (menor) pra “fechar” melhor com a altura da foto -->
       <div class="aboutRow reverse">
         <div class="aboutText">
           <h3>Como eu trabalho</h3>
 
           <p>
-            Eu gosto de processo simples, porque é isso que evita retrabalho. Primeiro eu entendo o objetivo da página
-            (posicionamento, conversão, tráfego, suporte ao comercial) e a intenção de busca por trás. Aí eu leio o que já existe,
-            comparo com o que o público realmente procura e fecho um recorte claro: do que vamos falar e do que vamos deixar de fora.
+            Eu começo pelo objetivo e pela intenção de busca. Leio o que já existe, defino um recorte claro
+            (o que entra e o que fica de fora) e monto a estrutura antes de escrever.
           </p>
 
           <p>
-            Depois disso eu monto a estrutura antes de escrever. Parece “básico”, mas é onde metade dos textos morrem:
-            sem hierarquia, sem prioridade e sem argumento. Com a estrutura definida, eu escrevo pensando em leitura real
-            (escaneável, com progressão) e em SEO on-page sem paranoia: título, Hs, semântica, links e CTA no lugar certo.
-          </p>
-
-          <p>
-            Se você tem time interno, eu escrevo para facilitar a vida de todo mundo: o texto chega organizado,
-            com lógica fácil de aprovar e de defender. E se precisar de ajuste, a página continua “editável”,
-            não vira aquele Frankenstein que ninguém quer mexer porque dá medo de quebrar.
+            Com isso definido, o texto sai mais fácil de aprovar e mais fácil de manter: hierarquia, semântica,
+            links e CTA no lugar certo, sem virar “SEO automático” nem virar textão.
           </p>
 
           <ul class="aboutList">
-            <li><span class="aboutBullet">✅</span> Começo pelo recorte e pela estrutura (antes do “encher de texto”)</li>
-            <li><span class="aboutBullet">✅</span> Entrego com consistência: padrão de títulos, tom e CTAs</li>
-            <li><span class="aboutBullet">✅</span> Revisão com critério: melhora o texto sem “mutirão de sinônimo”</li>
+            <li><span class="aboutBullet">✅</span> Recorte e estrutura primeiro, texto depois</li>
+            <li><span class="aboutBullet">✅</span> Consistência de títulos, tom e CTAs</li>
+            <li><span class="aboutBullet">✅</span> Revisão com critério (sem “mutirão de sinônimo”)</li>
           </ul>
 
           <div class="aboutChips">
@@ -884,7 +882,6 @@
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Ajusta offset de âncora com base no header real (pra não “colar” nunca)
     (function(){
       const header = document.getElementById("siteHeader");
       if(!header) return;
