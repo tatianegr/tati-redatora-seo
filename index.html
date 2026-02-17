@@ -215,6 +215,10 @@
       font-weight:900;
     }
     .iconBtn:hover{ background: rgba(255,255,255,.09); }
+    .iconBtn:disabled{
+      opacity:.35;
+      cursor:not-allowed;
+    }
 
     /* Side box */
     .sideBox{
@@ -297,9 +301,12 @@
       overflow:auto;
       scroll-snap-type:x mandatory;
       scroll-behavior:smooth;
+
+      /* ✅ some com a barra */
+      scrollbar-width: none;          /* Firefox */
+      -ms-overflow-style: none;       /* IE/Edge antigo */
     }
-    .track::-webkit-scrollbar{ height:10px; }
-    .track::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.12); border-radius:999px; }
+    .track::-webkit-scrollbar{ display:none; } /* Chrome/Safari */
     .aCard{
       flex: 0 0 340px;
       scroll-snap-align:start;
@@ -325,6 +332,29 @@
     .aBody p{ margin:8px 0 12px; color:var(--muted); font-size:13px; }
     .aMeta{ color:var(--muted); font-size:12px; }
     .aActions{ display:flex; gap:10px; flex-wrap:wrap; }
+
+    /* ✅ setas do carrossel de artigos */
+    .carNav{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:0 10px;
+      z-index:2;
+    }
+    .carNav .iconBtn{
+      pointer-events:auto;
+      width:42px;
+      height:42px;
+      border-radius:16px;
+      background: rgba(11,15,25,.40);
+      backdrop-filter: blur(6px);
+    }
+    @media (max-width: 520px){
+      .carNav{ display:none; } /* no mobile, dedo resolve melhor */
+    }
 
     footer{
       margin-top:22px;
@@ -374,6 +404,7 @@
       }
       .slides{ transition:none !important; }
       .btn{ transition:none !important; }
+      .track{ scroll-behavior:auto !important; }
     }
   </style>
 </head>
@@ -390,9 +421,11 @@
         </div>
       </div>
 
+      <!-- ✅ ordem do menu ajustada + "Início" -->
       <nav class="nav" aria-label="Navegação">
-        <a href="#servicos">Serviços</a>
+        <a href="#top">Início</a>
         <a href="#sobre">Sobre mim</a>
+        <a href="#servicos">Serviços</a>
         <a href="#portfolio">Artigos</a>
         <a href="#contato">Contato</a>
       </nav>
@@ -476,6 +509,18 @@
       </aside>
     </div>
 
+    <!-- ✅ SOBRE primeiro -->
+    <section class="card pad reveal" data-reveal="up" id="sobre">
+      <h2 class="sectionTitle">Sobre mim</h2>
+
+      <p class="lead" style="margin-bottom:0">
+        Desde 2015, ajudo marcas a crescerem no orgânico com conteúdo SEO que faz sentido: estrutura, intenção de busca e escrita clara.
+        Trabalho com páginas e artigos, do planejamento à otimização. Uso IA de forma estratégica, mas a direção editorial e a qualidade do texto
+        continuam sendo humanas.
+      </p>
+    </section>
+
+    <!-- ✅ SERVIÇOS depois -->
     <section class="card pad reveal" data-reveal="up" id="servicos">
       <h2 class="sectionTitle">Serviços</h2>
 
@@ -535,16 +580,6 @@
       </div>
     </section>
 
-    <section class="card pad reveal" data-reveal="up" id="sobre">
-      <h2 class="sectionTitle">Sobre mim</h2>
-
-      <p class="lead" style="margin-bottom:0">
-        Desde 2015, ajudo marcas a crescerem no orgânico com conteúdo SEO que faz sentido: estrutura, intenção de busca e escrita clara.
-        Trabalho com páginas e artigos, do planejamento à otimização. Uso IA de forma estratégica, mas a direção editorial e a qualidade do texto
-        continuam sendo humanas.
-      </p>
-    </section>
-
     <section class="card pad reveal" data-reveal="up" id="portfolio">
       <h2 class="sectionTitle">Artigos (LinkedIn)</h2>
       <p class="lead" style="margin-top:-4px">
@@ -552,8 +587,13 @@
       </p>
 
       <div class="carousel reveal" data-reveal="up" aria-label="Carrossel de artigos">
-        <div class="track" id="articleTrack">
+        <!-- ✅ setas -->
+        <div class="carNav" aria-hidden="true">
+          <button class="iconBtn" id="aPrev" aria-label="Voltar artigos">‹</button>
+          <button class="iconBtn" id="aNext" aria-label="Avançar artigos">›</button>
+        </div>
 
+        <div class="track" id="articleTrack" aria-label="Lista de artigos">
           <article class="aCard">
             <img class="coverImg"
               src="https://media.licdn.com/dms/image/v2/D4D12AQGfAZ85CVdxYg/article-cover_image-shrink_720_1280/B4DZxC8o6FJkAI-/0/1770649722200?e=2147483647&t=SnsEGuGo-7EyEu8n_Qq_MQk_wW6-e0_ZkEdvY6o5eII&v=beta"
@@ -645,7 +685,7 @@
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Slider
+    // Slider (hero)
     const slides = document.getElementById("slides");
     const dots = Array.from(document.querySelectorAll(".dotBtn"));
     const prev = document.getElementById("prev");
@@ -679,6 +719,44 @@
 
     go(0);
     start();
+
+    // Carrossel de artigos (setas)
+    (function(){
+      const track = document.getElementById("articleTrack");
+      const aPrev = document.getElementById("aPrev");
+      const aNext = document.getElementById("aNext");
+      if(!track || !aPrev || !aNext) return;
+
+      function step(){
+        const firstCard = track.querySelector(".aCard");
+        if(!firstCard) return 352;
+        const gap = 12;
+        return firstCard.getBoundingClientRect().width + gap;
+      }
+
+      function updateArrows(){
+        const maxScroll = track.scrollWidth - track.clientWidth;
+        const left = track.scrollLeft;
+
+        aPrev.disabled = left <= 2;
+        aNext.disabled = left >= (maxScroll - 2);
+      }
+
+      aPrev.addEventListener("click", () => {
+        track.scrollBy({ left: -step(), behavior: "smooth" });
+      });
+      aNext.addEventListener("click", () => {
+        track.scrollBy({ left: step(), behavior: "smooth" });
+      });
+
+      track.addEventListener("scroll", () => {
+        window.requestAnimationFrame(updateArrows);
+      });
+
+      window.addEventListener("resize", updateArrows);
+
+      updateArrows();
+    })();
 
     // Scroll Reveal
     (function(){
