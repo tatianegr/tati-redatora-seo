@@ -278,7 +278,10 @@
       border-radius: var(--radius);
       padding:16px;
     }
-    .miniHead{ display:flex; align-items:flex-start; gap:10px; }
+
+    /* ✅ CENTRALIZA ÍCONES NOS HEADS (AJUSTE PEDIDO) */
+    .miniHead{ display:flex; align-items:center; gap:10px; }
+
     .miniIcon{
       width:36px; height:36px;
       border-radius:14px;
@@ -305,7 +308,10 @@
       flex-direction:column;
       min-height: 0;
     }
-    .pkgHead{ display:flex; align-items:flex-start; gap:10px; }
+
+    /* ✅ CENTRALIZA ÍCONES NOS HEADS (AJUSTE PEDIDO) */
+    .pkgHead{ display:flex; align-items:center; gap:10px; }
+
     .pkgTitleWrap{ min-width:0; }
     .pkgKicker{
       display:inline-flex;
@@ -745,7 +751,7 @@
           </div>
         </div>
 
-        <!-- Pacote 2 (ajustes combinados para evitar quebra) -->
+        <!-- Pacote 2 -->
         <div class="miniCard reveal" data-reveal="up" style="--d:90ms">
           <div class="pkgKicker"><span class="dot"></span> Institucional</div>
 
@@ -816,7 +822,7 @@
       </p>
     </section>
 
-    <!-- PORTFÓLIO (antes "Serviços") -->
+    <!-- PORTFÓLIO -->
     <section class="card pad reveal" data-reveal="up" id="portfolio">
       <h2 class="sectionTitle">Portfólio</h2>
       <p class="lead" style="margin-top:-4px">
@@ -926,7 +932,8 @@
           </p>
 
           <ul class="aboutList">
-            <li><span class="aboutBullet">✅</span> Recorte e estrutura primeiro, texto depois</li>
+            <!-- ✅ FRASE AUMENTADA (AJUSTE PEDIDO) -->
+            <li><span class="aboutBullet">✅</span> Recorte e estrutura primeiro, pra o texto sair consistente de primeira</li>
             <li><span class="aboutBullet">✅</span> Consistência de títulos, tom e CTAs</li>
             <li><span class="aboutBullet">✅</span> Revisão com critério (sem “mutirão de sinônimo”)</li>
           </ul>
@@ -945,7 +952,7 @@
       </div>
     </section>
 
-    <!-- ARTIGOS (antes id="portfolio") -->
+    <!-- ARTIGOS -->
     <section class="card pad reveal" data-reveal="up" id="artigos">
       <h2 class="sectionTitle">Artigos (LinkedIn)</h2>
       <p class="lead" style="margin-top:-4px">
