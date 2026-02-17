@@ -299,6 +299,59 @@
     .miniCard h3{ margin:0 0 6px; font-size:15px; }
     .miniCard p{ margin:0; font-size:13px; color:var(--muted); }
 
+    /* ===== MINI PACOTES (NOVO) ===== */
+    .pkgGrid .miniCard{
+      display:flex;
+      flex-direction:column;
+      min-height: 0;
+    }
+    .pkgHead{ display:flex; align-items:flex-start; gap:10px; }
+    .pkgTitleWrap{ min-width:0; }
+    .pkgKicker{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      color: rgba(234,240,255,.75);
+      border:1px solid var(--line);
+      padding:6px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.03);
+      width: fit-content;
+      margin-bottom: 10px;
+    }
+    .pkgKicker .dot{ box-shadow: 0 0 0 6px rgba(255,45,141,.10); background: rgba(255,45,141,.85); }
+    .pkgList{
+      list-style:none;
+      padding:0;
+      margin:12px 0 0;
+      display:grid;
+      gap:8px;
+    }
+    .pkgList li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:10px 10px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:13px;
+    }
+    .pkgActions{
+      margin-top:auto;
+      padding-top:12px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .noteLine{
+      margin:10px 0 0;
+      color: rgba(234,240,255,.60);
+      font-size: 13px;
+    }
+
     /* ===== SOBRE MIM ===== */
     .about{ padding-top: 20px; }
 
@@ -306,12 +359,12 @@
       display:grid;
       grid-template-columns: minmax(260px, 340px) 1fr;
       gap:18px;
-      align-items:stretch; /* garante que as duas colunas “compartilhem” a mesma altura */
+      align-items:stretch;
       margin-top: 10px;
     }
     .aboutRow.reverse{
       grid-template-columns: 1fr minmax(260px, 340px);
-      align-items:stretch; /* mantém o mesmo comportamento no bloco de baixo */
+      align-items:stretch;
     }
 
     .aboutPhoto{
@@ -326,12 +379,12 @@
       max-width: 340px;
       position: relative;
 
-      align-self: start; /* evita qualquer “centralização” estranha */
+      align-self: start;
       justify-self: start;
     }
     .aboutRow.reverse .aboutPhoto{
-      justify-self: end;  /* foto da direita “encosta” no lado certo */
-      align-self: start;  /* e alinha no topo como no bloco de cima */
+      justify-self: end;
+      align-self: start;
     }
 
     .aboutPhoto::after{
@@ -651,6 +704,117 @@
       </aside>
     </div>
 
+    <!-- MINI PACOTES (NOVO) -->
+    <section class="card pad reveal" data-reveal="up" id="pacotes">
+      <h2 class="sectionTitle">Opções mais pedidas</h2>
+      <p class="lead" style="margin-top:-4px">
+        Pra você bater o olho e entender o que dá pra contratar agora, com escopo fechado e processo simples.
+      </p>
+
+      <div class="grid3 revealGroup pkgGrid">
+        <!-- Pacote 1 -->
+        <div class="miniCard reveal" data-reveal="up" style="--d:0ms">
+          <div class="pkgKicker"><span class="dot"></span> Produto/Serviço</div>
+
+          <div class="pkgHead">
+            <div class="miniIcon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                <path d="M3.3 7L12 12l8.7-5" />
+                <path d="M12 22V12" />
+              </svg>
+            </div>
+            <div class="pkgTitleWrap">
+              <h3>Página que converte</h3>
+              <p>Para página de produto ou serviço, com foco em busca e decisão.</p>
+            </div>
+          </div>
+
+          <ul class="pkgList">
+            <li><span class="aboutBullet">✅</span> 1 página completa (copy + SEO on-page)</li>
+            <li><span class="aboutBullet">✅</span> Argumento, prova e CTA no lugar certo</li>
+            <li><span class="aboutBullet">✅</span> Entrega pronta pra publicar</li>
+          </ul>
+
+          <div class="pkgActions">
+            <a class="btn primary" target="_blank" rel="noreferrer"
+              href="https://wa.me/5511976625245?text=Oi%20Tati!%20Quero%20or%C3%A7amento%20do%20pacote%20%22P%C3%A1gina%20que%20converte%22.%20%C3%89%20para%20uma%20p%C3%A1gina%20de%20produto/servi%C3%A7o.%20Posso%20te%20passar%20nicho%2C%20objetivo%20e%20link%20do%20site?">
+              Quero uma página
+            </a>
+          </div>
+        </div>
+
+        <!-- Pacote 2 -->
+        <div class="miniCard reveal" data-reveal="up" style="--d:90ms">
+          <div class="pkgKicker"><span class="dot"></span> Institucional</div>
+
+          <div class="pkgHead">
+            <div class="miniIcon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 20V6a2 2 0 0 1 2-2h6v16" />
+                <path d="M12 20V10a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v10" />
+                <path d="M2 20h20" />
+              </svg>
+            </div>
+            <div class="pkgTitleWrap">
+              <h3>Institucional sem enrolação</h3>
+              <p>Para empresa apresentar quem é, o que faz e por que escolher.</p>
+            </div>
+          </div>
+
+          <ul class="pkgList">
+            <li><span class="aboutBullet">✅</span> 2 a 3 páginas (ex: Home + Sobre + Serviços)</li>
+            <li><span class="aboutBullet">✅</span> Tom de marca + posicionamento (sem “sobre nós genérico”)</li>
+            <li><span class="aboutBullet">✅</span> Estrutura escaneável e fácil de aprovar</li>
+          </ul>
+
+          <div class="pkgActions">
+            <a class="btn primary" target="_blank" rel="noreferrer"
+              href="https://wa.me/5511976625245?text=Oi%20Tati!%20Quero%20or%C3%A7amento%20do%20pacote%20%22Institucional%20sem%20enrola%C3%A7%C3%A3o%22.%20Seria%20para%202%20a%203%20p%C3%A1ginas%20do%20site.%20Posso%20te%20passar%20o%20nicho%2C%20objetivo%20e%20o%20que%20j%C3%A1%20existe%20hoje?">
+              Quero meu institucional
+            </a>
+          </div>
+        </div>
+
+        <!-- Pacote 3 -->
+        <div class="miniCard reveal" data-reveal="up" style="--d:180ms">
+          <div class="pkgKicker"><span class="dot"></span> Blog/SEO</div>
+
+          <div class="pkgHead">
+            <div class="miniIcon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+                <path d="M14 2v6h6" />
+                <path d="M9 13h6" />
+                <path d="M9 17h6" />
+              </svg>
+            </div>
+            <div class="pkgTitleWrap">
+              <h3>Conteúdo mensal</h3>
+              <p>Para manter consistência e construir tração no orgânico.</p>
+            </div>
+          </div>
+
+          <ul class="pkgList">
+            <li><span class="aboutBullet">✅</span> 4 ou 8 artigos/mês (você escolhe o ritmo)</li>
+            <li><span class="aboutBullet">✅</span> Pauta + estrutura + otimização</li>
+            <li><span class="aboutBullet">✅</span> Consistência de títulos, links e CTA</li>
+          </ul>
+
+          <div class="pkgActions">
+            <a class="btn primary" target="_blank" rel="noreferrer"
+              href="https://wa.me/5511976625245?text=Oi%20Tati!%20Quero%20or%C3%A7amento%20do%20pacote%20%22Conte%C3%BAdo%20mensal%22.%20Tenho%20interesse%20em%204%20ou%208%20artigos/m%C3%AAs.%20Posso%20te%20passar%20nicho%2C%20objetivo%20e%20temas%20priorit%C3%A1rios?">
+              Quero conteúdo mensal
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <p class="noteLine">
+        Escopo fechado e processo simples. Se você precisar de algo fora disso, eu monto uma proposta.
+      </p>
+    </section>
+
     <!-- SOBRE MIM -->
     <section class="card pad reveal about" data-reveal="up" id="sobre">
       <h2 class="sectionTitle">Sobre mim</h2>
@@ -683,7 +847,6 @@
 
       <hr class="aboutDivider">
 
-      <!-- AQUI: texto ajustado (menor) pra “fechar” melhor com a altura da foto -->
       <div class="aboutRow reverse">
         <div class="aboutText">
           <h3>Como eu trabalho</h3>
@@ -841,7 +1004,7 @@
               <p>Quando a página até aparece no Google, mas não orienta o leitor e não converte.</p>
               <div class="aActions">
                 <a class="btn primary" target="_blank" rel="noreferrer"
-                  href="https://www.linkedin.com/pulse/p%25C3%25A1gina-que-ranqueia-e-n%25C3%25A3o-ajuda-tatiane-gomes-tctof">Leia</a>
+                  href="https://www.linkedin.com/pulse/p%25C3%25A1gina-que-ranqueia-e-n%25C3%A3o-ajuda-tatiane-gomes-tctof">Leia</a>
               </div>
             </div>
           </article>
