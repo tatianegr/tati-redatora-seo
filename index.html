@@ -268,7 +268,7 @@
     }
     .tick:after{ content:"✅"; }
 
-    /* Services */
+    /* Grids / mini cards */
     .grid3{ display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; }
     @media (max-width:900px){ .grid3{ grid-template-columns:1fr } }
 
@@ -299,7 +299,7 @@
     .miniCard h3{ margin:0 0 6px; font-size:15px; }
     .miniCard p{ margin:0; font-size:13px; color:var(--muted); }
 
-    /* ===== MINI PACOTES (NOVO) ===== */
+    /* ===== MINI PACOTES ===== */
     .pkgGrid .miniCard{
       display:flex;
       flex-direction:column;
@@ -617,11 +617,12 @@
         </div>
       </div>
 
+      <!-- MENU (ordem combinada) -->
       <nav class="nav" aria-label="Navegação">
         <a href="#top">Início</a>
+        <a href="#portfolio">Portfólio</a>
         <a href="#sobre">Sobre mim</a>
-        <a href="#servicos">Serviços</a>
-        <a href="#portfolio">Artigos</a>
+        <a href="#artigos">Artigos</a>
         <a href="#contato">Contato</a>
       </nav>
 
@@ -657,7 +658,7 @@
             </div>
             <div class="ctaRow">
               <a class="btn primary" href="#contato">Falar no WhatsApp</a>
-              <a class="btn ghost" href="#portfolio">Ver artigos</a>
+              <a class="btn ghost" href="#artigos">Ver artigos</a>
             </div>
           </div>
 
@@ -704,7 +705,7 @@
       </aside>
     </div>
 
-    <!-- MINI PACOTES (NOVO) -->
+    <!-- MINI PACOTES -->
     <section class="card pad reveal" data-reveal="up" id="pacotes">
       <h2 class="sectionTitle">Opções mais pedidas</h2>
       <p class="lead" style="margin-top:-4px">
@@ -744,7 +745,7 @@
           </div>
         </div>
 
-        <!-- Pacote 2 -->
+        <!-- Pacote 2 (ajustes combinados para evitar quebra) -->
         <div class="miniCard reveal" data-reveal="up" style="--d:90ms">
           <div class="pkgKicker"><span class="dot"></span> Institucional</div>
 
@@ -763,8 +764,8 @@
           </div>
 
           <ul class="pkgList">
-            <li><span class="aboutBullet">✅</span> 2 a 3 páginas (ex: Home + Sobre + Serviços)</li>
-            <li><span class="aboutBullet">✅</span> Tom de marca + posicionamento (sem “sobre nós genérico”)</li>
+            <li><span class="aboutBullet">✅</span> 2–3 páginas (Home, Sobre, Serviços)</li>
+            <li><span class="aboutBullet">✅</span> Tom certo + posicionamento claro</li>
             <li><span class="aboutBullet">✅</span> Estrutura escaneável e fácil de aprovar</li>
           </ul>
 
@@ -813,6 +814,69 @@
       <p class="noteLine">
         Escopo fechado e processo simples. Se você precisar de algo fora disso, eu monto uma proposta.
       </p>
+    </section>
+
+    <!-- PORTFÓLIO (antes "Serviços") -->
+    <section class="card pad reveal" data-reveal="up" id="portfolio">
+      <h2 class="sectionTitle">Portfólio</h2>
+      <p class="lead" style="margin-top:-4px">
+        Alguns tipos de entrega que eu faço no dia a dia. Em breve, com exemplos reais.
+      </p>
+
+      <div class="grid3 revealGroup">
+        <div class="miniCard reveal" data-reveal="up" style="--d:0ms">
+          <div class="miniHead">
+            <div class="miniIcon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 20V6a2 2 0 0 1 2-2h6v16" />
+                <path d="M10 8h-2" />
+                <path d="M10 12h-2" />
+                <path d="M10 16h-2" />
+                <path d="M12 20V10a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v10" />
+                <path d="M18 12h-2" />
+                <path d="M18 16h-2" />
+                <path d="M2 20h20" />
+              </svg>
+            </div>
+            <div>
+              <h3>Páginas institucionais</h3>
+              <p>Páginas pra posicionar a marca e explicar com clareza quem é, o que faz e por que escolher.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="miniCard reveal" data-reveal="up" style="--d:90ms">
+          <div class="miniHead">
+            <div class="miniIcon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M20 13l-7 7-11-11V2h7z" />
+                <path d="M7.5 7.5h.01" />
+              </svg>
+            </div>
+            <div>
+              <h3>Páginas de produtos e serviços</h3>
+              <p>Landing e páginas de serviço com argumento, prova e CTA. Feitas pra busca e decisão.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="miniCard reveal" data-reveal="up" style="--d:180ms">
+          <div class="miniHead">
+            <div class="miniIcon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+                <path d="M14 2v6h6" />
+                <path d="M9 13h6" />
+                <path d="M9 17h6" />
+              </svg>
+            </div>
+            <div>
+              <h3>Artigos para blog</h3>
+              <p>Artigos com estrutura e intenção de busca. Conteúdo pensado pra leitura e pra ranque.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- SOBRE MIM -->
@@ -881,66 +945,8 @@
       </div>
     </section>
 
-    <section class="card pad reveal" data-reveal="up" id="servicos">
-      <h2 class="sectionTitle">Serviços</h2>
-
-      <div class="grid3 revealGroup">
-        <div class="miniCard reveal" data-reveal="up" style="--d:0ms">
-          <div class="miniHead">
-            <div class="miniIcon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M4 20V6a2 2 0 0 1 2-2h6v16" />
-                <path d="M10 8h-2" />
-                <path d="M10 12h-2" />
-                <path d="M10 16h-2" />
-                <path d="M12 20V10a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v10" />
-                <path d="M18 12h-2" />
-                <path d="M18 16h-2" />
-                <path d="M2 20h20" />
-              </svg>
-            </div>
-            <div>
-              <h3>Páginas institucionais</h3>
-              <p>Conteúdo para apresentar a empresa com clareza, tom certo e posicionamento.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="miniCard reveal" data-reveal="up" style="--d:90ms">
-          <div class="miniHead">
-            <div class="miniIcon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M20 13l-7 7-11-11V2h7z" />
-                <path d="M7.5 7.5h.01" />
-              </svg>
-            </div>
-            <div>
-              <h3>Páginas de produtos e serviços</h3>
-              <p>Texto pensado para busca e conversão, com argumento, prova e CTA.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="miniCard reveal" data-reveal="up" style="--d:180ms">
-          <div class="miniHead">
-            <div class="miniIcon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
-                <path d="M14 2v6h6" />
-                <path d="M9 13h6" />
-                <path d="M9 17h6" />
-              </svg>
-            </div>
-            <div>
-              <h3>Artigos para blog</h3>
-              <p>Artigos com estrutura e intenção de busca, prontos para publicar.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="card pad reveal" data-reveal="up" id="portfolio">
+    <!-- ARTIGOS (antes id="portfolio") -->
+    <section class="card pad reveal" data-reveal="up" id="artigos">
       <h2 class="sectionTitle">Artigos (LinkedIn)</h2>
       <p class="lead" style="margin-top:-4px">
         Um recorte do que eu escrevo quando o assunto é SEO, escrita e vida real do conteúdo.
@@ -1004,7 +1010,7 @@
               <p>Quando a página até aparece no Google, mas não orienta o leitor e não converte.</p>
               <div class="aActions">
                 <a class="btn primary" target="_blank" rel="noreferrer"
-                  href="https://www.linkedin.com/pulse/p%25C3%25A1gina-que-ranqueia-e-n%25C3%A3o-ajuda-tatiane-gomes-tctof">Leia</a>
+                  href="https://www.linkedin.com/pulse/p%25C3%25A1gina-que-ranqueia-e-n%25C3%25A3o-ajuda-tatiane-gomes-tctof">Leia</a>
               </div>
             </div>
           </article>
