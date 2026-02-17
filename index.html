@@ -45,7 +45,6 @@
       color:var(--text);
       line-height:1.6;
 
-      /* deixa a tipografia mais “viva” (menos sensação de embaçado) */
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
@@ -316,7 +315,6 @@
       grid-template-columns: 1fr minmax(260px, 340px);
     }
 
-    /* FOTO QUADRADA + CENTRALIZADA */
     .aboutPhoto{
       margin:0;
       border-radius: 18px;
@@ -346,7 +344,6 @@
       z-index:1;
     }
 
-    /* faz o texto “preencher” (sem max-width que cria faixa vazia à direita) */
     .aboutText{ min-width:0; }
     .aboutText h3{
       margin: 0 0 10px;
@@ -392,15 +389,15 @@
     .aboutChips{
       display:flex;
       flex-wrap:wrap;
-      gap:10px;          /* um respiro leve */
-      margin-top: 12px;  /* um respiro leve */
+      gap:10px;
+      margin-top: 12px;
     }
     .chip{
       font-size: 12px;
       color: var(--muted);
       border:1px solid var(--line);
       background: rgba(255,255,255,.03);
-      padding: 7px 11px;  /* um pouco mais “vivo” */
+      padding: 7px 11px;
       border-radius: 999px;
     }
     @media (max-width: 900px){
@@ -422,8 +419,8 @@
     }
     .track{
       display:flex;
-      gap:16px;       /* respiro leve */
-      padding:16px;   /* respiro leve */
+      gap:16px;
+      padding:16px;
       overflow:auto;
       scroll-snap-type:x mandatory;
       scroll-behavior:smooth;
@@ -437,7 +434,7 @@
       scroll-snap-align:start;
       border:1px solid rgba(255,255,255,.12);
       border-radius: var(--radius);
-      background: rgba(17,26,47,.58); /* mais “vivo” */
+      background: rgba(17,26,47,.58);
       overflow:hidden;
       display:flex;
       flex-direction:column;
@@ -445,14 +442,14 @@
     }
     .coverImg{
       width:100%;
-      height:168px;          /* leve respiro visual */
+      height:168px;
       object-fit:cover;
       border-bottom:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       flex:0 0 auto;
     }
     .aBody{
-      padding:16px;          /* respiro leve */
+      padding:16px;
       display:flex;
       flex-direction:column;
       flex:1 1 auto;
@@ -466,7 +463,7 @@
     }
     .aBody p{
       margin:9px 0 12px;
-      color: rgba(234,240,255,.72); /* mais nítido/alto contraste */
+      color: rgba(234,240,255,.72);
       font-size:13px;
       line-height:1.6;
     }
@@ -551,7 +548,6 @@
     <header class="card reveal" data-reveal="up" id="siteHeader">
       <div class="brand">
         <div class="logo" aria-hidden="true">
-          <!-- ÍCONE (caneta) -->
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 20h9" />
             <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z" />
@@ -656,10 +652,7 @@
 
       <div class="aboutRow">
         <figure class="aboutPhoto">
-          <img
-            src="assets/img/tati-1.png"
-            alt="Foto de Tatiane Gomes"
-            loading="lazy">
+          <img src="assets/img/tati-1.png" alt="Foto de Tatiane Gomes" loading="lazy">
         </figure>
 
         <div class="aboutText">
@@ -688,14 +681,30 @@
       <div class="aboutRow reverse">
         <div class="aboutText">
           <h3>Como eu trabalho</h3>
+
           <p>
-            Eu gosto de processos simples: entendo objetivo, leio o que já existe, defino o recorte e organizo a estrutura.
-            Aí o texto sai com mais “cara de decisão” e menos “cara de encheção”.
+            Eu gosto de processo simples, porque é isso que evita retrabalho. Primeiro eu entendo o objetivo da página
+            (posicionamento, conversão, tráfego, suporte ao comercial) e a intenção de busca por trás. Aí eu leio o que já existe,
+            comparo com o que o público realmente procura e fecho um recorte claro: do que vamos falar e do que vamos deixar de fora.
           </p>
+
           <p>
-            Se você tiver um time interno, eu escrevo pensando na realidade do time:
-            fácil de aprovar, fácil de atualizar, fácil de manter.
+            Depois disso eu monto a estrutura antes de escrever. Parece “básico”, mas é onde metade dos textos morrem:
+            sem hierarquia, sem prioridade e sem argumento. Com a estrutura definida, eu escrevo pensando em leitura real
+            (escaneável, com progressão) e em SEO on-page sem paranoia: título, Hs, semântica, links e CTA no lugar certo.
           </p>
+
+          <p>
+            Se você tem time interno, eu escrevo para facilitar a vida de todo mundo: o texto chega organizado,
+            com lógica fácil de aprovar e de defender. E se precisar de ajuste, a página continua “editável”,
+            não vira aquele Frankenstein que ninguém quer mexer porque dá medo de quebrar.
+          </p>
+
+          <ul class="aboutList">
+            <li><span class="aboutBullet">✅</span> Começo pelo recorte e pela estrutura (antes do “encher de texto”)</li>
+            <li><span class="aboutBullet">✅</span> Entrego com consistência: padrão de títulos, tom e CTAs</li>
+            <li><span class="aboutBullet">✅</span> Revisão com critério: melhora o texto sem “mutirão de sinônimo”</li>
+          </ul>
 
           <div class="aboutChips">
             <span class="chip">SEO on-page</span>
@@ -706,10 +715,7 @@
         </div>
 
         <figure class="aboutPhoto">
-          <img
-            src="assets/img/tati-2.png"
-            alt="Foto de Tatiane Gomes"
-            loading="lazy">
+          <img src="assets/img/tati-2.png" alt="Foto de Tatiane Gomes" loading="lazy">
         </figure>
       </div>
     </section>
