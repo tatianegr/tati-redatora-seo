@@ -44,6 +44,11 @@
         var(--bg);
       color:var(--text);
       line-height:1.6;
+
+      /* deixa a tipografia mais “viva” (menos sensação de embaçado) */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
     }
     a{color:inherit}
     img{max-width:100%; height:auto; display:block;}
@@ -320,8 +325,8 @@
       background: rgba(255,255,255,.03);
       box-shadow: 0 18px 60px rgba(0,0,0,.25);
 
-      aspect-ratio: 1 / 1;   /* quadrado */
-      max-width: 340px;      /* segura o tamanho no desktop */
+      aspect-ratio: 1 / 1;
+      max-width: 340px;
       position: relative;
     }
     .aboutPhoto::after{
@@ -335,12 +340,14 @@
     .aboutPhoto img{
       width:100%;
       height:100%;
-      object-fit: cover;        /* corta o excesso */
-      object-position: center;  /* centraliza o corte */
+      object-fit: cover;
+      object-position: center;
       position: relative;
       z-index:1;
     }
 
+    /* faz o texto “preencher” (sem max-width que cria faixa vazia à direita) */
+    .aboutText{ min-width:0; }
     .aboutText h3{
       margin: 0 0 10px;
       font-size: 16px;
@@ -351,8 +358,9 @@
       color: var(--muted);
       font-size: 14px;
       line-height: 1.7;
-      max-width: 70ch;
+      max-width: none;
     }
+
     .aboutList{
       list-style:none;
       padding:0;
@@ -384,15 +392,15 @@
     .aboutChips{
       display:flex;
       flex-wrap:wrap;
-      gap:8px;
-      margin-top: 10px;
+      gap:10px;          /* um respiro leve */
+      margin-top: 12px;  /* um respiro leve */
     }
     .chip{
       font-size: 12px;
       color: var(--muted);
       border:1px solid var(--line);
       background: rgba(255,255,255,.03);
-      padding: 6px 10px;
+      padding: 7px 11px;  /* um pouco mais “vivo” */
       border-radius: 999px;
     }
     @media (max-width: 900px){
@@ -414,8 +422,8 @@
     }
     .track{
       display:flex;
-      gap:12px;
-      padding:14px;
+      gap:16px;       /* respiro leve */
+      padding:16px;   /* respiro leve */
       overflow:auto;
       scroll-snap-type:x mandatory;
       scroll-behavior:smooth;
@@ -427,9 +435,9 @@
     .aCard{
       flex: 0 0 340px;
       scroll-snap-align:start;
-      border:1px solid var(--line);
+      border:1px solid rgba(255,255,255,.12);
       border-radius: var(--radius);
-      background: rgba(17,26,47,.45);
+      background: rgba(17,26,47,.58); /* mais “vivo” */
       overflow:hidden;
       display:flex;
       flex-direction:column;
@@ -437,14 +445,14 @@
     }
     .coverImg{
       width:100%;
-      height:160px;
+      height:168px;          /* leve respiro visual */
       object-fit:cover;
-      border-bottom:1px solid var(--line);
+      border-bottom:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       flex:0 0 auto;
     }
     .aBody{
-      padding:14px;
+      padding:16px;          /* respiro leve */
       display:flex;
       flex-direction:column;
       flex:1 1 auto;
@@ -452,18 +460,28 @@
     .aTitle{
       margin:0;
       font-size:14px;
-      line-height:1.25;
+      line-height:1.28;
       letter-spacing:-.2px;
+      color: rgba(234,240,255,.98);
     }
-    .aBody p{ margin:8px 0 12px; color:var(--muted); font-size:13px; }
-    .aMeta{ color:var(--muted); font-size:12px; }
+    .aBody p{
+      margin:9px 0 12px;
+      color: rgba(234,240,255,.72); /* mais nítido/alto contraste */
+      font-size:13px;
+      line-height:1.6;
+    }
+    .aMeta{
+      color: rgba(234,240,255,.55);
+      font-size:12px;
+      margin-bottom: 2px;
+    }
 
     .aActions{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
       margin-top:auto;
-      padding-top: 10px;
+      padding-top: 12px;
     }
 
     .articleArrows{
@@ -658,9 +676,9 @@
           </p>
 
           <ul class="aboutList">
-            <li><span class="aboutBullet">✅</span> Conteúdo com estrutura e leitura fluida</li>
-            <li><span class="aboutBullet">✅</span> SEO com intenção (não com checklist)</li>
-            <li><span class="aboutBullet">✅</span> Entrega organizada e previsível</li>
+            <li><span class="aboutBullet">✅</span> Texto pensado pra ranquear e orientar (não só enfeitar)</li>
+            <li><span class="aboutBullet">✅</span> Estrutura que facilita aprovação e publicação</li>
+            <li><span class="aboutBullet">✅</span> Ajustes on-page com critério, sem “SEO automático”</li>
           </ul>
         </div>
       </div>
@@ -774,7 +792,7 @@
               <p>Quando “melhorar o texto” vira só troca de palavra, e a clareza vai embora no processo.</p>
               <div class="aActions">
                 <a class="btn primary" target="_blank" rel="noreferrer"
-                  href="https://www.linkedin.com/pulse/revis%C3%A3o-virou-mutir%C3%A3o-de-sin%C3%B4nimo-e-o-texto-pagou-conta-tatiane-gomes-www8f/">Abrir</a>
+                  href="https://www.linkedin.com/pulse/revis%C3%A3o-virou-mutir%C3%A3o-de-sin%C3%B4nimo-e-o-texto-pagou-conta-tatiane-gomes-www8f/">Leia</a>
               </div>
             </div>
           </article>
@@ -789,7 +807,7 @@
               <p>Como juntar técnica e escrita boa sem cair no texto engessado que “passa no checklist”.</p>
               <div class="aActions">
                 <a class="btn primary" target="_blank" rel="noreferrer"
-                  href="https://www.linkedin.com/pulse/seo-e-criatividade-uma-dupla-din%25C3%25A2mica-para-escrita-otimizada-gomes">Abrir</a>
+                  href="https://www.linkedin.com/pulse/seo-e-criatividade-uma-dupla-din%25C3%25A2mica-para-escrita-otimizada-gomes">Leia</a>
               </div>
             </div>
           </article>
@@ -804,7 +822,7 @@
               <p>O que faz SEO dar trabalho de verdade: intenção, estrutura e escolhas editoriais.</p>
               <div class="aActions">
                 <a class="btn primary" target="_blank" rel="noreferrer"
-                  href="https://www.linkedin.com/pulse/reda%25C3%25A7%25C3%25A3o-para-seo-por-que-t%25C3%25A3o-complexa-tatiane-gomes">Abrir</a>
+                  href="https://www.linkedin.com/pulse/reda%25C3%25A7%25C3%25A3o-para-seo-por-que-t%25C3%25A3o-complexa-tatiane-gomes">Leia</a>
               </div>
             </div>
           </article>
@@ -819,7 +837,7 @@
               <p>Quando a página até aparece no Google, mas não orienta o leitor e não converte.</p>
               <div class="aActions">
                 <a class="btn primary" target="_blank" rel="noreferrer"
-                  href="https://www.linkedin.com/pulse/p%25C3%25A1gina-que-ranqueia-e-n%25C3%A3o-ajuda-tatiane-gomes-tctof">Abrir</a>
+                  href="https://www.linkedin.com/pulse/p%25C3%25A1gina-que-ranqueia-e-n%25C3%25A3o-ajuda-tatiane-gomes-tctof">Leia</a>
               </div>
             </div>
           </article>
@@ -922,7 +940,7 @@
       function step(){
         const firstCard = track.querySelector(".aCard");
         if(!firstCard) return 352;
-        const gap = 12;
+        const gap = 16;
         return firstCard.getBoundingClientRect().width + gap;
       }
 
