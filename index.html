@@ -11,7 +11,6 @@
   <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/4659/4659027.png?v=2">
   <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/4659/4659027.png?v=2">
 
-  <!-- Se JS estiver ativo, adiciona classe "js" pra habilitar as animações com segurança -->
   <script>
     document.documentElement.classList.add('js');
   </script>
@@ -30,7 +29,7 @@
       --radius:18px;
       --max:1080px;
       --shadow: 0 18px 60px rgba(0,0,0,.35);
-      --anchorOffset: 118px; /* ajuste do scroll do menu (header sticky) */
+      --anchorOffset: 118px;
     }
 
     *{box-sizing:border-box}
@@ -295,7 +294,6 @@
       overflow:auto;
       scroll-snap-type:x mandatory;
       scroll-behavior:smooth;
-
       scrollbar-width: none;
       -ms-overflow-style: none;
     }
@@ -308,6 +306,11 @@
       border-radius: var(--radius);
       background: rgba(17,26,47,.45);
       overflow:hidden;
+
+      /* ✅ faz todos os cards “terminarem igual” */
+      display:flex;
+      flex-direction:column;
+      min-height: 420px; /* ajuste fino: garante o piso dos botões */
     }
     .coverImg{
       width:100%;
@@ -315,8 +318,14 @@
       object-fit:cover;
       border-bottom:1px solid var(--line);
       background: rgba(255,255,255,.03);
+      flex:0 0 auto;
     }
-    .aBody{ padding:14px; }
+    .aBody{
+      padding:14px;
+      display:flex;              /* ✅ */
+      flex-direction:column;     /* ✅ */
+      flex:1 1 auto;             /* ✅ ocupa o resto do card */
+    }
     .aTitle{
       margin:0;
       font-size:14px;
@@ -325,9 +334,15 @@
     }
     .aBody p{ margin:8px 0 12px; color:var(--muted); font-size:13px; }
     .aMeta{ color:var(--muted); font-size:12px; }
-    .aActions{ display:flex; gap:10px; flex-wrap:wrap; }
 
-    /* ✅ setas embaixo, centralizadas */
+    .aActions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:auto;           /* ✅ empurra o botão pro fundo */
+      padding-top: 10px;
+    }
+
     .articleArrows{
       display:flex;
       justify-content:center;
@@ -628,7 +643,6 @@
         </div>
       </div>
 
-      <!-- ✅ setas embaixo e centralizadas -->
       <div class="articleArrows reveal" data-reveal="up">
         <button class="iconBtn" id="aPrev" aria-label="Voltar artigos">‹</button>
         <button class="iconBtn" id="aNext" aria-label="Avançar artigos">›</button>
