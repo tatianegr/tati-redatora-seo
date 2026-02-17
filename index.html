@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-  <title>Portfólio - Tatiane Gomes</title>
+  <title>Tati Redatora | Portfólio</title>
   <meta name="description" content="Redatora SEO | Transformando palavras em sucesso online. Páginas institucionais, páginas de produtos e serviços e artigos para blogs com foco em SEO." />
 
   <!-- FAVICON (ícone da aba) -->
@@ -30,6 +30,7 @@
       --radius:18px;
       --max:1080px;
       --shadow: 0 18px 60px rgba(0,0,0,.35);
+      --anchorOffset: 118px; /* ajuste do scroll do menu (header sticky) */
     }
 
     *{box-sizing:border-box}
@@ -45,7 +46,7 @@
       line-height:1.6;
     }
     a{color:inherit}
-    img{max-width:100%; height:auto; display:block;} /* defesa contra imagem “gigante” se algum estilo falhar */
+    img{max-width:100%; height:auto; display:block;} /* defesa extra */
     .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 72px}
     .card{
       border:1px solid var(--line);
@@ -101,7 +102,10 @@
     .btn.primary:hover{ filter:saturate(1.05); }
     .btn.ghost{ background: rgba(255,255,255,.03); }
 
-    section{ margin-top:16px; }
+    section{
+      margin-top:16px;
+      scroll-margin-top: var(--anchorOffset); /* ✅ corrige menu/âncoras com header sticky */
+    }
     .pad{ padding:22px; }
     .sectionTitle{
       margin:0 0 12px;
@@ -461,7 +465,7 @@
       </main>
 
       <aside class="sideBox card reveal" data-reveal="right" style="--d:120ms">
-        <h3>O que você ganha</h3>
+        <h3>O que você ganha?</h3>
         <p>Menos retrabalho. Mais previsibilidade. Texto com decisão editorial.</p>
         <ul class="tickList">
           <li><span class="tick"></span> Conteúdo com foco em SEO e leitura fluida</li>
