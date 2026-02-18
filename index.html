@@ -279,7 +279,7 @@
       padding:16px;
     }
 
-    /* ✅ CENTRALIZA ÍCONES NOS HEADS (AJUSTE PEDIDO) */
+    /* ✅ CENTRALIZA ÍCONES NOS HEADS */
     .miniHead{ display:flex; align-items:center; gap:10px; }
 
     .miniIcon{
@@ -309,7 +309,7 @@
       min-height: 0;
     }
 
-    /* ✅ CENTRALIZA ÍCONES NOS HEADS (AJUSTE PEDIDO) */
+    /* ✅ CENTRALIZA ÍCONES NOS HEADS */
     .pkgHead{ display:flex; align-items:center; gap:10px; }
 
     .pkgTitleWrap{ min-width:0; }
@@ -706,6 +706,8 @@
           <li><span class="tick"></span> Estrutura escaneável, sem cara de genérico</li>
           <li><span class="tick"></span> Entrega pronta pra publicar</li>
           <li><span class="tick"></span> Comunicação clara (sem mistério)</li>
+          <!-- ✅ ITEM EXTRA (pra não sobrar “vazio”) -->
+          <li><span class="tick"></span> Texto que dá pra defender (sem gambiarra de última hora)</li>
         </ul>
       </aside>
     </div>
@@ -904,7 +906,6 @@
           </p>
 
           <ul class="aboutList">
-            <!-- ✅ FRASES ESTENDIDAS (AJUSTE PEDIDO) -->
             <li><span class="aboutBullet">✅</span> Texto pensado pra ranquear e orientar, com clareza e recorte de verdade</li>
             <li><span class="aboutBullet">✅</span> Estrutura que facilita aprovação e publicação, sem virar “versão 12” do arquivo</li>
             <li><span class="aboutBullet">✅</span> Ajustes on-page com critério, pra SEO acontecer sem “automático” e sem ruído</li>
@@ -1105,12 +1106,24 @@
     go(0);
     start();
 
-    // Carrossel de artigos (setas embaixo)
+    // Carrossel de artigos (sem fim + auto)
     (function(){
       const track = document.getElementById("articleTrack");
       const aPrev = document.getElementById("aPrev");
       const aNext = document.getElementById("aNext");
       if(!track || !aPrev || !aNext) return;
+
+      // Duplica os cards uma vez para permitir loop “infinito”
+      const originalCards = Array.from(track.querySelectorAll(".aCard"));
+      if(originalCards.length){
+        originalCards.forEach(card => {
+          const clone = card.cloneNode(true);
+          clone.setAttribute("aria-hidden", "true");
+          // evita duplicar tab stops: links continuam clicáveis nos originais
+          clone.querySelectorAll("a").forEach(a => a.setAttribute("tabindex","-1"));
+          track.appendChild(clone);
+        });
+      }
 
       function step(){
         const firstCard = track.querySelector(".aCard");
@@ -1119,27 +1132,68 @@
         return firstCard.getBoundingClientRect().width + gap;
       }
 
-      function updateArrows(){
-        const maxScroll = track.scrollWidth - track.clientWidth;
-        const left = track.scrollLeft;
-        aPrev.disabled = left <= 2;
-        aNext.disabled = left >= (maxScroll - 2);
+      function originalWidth(){
+        // largura do “bloco original” (antes do clone)
+        if(!originalCards.length) return track.scrollWidth;
+        const gap = 16;
+        const w = originalCards.reduce((sum, el) => sum + el.getBoundingClientRect().width, 0);
+        return w + gap * (originalCards.length - 1) + 32; // 32 = padding lateral do track (16 + 16)
       }
 
-      function nudgeUpdate(){
-        updateArrows();
-        setTimeout(updateArrows, 220);
-        setTimeout(updateArrows, 520);
+      let base = 0;
+      function refreshBase(){
+        base = originalWidth();
+      }
+      refreshBase();
+      window.addEventListener("resize", refreshBase);
+
+      function normalizeLoop(){
+        // quando passa do fim do bloco original, volta pro início equivalente (sem “pulo” perceptível)
+        if(track.scrollLeft >= base){
+          track.scrollLeft = track.scrollLeft - base;
+        }else if(track.scrollLeft < 0){
+          track.scrollLeft = track.scrollLeft + base;
+        }
       }
 
-      aPrev.addEventListener("click", () => { track.scrollBy({ left: -step(), behavior: "smooth" }); nudgeUpdate(); });
-      aNext.addEventListener("click", () => { track.scrollBy({ left: step(), behavior: "smooth" }); nudgeUpdate(); });
+      function scrollByStep(dir){
+        track.scrollBy({ left: dir * step(), behavior: "smooth" });
+        setTimeout(normalizeLoop, 520);
+      }
 
-      track.addEventListener("scroll", () => window.requestAnimationFrame(updateArrows));
-      window.addEventListener("resize", updateArrows);
+      aPrev.addEventListener("click", () => scrollByStep(-1));
+      aNext.addEventListener("click", () => scrollByStep(1));
 
-      updateArrows();
-      setTimeout(updateArrows, 80);
+      track.addEventListener("scroll", () => window.requestAnimationFrame(normalizeLoop));
+
+      // Auto-avança em loop
+      let autoTimer = null;
+      function autoStart(){
+        autoStop();
+        autoTimer = setInterval(() => {
+          // avança sempre
+          track.scrollBy({ left: step(), behavior: "smooth" });
+          setTimeout(normalizeLoop, 520);
+        }, 4200);
+      }
+      function autoStop(){
+        if(autoTimer) clearInterval(autoTimer);
+        autoTimer = null;
+      }
+
+      // pausa quando o usuário interage
+      track.addEventListener("mouseenter", autoStop);
+      track.addEventListener("mouseleave", autoStart);
+      track.addEventListener("focusin", autoStop);
+      track.addEventListener("focusout", autoStart);
+      aPrev.addEventListener("mouseenter", autoStop);
+      aNext.addEventListener("mouseenter", autoStop);
+
+      // mantém setas sempre ativas (loop)
+      aPrev.disabled = false;
+      aNext.disabled = false;
+
+      autoStart();
     })();
 
     // Scroll Reveal
