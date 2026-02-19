@@ -7,6 +7,7 @@
   <title>Tati Redatora | Portfólio</title>
   <meta name="description" content="Redatora SEO | Transformando palavras em sucesso online. Páginas institucionais, páginas de produtos e serviços e artigos para blogs com foco em SEO." />
 
+  <!-- FAVICON (ícone da aba) -->
   <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/4659/4659027.png?v=2">
   <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/4659/4659027.png?v=2">
 
@@ -98,69 +99,7 @@
       border: 1px solid transparent;
     }
     .nav a:hover{ color:var(--text); border-color:var(--line); background:rgba(255,255,255,.03); }
-
-    /* ===== MOBILE MENU ===== */
-    .headerActions{display:flex; align-items:center; gap:10px;}
-    .menuBtn{
-      width:44px; height:44px;
-      border-radius:16px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.06);
-      cursor:pointer;
-      display:none;
-      place-items:center;
-    }
-    .menuBtn:hover{ background: rgba(255,255,255,.09); }
-    .menuBtn svg{
-      width:20px; height:20px;
-      stroke: rgba(234,240,255,.92);
-      stroke-width:2;
-      fill:none;
-      stroke-linecap:round;
-      stroke-linejoin:round;
-    }
-
-    .mobileMenu{
-      position:absolute;
-      right: 16px;
-      top: calc(100% + 10px);
-      width: min(320px, calc(100vw - 36px));
-      border:1px solid var(--line);
-      background: rgba(17,26,47,.72);
-      backdrop-filter: blur(12px);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      padding: 10px;
-      display:none;
-    }
-    .mobileMenu.open{ display:block; }
-    .mobileMenu a{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      text-decoration:none;
-      color: var(--muted);
-      border: 1px solid transparent;
-      font-size: 13px;
-    }
-    .mobileMenu a:hover{
-      color: var(--text);
-      border-color: var(--line);
-      background: rgba(255,255,255,.03);
-    }
-    .mobileMenu .divider{
-      height:1px;
-      background: rgba(255,255,255,.10);
-      margin: 8px 2px;
-    }
-
-    @media (max-width: 920px){
-      .nav{display:none}
-      .menuBtn{display:grid}
-      .brand{ min-width: unset; }
-    }
+    @media (max-width: 920px){ .nav{display:none} }
 
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
@@ -180,15 +119,6 @@
     }
     .btn.primary:hover{ filter:saturate(1.05); }
     .btn.ghost{ background: rgba(255,255,255,.03); }
-
-    :where(a, button).btn:focus-visible,
-    :where(button).iconBtn:focus-visible,
-    :where(button).menuBtn:focus-visible,
-    :where(a).nav a:focus-visible,
-    :where(a).mobileMenu a:focus-visible{
-      outline: 2px solid rgba(255,45,141,.7);
-      outline-offset: 2px;
-    }
 
     section{
       margin-top:16px;
@@ -348,7 +278,9 @@
       border-radius: var(--radius);
       padding:16px;
     }
+
     .miniHead{ display:flex; align-items:center; gap:10px; }
+
     .miniIcon{
       width:36px; height:36px;
       border-radius:14px;
@@ -424,6 +356,7 @@
 
     /* ===== SOBRE MIM ===== */
     .about{ padding-top: 20px; }
+
     .aboutRow{
       display:grid;
       grid-template-columns: minmax(260px, 340px) 1fr;
@@ -435,6 +368,7 @@
       grid-template-columns: 1fr minmax(260px, 340px);
       align-items:stretch;
     }
+
     .aboutPhoto{
       margin:0;
       border-radius: 18px;
@@ -442,9 +376,11 @@
       border:1px solid var(--line);
       background: rgba(255,255,255,.03);
       box-shadow: 0 18px 60px rgba(0,0,0,.25);
+
       aspect-ratio: 1 / 1;
       max-width: 340px;
       position: relative;
+
       align-self: start;
       justify-self: start;
     }
@@ -452,6 +388,7 @@
       justify-self: end;
       align-self: start;
     }
+
     .aboutPhoto::after{
       content:"";
       position:absolute;
@@ -468,6 +405,7 @@
       position: relative;
       z-index:1;
     }
+
     .aboutText{ min-width:0; }
     .aboutText h3{
       margin: 0 0 10px;
@@ -481,6 +419,7 @@
       line-height: 1.7;
       max-width: none;
     }
+
     .aboutList{
       list-style:none;
       padding:0;
@@ -500,6 +439,7 @@
       background: rgba(255,255,255,.03);
     }
     .aboutBullet{ line-height:1; margin-top: 1px; }
+
     .aboutDivider{
       border:0;
       height:1px;
@@ -531,28 +471,27 @@
       }
     }
 
-    /* Articles */
-    .carousel{
+    /* ===== ARTIGOS (AGORA IGUAL AO HERO: TRANSFORM + LOOP) ===== */
+    .articleCarousel{
+      position:relative;
       overflow:hidden;
       border-radius: var(--radius);
       border:1px solid var(--line);
       background: rgba(255,255,255,.03);
     }
-
-    /* snap desligado = contínuo real */
-    .track{
+    .articleViewport{
+      overflow:hidden;
+      border-radius: var(--radius);
+    }
+    .articleSlides{
       display:flex;
       gap:16px;
       padding:16px;
-      overflow:auto;
-      scroll-behavior:auto;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-
-      scroll-snap-type: none;
-      -webkit-overflow-scrolling: touch;
+      transform: translateX(0);
+      transition: transform .45s ease;
+      will-change: transform;
     }
-    .track::-webkit-scrollbar{ display:none; }
+    .articleSlides.noTrans{ transition:none !important; }
 
     .aCard{
       flex: 0 0 340px;
@@ -563,8 +502,11 @@
       display:flex;
       flex-direction:column;
       min-height: 0;
-      scroll-snap-align: none;
     }
+    @media (max-width: 520px){
+      .aCard{ flex-basis: 300px; }
+    }
+
     .coverImg{
       width:100%;
       height:168px;
@@ -660,8 +602,8 @@
         transition: none !important;
       }
       .slides{ transition:none !important; }
+      .articleSlides{ transition:none !important; }
       .btn{ transition:none !important; }
-      .track{ scroll-behavior:auto !important; }
     }
   </style>
 </head>
@@ -691,27 +633,7 @@
         <a href="#contato">Contato</a>
       </nav>
 
-      <div class="headerActions">
-        <button class="menuBtn" id="menuBtn" aria-label="Abrir menu"
-          aria-expanded="false" aria-controls="mobileMenu">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4 6h16" />
-            <path d="M4 12h16" />
-            <path d="M4 18h16" />
-          </svg>
-        </button>
-
-        <a class="btn primary" href="#contato">Pedir orçamento</a>
-      </div>
-
-      <div class="mobileMenu" id="mobileMenu" role="menu" aria-label="Menu mobile">
-        <a role="menuitem" href="#top">Início</a>
-        <a role="menuitem" href="#portfolio">Portfólio</a>
-        <a role="menuitem" href="#sobre">Sobre mim</a>
-        <a role="menuitem" href="#artigos">Artigos</a>
-        <div class="divider"></div>
-        <a role="menuitem" href="#contato">Contato</a>
-      </div>
+      <a class="btn primary" href="#contato">Pedir orçamento</a>
     </header>
 
     <div class="heroGrid revealGroup">
@@ -823,7 +745,7 @@
           </ul>
 
           <div class="pkgActions">
-            <a class="btn primary" target="_blank" rel="noopener noreferrer"
+            <a class="btn primary" target="_blank" rel="noreferrer"
               href="https://wa.me/5511976625245?text=Oi%20Tati!%20Quero%20or%C3%A7amento%20do%20pacote%20%22P%C3%A1gina%20que%20converte%22.%20%C3%89%20para%20uma%20p%C3%A1gina%20de%20produto/servi%C3%A7o.%20Posso%20te%20passar%20nicho%2C%20objetivo%20e%20link%20do%20site?">
               Quero uma página
             </a>
@@ -854,7 +776,7 @@
           </ul>
 
           <div class="pkgActions">
-            <a class="btn primary" target="_blank" rel="noopener noreferrer"
+            <a class="btn primary" target="_blank" rel="noreferrer"
               href="https://wa.me/5511976625245?text=Oi%20Tati!%20Quero%20or%C3%A7amento%20do%20pacote%20%22Institucional%20sem%20enrola%C3%A7%C3%A3o%22.%20Seria%20para%202%20a%203%20p%C3%A1ginas%20do%20site.%20Posso%20te%20passar%20o%20nicho%2C%20objetivo%20e%20o%20que%20j%C3%A1%20existe%20hoje?">
               Quero meu institucional
             </a>
@@ -886,7 +808,7 @@
           </ul>
 
           <div class="pkgActions">
-            <a class="btn primary" target="_blank" rel="noopener noreferrer"
+            <a class="btn primary" target="_blank" rel="noreferrer"
               href="https://wa.me/5511976625245?text=Oi%20Tati!%20Quero%20or%C3%A7amento%20do%20pacote%20%22Conte%C3%BAdo%20mensal%22.%20Tenho%20interesse%20em%204%20ou%208%20artigos/m%C3%AAs.%20Posso%20te%20passar%20nicho%2C%20objetivo%20e%20temas%20priorit%C3%A1rios?">
               Quero conteúdo mensal
             </a>
@@ -1035,86 +957,89 @@
         Um recorte do que eu escrevo quando o assunto é SEO, escrita e vida real do conteúdo.
       </p>
 
-      <div class="carousel reveal" data-reveal="up" aria-label="Carrossel de artigos">
-        <div class="track" id="articleTrack" aria-label="Lista de artigos">
+      <div class="articleCarousel reveal" data-reveal="up" aria-label="Carrossel de artigos">
+        <div class="articleViewport" aria-label="Área visível do carrossel">
+          <div class="articleSlides" id="articleSlides" aria-label="Trilho de artigos">
 
-          <article class="aCard">
-            <img class="coverImg"
-              src="https://media.licdn.com/dms/image/v2/D4D12AQGfAZ85CVdxYg/article-cover_image-shrink_720_1280/B4DZxC8o6FJkAI-/0/1770649722200?e=2147483647&t=SnsEGuGo-7EyEu8n_Qq_MQk_wW6-e0_ZkEdvY6o5eII&v=beta"
-              alt="Capa do artigo: Revisão virou mutirão de sinônimo (e o texto pagou a conta)" loading="lazy" />
-            <div class="aBody">
-              <div class="aMeta">Artigo • LinkedIn</div>
-              <h3 class="aTitle">Revisão virou mutirão de sinônimo (e o texto pagou a conta)</h3>
-              <p>Quando “melhorar o texto” vira só troca de palavra, e a clareza vai embora no processo.</p>
-              <div class="aActions">
-                <a class="btn primary" target="_blank" rel="noopener noreferrer"
-                  href="https://www.linkedin.com/pulse/revis%C3%A3o-virou-mutir%C3%A3o-de-sin%C3%B4nimo-e-o-texto-pagou-conta-tatiane-gomes-www8f/">Leia</a>
+            <article class="aCard">
+              <img class="coverImg"
+                src="https://media.licdn.com/dms/image/v2/D4D12AQGfAZ85CVdxYg/article-cover_image-shrink_720_1280/B4DZxC8o6FJkAI-/0/1770649722200?e=2147483647&t=SnsEGuGo-7EyEu8n_Qq_MQk_wW6-e0_ZkEdvY6o5eII&v=beta"
+                alt="Capa do artigo: Revisão virou mutirão de sinônimo (e o texto pagou a conta)" loading="lazy" />
+              <div class="aBody">
+                <div class="aMeta">Artigo • LinkedIn</div>
+                <h3 class="aTitle">Revisão virou mutirão de sinônimo (e o texto pagou a conta)</h3>
+                <p>Quando “melhorar o texto” vira só troca de palavra, e a clareza vai embora no processo.</p>
+                <div class="aActions">
+                  <a class="btn primary" target="_blank" rel="noreferrer"
+                    href="https://www.linkedin.com/pulse/revis%C3%A3o-virou-mutir%C3%A3o-de-sin%C3%B4nimo-e-o-texto-pagou-conta-tatiane-gomes-www8f/">Leia</a>
+                </div>
               </div>
-            </div>
-          </article>
+            </article>
 
-          <article class="aCard">
-            <img class="coverImg"
-              src="https://media.licdn.com/dms/image/v2/C5612AQF9HTZUJubLNQ/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1623939995486?e=2147483647&t=0NMzijNRgB2nJHqtRasxx3CT0fTl3HmQGFJkEfplgII&v=beta"
-              alt="Capa do artigo: SEO e criatividade: uma dupla dinâmica para escrita otimizada" loading="lazy" />
-            <div class="aBody">
-              <div class="aMeta">Artigo • LinkedIn</div>
-              <h3 class="aTitle">SEO e criatividade: uma dupla dinâmica para escrita otimizada</h3>
-              <p>Como juntar técnica e escrita boa sem cair no texto engessado que “passa no checklist”.</p>
-              <div class="aActions">
-                <a class="btn primary" target="_blank" rel="noopener noreferrer"
-                  href="https://www.linkedin.com/pulse/seo-e-criatividade-uma-dupla-din%25C3%25A2mica-para-escrita-otimizada-gomes">Leia</a>
+            <article class="aCard">
+              <img class="coverImg"
+                src="https://media.licdn.com/dms/image/v2/C5612AQF9HTZUJubLNQ/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1623939995486?e=2147483647&t=0NMzijNRgB2nJHqtRasxx3CT0fTl3HmQGFJkEfplgII&v=beta"
+                alt="Capa do artigo: SEO e criatividade: uma dupla dinâmica para escrita otimizada" loading="lazy" />
+              <div class="aBody">
+                <div class="aMeta">Artigo • LinkedIn</div>
+                <h3 class="aTitle">SEO e criatividade: uma dupla dinâmica para escrita otimizada</h3>
+                <p>Como juntar técnica e escrita boa sem cair no texto engessado que “passa no checklist”.</p>
+                <div class="aActions">
+                  <a class="btn primary" target="_blank" rel="noreferrer"
+                    href="https://www.linkedin.com/pulse/seo-e-criatividade-uma-dupla-din%25C3%25A2mica-para-escrita-otimizada-gomes">Leia</a>
+                </div>
               </div>
-            </div>
-          </article>
+            </article>
 
-          <article class="aCard">
-            <img class="coverImg"
-              src="https://media.licdn.com/dms/image/v2/C5612AQEy9BN8pKBzvQ/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1623082810549?e=2147483647&t=gqdld3zA8XHMJcA7KkljTw5hDU1MaTO0SecXNr3gp-k&v=beta"
-              alt="Capa do artigo: Redação para SEO: por que é tão complexa?" loading="lazy" />
-            <div class="aBody">
-              <div class="aMeta">Artigo • LinkedIn</div>
-              <h3 class="aTitle">Redação para SEO: por que é tão complexa?</h3>
-              <p>O que faz SEO dar trabalho de verdade: intenção, estrutura e escolhas editoriais.</p>
-              <div class="aActions">
-                <a class="btn primary" target="_blank" rel="noopener noreferrer"
-                  href="https://www.linkedin.com/pulse/reda%25C3%25A7%25C3%25A3o-para-seo-por-que-t%25C3%25A3o-complexa-tatiane-gomes">Leia</a>
+            <article class="aCard">
+              <img class="coverImg"
+                src="https://media.licdn.com/dms/image/v2/C5612AQEy9BN8pKBzvQ/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1623082810549?e=2147483647&t=gqdld3zA8XHMJcA7KkljTw5hDU1MaTO0SecXNr3gp-k&v=beta"
+                alt="Capa do artigo: Redação para SEO: por que é tão complexa?" loading="lazy" />
+              <div class="aBody">
+                <div class="aMeta">Artigo • LinkedIn</div>
+                <h3 class="aTitle">Redação para SEO: por que é tão complexa?</h3>
+                <p>O que faz SEO dar trabalho de verdade: intenção, estrutura e escolhas editoriais.</p>
+                <div class="aActions">
+                  <a class="btn primary" target="_blank" rel="noreferrer"
+                    href="https://www.linkedin.com/pulse/reda%25C3%25A7%25C3%25A3o-para-seo-por-que-t%25C3%25A3o-complexa-tatiane-gomes">Leia</a>
+                </div>
               </div>
-            </div>
-          </article>
+            </article>
 
-          <article class="aCard">
-            <img class="coverImg"
-              src="https://media.licdn.com/dms/image/v2/D4D12AQG5YUiUIG2Xzw/article-cover_image-shrink_720_1280/B4DZvrZmYeIAAI-/0/1769180918166?e=2147483647&t=1Mpn-ox6oja25Yxkv2gEXwGErR3nR2bZgsJbc2C_Nqs&v=beta"
-              alt="Capa do artigo: Página que ranqueia e não ajuda" loading="lazy" />
-            <div class="aBody">
-              <div class="aMeta">Artigo • LinkedIn</div>
-              <h3 class="aTitle">Página que ranqueia e não ajuda</h3>
-              <p>Quando a página até aparece no Google, mas não orienta o leitor e não converte.</p>
-              <div class="aActions">
-                <a class="btn primary" target="_blank" rel="noopener noreferrer"
-                  href="https://www.linkedin.com/pulse/p%25C3%25A1gina-que-ranqueia-e-n%25C3%25A3o-ajuda-tatiane-gomes-tctof">Leia</a>
+            <article class="aCard">
+              <img class="coverImg"
+                src="https://media.licdn.com/dms/image/v2/D4D12AQG5YUiUIG2Xzw/article-cover_image-shrink_720_1280/B4DZvrZmYeIAAI-/0/1769180918166?e=2147483647&t=1Mpn-ox6oja25Yxkv2gEXwGErR3nR2bZgsJbc2C_Nqs&v=beta"
+                alt="Capa do artigo: Página que ranqueia e não ajuda" loading="lazy" />
+              <div class="aBody">
+                <div class="aMeta">Artigo • LinkedIn</div>
+                <h3 class="aTitle">Página que ranqueia e não ajuda</h3>
+                <p>Quando a página até aparece no Google, mas não orienta o leitor e não converte.</p>
+                <div class="aActions">
+                  <a class="btn primary" target="_blank" rel="noreferrer"
+                    href="https://www.linkedin.com/pulse/p%25C3%25A1gina-que-ranqueia-e-n%25C3%25A3o-ajuda-tatiane-gomes-tctof">Leia</a>
+                </div>
               </div>
-            </div>
-          </article>
+            </article>
 
-          <article class="aCard">
-            <img class="coverImg"
-              src="https://media.licdn.com/dms/image/v2/D4D12AQEY0Zt0ISng1Q/article-cover_image-shrink_720_1280/B4DZxnurhEIoAQ-/0/1771266820052?e=2147483647&t=Vw99pxG_-xJ9BYn8YepMDmMRxcvbmG4WTu7-I2CcTuI&v=beta"
-              alt="Capa do artigo: Evitem usar palavras nos textos, pois fica muito claro que é IA" loading="lazy" />
-            <div class="aBody">
-              <div class="aMeta">Artigo • LinkedIn</div>
-              <h3 class="aTitle">Evitem usar palavras nos textos, pois fica muito claro que é IA</h3>
-              <p>Quando a gente para de discutir conteúdo e vira fiscal de “cara de ferramenta”.</p>
-              <div class="aActions">
-                <a class="btn primary" target="_blank" rel="noopener noreferrer"
-                  href="https://www.linkedin.com/pulse/evitem-usar-palavras-nos-textos-pois-fica-muito-claro-tatiane-gomes-quxtf/">
-                  Leia
-                </a>
+            <!-- ✅ NOVO ARTIGO (CAPA ESTÁVEL PRA NÃO SUMIR) -->
+            <article class="aCard">
+              <img class="coverImg"
+                src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%271280%27%20height%3D%27720%27%20viewBox%3D%270%200%201280%20720%27%3E%3Cdefs%3E%3CradialGradient%20id%3D%27g1%27%20cx%3D%2720%25%27%20cy%3D%2720%25%27%20r%3D%2780%25%27%3E%3Cstop%20offset%3D%270%25%27%20stop-color%3D%27%236d6aff%27%20stop-opacity%3D%270.35%27/%3E%3Cstop%20offset%3D%27100%25%27%20stop-color%3D%27%230b0f19%27%20stop-opacity%3D%271%27/%3E%3C/radialGradient%3E%3CradialGradient%20id%3D%27g2%27%20cx%3D%2780%25%27%20cy%3D%2730%25%27%20r%3D%2780%25%27%3E%3Cstop%20offset%3D%270%25%27%20stop-color%3D%27%23ff2d8d%27%20stop-opacity%3D%270.28%27/%3E%3Cstop%20offset%3D%27100%25%27%20stop-color%3D%27%230b0f19%27%20stop-opacity%3D%271%27/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect%20width%3D%271280%27%20height%3D%27720%27%20fill%3D%27url(%23g1)%27/%3E%3Crect%20width%3D%271280%27%20height%3D%27720%27%20fill%3D%27url(%23g2)%27/%3E%3Cpath%20d%3D%27M980%20180%20c40%2020%2060%2060%2040%20100%20l-240%20240%20c-20%2020-60%200-40-40%20l240-240%20c20-20%200-60-40-60%20z%27%20fill%3D%27%23ffffff%27%20fill-opacity%3D%270.08%27/%3E%3Ctext%20x%3D%2770%27%20y%3D%27210%27%20fill%3D%27%23eaf0ff%27%20fill-opacity%3D%270.85%27%20font-family%3D%27system-ui%2C%20-apple-system%2C%20Segoe%20UI%2C%20Roboto%2C%20Arial%27%20font-size%3D%2736%27%3EPost%20no%20LinkedIn%3C/text%3E%3Ctext%20x%3D%2770%27%20y%3D%27260%27%20fill%3D%27%23aeb9d8%27%20fill-opacity%3D%270.9%27%20font-family%3D%27system-ui%2C%20-apple-system%2C%20Segoe%20UI%2C%20Roboto%2C%20Arial%27%20font-size%3D%2722%27%3EPublica%C3%A7%C3%A3o%20no%20feed%20%28link%20direto%29%3C/text%3E%3Cpath%20d%3D%27M1030%20210%20l-90%2090%27%20stroke%3D%27%23eaf0ff%27%20stroke-opacity%3D%270.55%27%20stroke-width%3D%278%27%20stroke-linecap%3D%27round%27/%3E%3Cpath%20d%3D%27M992%20210%20l38%200%200%2038%27%20stroke%3D%27%23eaf0ff%27%20stroke-opacity%3D%270.55%27%20stroke-width%3D%278%27%20stroke-linecap%3D%27round%27%20fill%3D%27none%27/%3E%3C/svg%3E"
+                alt="Capa do artigo: Evitem usar palavras nos textos, pois fica muito claro que é IA" loading="lazy" />
+              <div class="aBody">
+                <div class="aMeta">Artigo • LinkedIn</div>
+                <h3 class="aTitle">Evitem usar palavras nos textos, pois fica muito claro que é IA</h3>
+                <p>Quando a gente para de discutir conteúdo e vira fiscal de “cara de ferramenta”.</p>
+                <div class="aActions">
+                  <a class="btn primary" target="_blank" rel="noreferrer"
+                    href="https://www.linkedin.com/pulse/evitem-usar-palavras-nos-textos-pois-fica-muito-claro-tatiane-gomes-quxtf/">
+                    Leia
+                  </a>
+                </div>
               </div>
-            </div>
-          </article>
+            </article>
 
+          </div>
         </div>
       </div>
 
@@ -1129,12 +1054,12 @@
       <p class="lead">Me mande: nicho/empresa, objetivo, páginas ou temas, volume mensal e prazo. Eu respondo com uma proposta objetiva.</p>
 
       <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <a class="btn primary" target="_blank" rel="noopener noreferrer"
+        <a class="btn primary" target="_blank" rel="noreferrer"
           href="https://wa.me/5511976625245?text=Oi%20Tati!%20Quero%20um%20or%C3%A7amento%20de%20conte%C3%BAdo%20com%20foco%20em%20SEO.">
           Falar no WhatsApp
         </a>
         <a class="btn" href="mailto:gomesrodrigues1995@gmail.com">Enviar e-mail</a>
-        <a class="btn" target="_blank" rel="noopener noreferrer"
+        <a class="btn" target="_blank" rel="noreferrer"
           href="https://www.linkedin.com/in/tatiane-gomes-rodrigues/">
           LinkedIn
         </a>
@@ -1151,7 +1076,6 @@
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Anchor offset
     (function(){
       const header = document.getElementById("siteHeader");
       if(!header) return;
@@ -1164,38 +1088,6 @@
 
       window.addEventListener("resize", setOffset);
       setTimeout(setOffset, 60);
-    })();
-
-    // Mobile menu
-    (function(){
-      const btn = document.getElementById("menuBtn");
-      const menu = document.getElementById("mobileMenu");
-      if(!btn || !menu) return;
-
-      function openMenu(){
-        menu.classList.add("open");
-        btn.setAttribute("aria-expanded","true");
-      }
-      function closeMenu(){
-        menu.classList.remove("open");
-        btn.setAttribute("aria-expanded","false");
-      }
-      function toggleMenu(){
-        if(menu.classList.contains("open")) closeMenu();
-        else openMenu();
-      }
-
-      btn.addEventListener("click", (e) => { e.stopPropagation(); toggleMenu(); });
-      menu.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
-
-      document.addEventListener("click", (e) => {
-        if(!menu.classList.contains("open")) return;
-        if(menu.contains(e.target) || btn.contains(e.target)) return;
-        closeMenu();
-      });
-
-      document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeMenu(); });
-      window.addEventListener("resize", () => { if(window.innerWidth > 920) closeMenu(); });
     })();
 
     // Slider (hero)
@@ -1235,148 +1127,150 @@
     go(0);
     start();
 
-    // Carrossel de artigos (loop sem fim + contínuo) — CORRIGIDO PARA INICIAR SOZINHO
+    // ARTIGOS (IGUAL AO HERO: TRANSFORM + LOOP)
     (function(){
-      const track = document.getElementById("articleTrack");
-      const aPrev = document.getElementById("aPrev");
-      const aNext = document.getElementById("aNext");
-      if(!track || !aPrev || !aNext) return;
+      const rail = document.getElementById("articleSlides");
+      const btnPrev = document.getElementById("aPrev");
+      const btnNext = document.getElementById("aNext");
+      if(!rail || !btnPrev || !btnNext) return;
 
-      // Duplica uma vez para virar esteira
-      const originals = Array.from(track.querySelectorAll(".aCard"));
-      originals.forEach(card => {
-        const clone = card.cloneNode(true);
-        clone.setAttribute("aria-hidden", "true");
-        clone.querySelectorAll("a").forEach(a => a.setAttribute("tabindex","-1"));
-        track.appendChild(clone);
-      });
+      const GAP = 16;
+      let stepPx = 356;
+      let baseCount = 0;
+      let i = 0; // índice “virtual” (inclui clones)
+      let auto = null;
+      let locked = false;
 
-      let base = 0;
-      function refreshBase(){
-        base = track.scrollWidth / 2;
+      function measure(){
+        const first = rail.querySelector(".aCard");
+        if(!first) return;
+        stepPx = Math.round(first.getBoundingClientRect().width + GAP);
       }
 
-      function isScrollable(){
-        return track.scrollWidth > (track.clientWidth + 5);
+      function clearClones(){
+        rail.querySelectorAll("[data-clone='1']").forEach(n => n.remove());
       }
 
-      function normalize(){
-        if(base <= 0) return;
-        if(track.scrollLeft >= base) track.scrollLeft -= base;
-        if(track.scrollLeft < 0) track.scrollLeft += base;
+      function build(){
+        clearClones();
+        const cards = Array.from(rail.querySelectorAll(".aCard")).filter(n => !n.dataset.clone);
+        baseCount = cards.length;
+        if(baseCount < 2) return;
+
+        // quantidade de clones = o suficiente pra cobrir a tela + 1
+        const viewport = rail.parentElement.getBoundingClientRect().width;
+        const clonesNeeded = Math.min(baseCount, Math.max(2, Math.ceil(viewport / stepPx) + 1));
+
+        const head = cards.slice(0, clonesNeeded).map(n => n.cloneNode(true));
+        const tail = cards.slice(-clonesNeeded).map(n => n.cloneNode(true));
+
+        tail.forEach(n => {
+          n.dataset.clone = "1";
+          n.setAttribute("aria-hidden","true");
+          n.querySelectorAll("a").forEach(a => a.setAttribute("tabindex","-1"));
+          rail.insertBefore(n, rail.firstChild);
+        });
+
+        head.forEach(n => {
+          n.dataset.clone = "1";
+          n.setAttribute("aria-hidden","true");
+          n.querySelectorAll("a").forEach(a => a.setAttribute("tabindex","-1"));
+          rail.appendChild(n);
+        });
+
+        // começa “no bloco real”
+        i = clonesNeeded;
+        snapTo(i, true);
       }
 
-      function step(){
-        const first = track.querySelector(".aCard");
-        const gap = 16;
-        return (first ? first.getBoundingClientRect().width : 340) + gap;
-      }
+      function snapTo(idx, instant){
+        if(instant) rail.classList.add("noTrans");
+        else rail.classList.remove("noTrans");
 
-      function clickStep(dir){
-        track.scrollBy({ left: dir * step(), behavior: "smooth" });
-        setTimeout(normalize, 420);
-      }
-      aPrev.addEventListener("click", () => clickStep(-1));
-      aNext.addEventListener("click", () => clickStep(1));
-      aPrev.disabled = false;
-      aNext.disabled = false;
+        rail.style.transform = `translateX(-${idx * stepPx}px)`;
 
-      // Auto contínuo
-      let running = false;
-      let rafId = null;
-      let lastTs = 0;
-      const speed = 28; // px por segundo
-
-      function loop(ts){
-        if(!running){ rafId = null; return; }
-        if(!lastTs) lastTs = ts;
-        const dt = Math.min(64, ts - lastTs);
-        lastTs = ts;
-
-        // se ainda não for scrollável, tenta de novo mais tarde (sem travar)
-        if(!isScrollable()){
-          rafId = requestAnimationFrame(loop);
-          return;
+        if(instant){
+          // força reflow pra garantir que a próxima transição pegue
+          rail.getBoundingClientRect();
+          rail.classList.remove("noTrans");
         }
-
-        track.scrollLeft += (speed * dt) / 1000;
-        normalize();
-
-        rafId = requestAnimationFrame(loop);
       }
 
-      function startAuto(){
-        if(running) return;
-        running = true;
-        lastTs = 0;
-        rafId = requestAnimationFrame(loop);
-      }
-      function stopAuto(){
-        running = false;
-        lastTs = 0;
-        if(rafId) cancelAnimationFrame(rafId);
-        rafId = null;
-      }
+      function next(){
+        if(locked) return;
+        locked = true;
+        i += 1;
+        snapTo(i, false);
 
-      // “Kick” = só inicia quando tiver largura suficiente (e recalcula base)
-      let kickTimer = null;
-      function kickStart(){
-        refreshBase();
+        setTimeout(() => {
+          // Se passou do fim do bloco real, volta pro equivalente sem transição
+          const cardsAll = rail.querySelectorAll(".aCard").length;
+          const clonesEachSide = Math.floor((cardsAll - baseCount) / 2);
 
-        // se já dá pra rolar, inicia agora
-        if(isScrollable()){
-          clearInterval(kickTimer);
-          kickTimer = null;
-          startAuto();
-          return;
-        }
-
-        // senão, fica checando até as imagens carregarem / layout estabilizar
-        if(kickTimer) return;
-        let tries = 0;
-        kickTimer = setInterval(() => {
-          tries++;
-          refreshBase();
-          if(isScrollable() || tries > 40){
-            clearInterval(kickTimer);
-            kickTimer = null;
-            startAuto();
+          if(i >= baseCount + clonesEachSide){
+            i = clonesEachSide;
+            snapTo(i, true);
           }
-        }, 150);
+          locked = false;
+        }, 520);
       }
 
-      // pausa na interação do usuário
-      track.addEventListener("mouseenter", stopAuto);
-      track.addEventListener("mouseleave", startAuto);
-      track.addEventListener("focusin", stopAuto);
-      track.addEventListener("focusout", startAuto);
-      aPrev.addEventListener("mouseenter", stopAuto);
-      aNext.addEventListener("mouseenter", stopAuto);
+      function prevFn(){
+        if(locked) return;
+        locked = true;
+        i -= 1;
+        snapTo(i, false);
 
-      track.addEventListener("scroll", () => window.requestAnimationFrame(normalize));
+        setTimeout(() => {
+          const cardsAll = rail.querySelectorAll(".aCard").length;
+          const clonesEachSide = Math.floor((cardsAll - baseCount) / 2);
 
-      // quando troca de aba, pausa/retoma sem ficar “morto”
+          if(i < clonesEachSide){
+            i = baseCount + clonesEachSide - 1;
+            snapTo(i, true);
+          }
+          locked = false;
+        }, 520);
+      }
+
+      function autoStart(){
+        autoStop();
+        auto = setInterval(next, 4200);
+      }
+      function autoStop(){
+        if(auto) clearInterval(auto);
+        auto = null;
+      }
+
+      btnNext.addEventListener("click", () => { next(); autoStart(); });
+      btnPrev.addEventListener("click", () => { prevFn(); autoStart(); });
+
+      const wrap = rail.closest(".articleCarousel");
+      wrap.addEventListener("mouseenter", autoStop);
+      wrap.addEventListener("mouseleave", autoStart);
+      wrap.addEventListener("focusin", autoStop);
+      wrap.addEventListener("focusout", autoStart);
+
+      function init(){
+        measure();
+        build();
+        autoStart();
+      }
+
+      // Inicializa já (não depende de scroll / clique)
+      init();
+
+      // Recalcula em resize
+      window.addEventListener("resize", () => {
+        measure();
+        build();
+      });
+
+      // Se voltar pra aba, retoma
       document.addEventListener("visibilitychange", () => {
-        if(document.hidden) stopAuto();
-        else{
-          refreshBase();
-          startAuto();
-        }
+        if(document.hidden) autoStop();
+        else autoStart();
       });
-
-      // recalcula em resize
-      window.addEventListener("resize", () => setTimeout(() => { refreshBase(); kickStart(); }, 80));
-
-      // importante: esperar imagens carregarem (principal causa do “só funciona quando mexe”)
-      track.querySelectorAll("img").forEach(img => {
-        if(img.complete) return;
-        img.addEventListener("load", () => setTimeout(kickStart, 50), { once:true });
-        img.addEventListener("error", () => setTimeout(kickStart, 50), { once:true });
-      });
-
-      // start: tenta agora + reforça no load da página
-      kickStart();
-      window.addEventListener("load", () => setTimeout(kickStart, 60));
     })();
 
     // Scroll Reveal
