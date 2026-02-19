@@ -99,7 +99,70 @@
       border: 1px solid transparent;
     }
     .nav a:hover{ color:var(--text); border-color:var(--line); background:rgba(255,255,255,.03); }
-    @media (max-width: 920px){ .nav{display:none} }
+
+    /* ===== MOBILE MENU ===== */
+    .headerActions{display:flex; align-items:center; gap:10px;}
+    .menuBtn{
+      width:44px; height:44px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      cursor:pointer;
+      display:none; /* só no mobile */
+      place-items:center;
+    }
+    .menuBtn:hover{ background: rgba(255,255,255,.09); }
+    .menuBtn svg{
+      width:20px; height:20px;
+      stroke: rgba(234,240,255,.92);
+      stroke-width:2;
+      fill:none;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    .mobileMenu{
+      position:absolute;
+      right: 16px;
+      top: calc(100% + 10px);
+      width: min(320px, calc(100vw - 36px));
+      border:1px solid var(--line);
+      background: rgba(17,26,47,.72);
+      backdrop-filter: blur(12px);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 10px;
+      display:none;
+    }
+    .mobileMenu.open{ display:block; }
+    .mobileMenu a{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      text-decoration:none;
+      color: var(--muted);
+      border: 1px solid transparent;
+      font-size: 13px;
+    }
+    .mobileMenu a:hover{
+      color: var(--text);
+      border-color: var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .mobileMenu .divider{
+      height:1px;
+      background: rgba(255,255,255,.10);
+      margin: 8px 2px;
+    }
+
+    @media (max-width: 920px){
+      .nav{display:none}
+      .menuBtn{display:grid}
+      header{ position: sticky; }
+      .brand{ min-width: unset; }
+    }
 
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
@@ -119,6 +182,16 @@
     }
     .btn.primary:hover{ filter:saturate(1.05); }
     .btn.ghost{ background: rgba(255,255,255,.03); }
+
+    /* foco visível (sem ficar carnaval) */
+    :where(a, button).btn:focus-visible,
+    :where(button).iconBtn:focus-visible,
+    :where(button).menuBtn:focus-visible,
+    :where(a).nav a:focus-visible,
+    :where(a).mobileMenu a:focus-visible{
+      outline: 2px solid rgba(255,45,141,.7);
+      outline-offset: 2px;
+    }
 
     section{
       margin-top:16px;
@@ -631,7 +704,27 @@
         <a href="#contato">Contato</a>
       </nav>
 
-      <a class="btn primary" href="#contato">Pedir orçamento</a>
+      <div class="headerActions">
+        <button class="menuBtn" id="menuBtn" aria-label="Abrir menu"
+          aria-expanded="false" aria-controls="mobileMenu">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 6h16" />
+            <path d="M4 12h16" />
+            <path d="M4 18h16" />
+          </svg>
+        </button>
+
+        <a class="btn primary" href="#contato">Pedir orçamento</a>
+      </div>
+
+      <div class="mobileMenu" id="mobileMenu" role="menu" aria-label="Menu mobile">
+        <a role="menuitem" href="#top">Início</a>
+        <a role="menuitem" href="#portfolio">Portfólio</a>
+        <a role="menuitem" href="#sobre">Sobre mim</a>
+        <a role="menuitem" href="#artigos">Artigos</a>
+        <div class="divider"></div>
+        <a role="menuitem" href="#contato">Contato</a>
+      </div>
     </header>
 
     <div class="heroGrid revealGroup">
@@ -706,7 +799,6 @@
           <li><span class="tick"></span> Estrutura escaneável, sem cara de genérico</li>
           <li><span class="tick"></span> Entrega pronta pra publicar</li>
           <li><span class="tick"></span> Comunicação clara (sem mistério)</li>
-          <!-- ✅ ITEM EXTRA (pra não sobrar “vazio”) -->
           <li><span class="tick"></span> Texto que dá pra defender (sem gambiarra de última hora)</li>
         </ul>
       </aside>
@@ -744,7 +836,7 @@
           </ul>
 
           <div class="pkgActions">
-            <a class="btn primary" target="_blank" rel="noreferrer"
+            <a class="btn primary" target="_blank" rel="noopener noreferrer"
               href="https://wa.me/5511976625245?text=Oi%20Tati!%20Quero%20or%C3%A7amento%20do%20pacote%20%22P%C3%A1gina%20que%20converte%22.%20%C3%89%20para%20uma%20p%C3%A1gina%20de%20produto/servi%C3%A7o.%20Posso%20te%20passar%20nicho%2C%20objetivo%20e%20link%20do%20site?">
               Quero uma página
             </a>
@@ -775,7 +867,7 @@
           </ul>
 
           <div class="pkgActions">
-            <a class="btn primary" target="_blank" rel="noreferrer"
+            <a class="btn primary" target="_blank" rel="noopener noreferrer"
               href="https://wa.me/5511976625245?text=Oi%20Tati!%20Quero%20or%C3%A7amento%20do%20pacote%20%22Institucional%20sem%20enrola%C3%A7%C3%A3o%22.%20Seria%20para%202%20a%203%20p%C3%A1ginas%20do%20site.%20Posso%20te%20passar%20o%20nicho%2C%20objetivo%20e%20o%20que%20j%C3%A1%20existe%20hoje?">
               Quero meu institucional
             </a>
@@ -807,7 +899,7 @@
           </ul>
 
           <div class="pkgActions">
-            <a class="btn primary" target="_blank" rel="noreferrer"
+            <a class="btn primary" target="_blank" rel="noopener noreferrer"
               href="https://wa.me/5511976625245?text=Oi%20Tati!%20Quero%20or%C3%A7amento%20do%20pacote%20%22Conte%C3%BAdo%20mensal%22.%20Tenho%20interesse%20em%204%20ou%208%20artigos/m%C3%AAs.%20Posso%20te%20passar%20nicho%2C%20objetivo%20e%20temas%20priorit%C3%A1rios?">
               Quero conteúdo mensal
             </a>
@@ -968,7 +1060,7 @@
               <h3 class="aTitle">Revisão virou mutirão de sinônimo (e o texto pagou a conta)</h3>
               <p>Quando “melhorar o texto” vira só troca de palavra, e a clareza vai embora no processo.</p>
               <div class="aActions">
-                <a class="btn primary" target="_blank" rel="noreferrer"
+                <a class="btn primary" target="_blank" rel="noopener noreferrer"
                   href="https://www.linkedin.com/pulse/revis%C3%A3o-virou-mutir%C3%A3o-de-sin%C3%B4nimo-e-o-texto-pagou-conta-tatiane-gomes-www8f/">Leia</a>
               </div>
             </div>
@@ -983,7 +1075,7 @@
               <h3 class="aTitle">SEO e criatividade: uma dupla dinâmica para escrita otimizada</h3>
               <p>Como juntar técnica e escrita boa sem cair no texto engessado que “passa no checklist”.</p>
               <div class="aActions">
-                <a class="btn primary" target="_blank" rel="noreferrer"
+                <a class="btn primary" target="_blank" rel="noopener noreferrer"
                   href="https://www.linkedin.com/pulse/seo-e-criatividade-uma-dupla-din%25C3%25A2mica-para-escrita-otimizada-gomes">Leia</a>
               </div>
             </div>
@@ -998,7 +1090,7 @@
               <h3 class="aTitle">Redação para SEO: por que é tão complexa?</h3>
               <p>O que faz SEO dar trabalho de verdade: intenção, estrutura e escolhas editoriais.</p>
               <div class="aActions">
-                <a class="btn primary" target="_blank" rel="noreferrer"
+                <a class="btn primary" target="_blank" rel="noopener noreferrer"
                   href="https://www.linkedin.com/pulse/reda%25C3%25A7%25C3%25A3o-para-seo-por-que-t%25C3%25A3o-complexa-tatiane-gomes">Leia</a>
               </div>
             </div>
@@ -1013,7 +1105,7 @@
               <h3 class="aTitle">Página que ranqueia e não ajuda</h3>
               <p>Quando a página até aparece no Google, mas não orienta o leitor e não converte.</p>
               <div class="aActions">
-                <a class="btn primary" target="_blank" rel="noreferrer"
+                <a class="btn primary" target="_blank" rel="noopener noreferrer"
                   href="https://www.linkedin.com/pulse/p%25C3%25A1gina-que-ranqueia-e-n%25C3%25A3o-ajuda-tatiane-gomes-tctof">Leia</a>
               </div>
             </div>
@@ -1033,12 +1125,12 @@
       <p class="lead">Me mande: nicho/empresa, objetivo, páginas ou temas, volume mensal e prazo. Eu respondo com uma proposta objetiva.</p>
 
       <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <a class="btn primary" target="_blank" rel="noreferrer"
+        <a class="btn primary" target="_blank" rel="noopener noreferrer"
           href="https://wa.me/5511976625245?text=Oi%20Tati!%20Quero%20um%20or%C3%A7amento%20de%20conte%C3%BAdo%20com%20foco%20em%20SEO.">
           Falar no WhatsApp
         </a>
         <a class="btn" href="mailto:gomesrodrigues1995@gmail.com">Enviar e-mail</a>
-        <a class="btn" target="_blank" rel="noreferrer"
+        <a class="btn" target="_blank" rel="noopener noreferrer"
           href="https://www.linkedin.com/in/tatiane-gomes-rodrigues/">
           LinkedIn
         </a>
@@ -1055,6 +1147,7 @@
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
+    // Anchor offset (pra não “grudar” no header)
     (function(){
       const header = document.getElementById("siteHeader");
       if(!header) return;
@@ -1067,6 +1160,52 @@
 
       window.addEventListener("resize", setOffset);
       setTimeout(setOffset, 60);
+    })();
+
+    // Mobile menu
+    (function(){
+      const btn = document.getElementById("menuBtn");
+      const menu = document.getElementById("mobileMenu");
+      const header = document.getElementById("siteHeader");
+      if(!btn || !menu || !header) return;
+
+      function openMenu(){
+        menu.classList.add("open");
+        btn.setAttribute("aria-expanded","true");
+      }
+      function closeMenu(){
+        menu.classList.remove("open");
+        btn.setAttribute("aria-expanded","false");
+      }
+      function toggleMenu(){
+        if(menu.classList.contains("open")) closeMenu();
+        else openMenu();
+      }
+
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggleMenu();
+      });
+
+      // fecha ao clicar num item
+      menu.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+
+      // fecha ao clicar fora
+      document.addEventListener("click", (e) => {
+        if(!menu.classList.contains("open")) return;
+        if(menu.contains(e.target) || btn.contains(e.target)) return;
+        closeMenu();
+      });
+
+      // fecha com ESC
+      document.addEventListener("keydown", (e) => {
+        if(e.key === "Escape") closeMenu();
+      });
+
+      // se redimensionar pra desktop, fecha
+      window.addEventListener("resize", () => {
+        if(window.innerWidth > 920) closeMenu();
+      });
     })();
 
     // Slider (hero)
@@ -1119,7 +1258,6 @@
         originalCards.forEach(card => {
           const clone = card.cloneNode(true);
           clone.setAttribute("aria-hidden", "true");
-          // evita duplicar tab stops: links continuam clicáveis nos originais
           clone.querySelectorAll("a").forEach(a => a.setAttribute("tabindex","-1"));
           track.appendChild(clone);
         });
@@ -1133,22 +1271,18 @@
       }
 
       function originalWidth(){
-        // largura do “bloco original” (antes do clone)
         if(!originalCards.length) return track.scrollWidth;
         const gap = 16;
         const w = originalCards.reduce((sum, el) => sum + el.getBoundingClientRect().width, 0);
-        return w + gap * (originalCards.length - 1) + 32; // 32 = padding lateral do track (16 + 16)
+        return w + gap * (originalCards.length - 1) + 32;
       }
 
       let base = 0;
-      function refreshBase(){
-        base = originalWidth();
-      }
+      function refreshBase(){ base = originalWidth(); }
       refreshBase();
       window.addEventListener("resize", refreshBase);
 
       function normalizeLoop(){
-        // quando passa do fim do bloco original, volta pro início equivalente (sem “pulo” perceptível)
         if(track.scrollLeft >= base){
           track.scrollLeft = track.scrollLeft - base;
         }else if(track.scrollLeft < 0){
@@ -1166,12 +1300,10 @@
 
       track.addEventListener("scroll", () => window.requestAnimationFrame(normalizeLoop));
 
-      // Auto-avança em loop
       let autoTimer = null;
       function autoStart(){
         autoStop();
         autoTimer = setInterval(() => {
-          // avança sempre
           track.scrollBy({ left: step(), behavior: "smooth" });
           setTimeout(normalizeLoop, 520);
         }, 4200);
@@ -1181,7 +1313,6 @@
         autoTimer = null;
       }
 
-      // pausa quando o usuário interage
       track.addEventListener("mouseenter", autoStop);
       track.addEventListener("mouseleave", autoStart);
       track.addEventListener("focusin", autoStop);
@@ -1189,7 +1320,6 @@
       aPrev.addEventListener("mouseenter", autoStop);
       aNext.addEventListener("mouseenter", autoStop);
 
-      // mantém setas sempre ativas (loop)
       aPrev.disabled = false;
       aNext.disabled = false;
 
