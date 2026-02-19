@@ -108,7 +108,7 @@
       border:1px solid var(--line);
       background: rgba(255,255,255,.06);
       cursor:pointer;
-      display:none; /* só no mobile */
+      display:none;
       place-items:center;
     }
     .menuBtn:hover{ background: rgba(255,255,255,.09); }
@@ -160,7 +160,6 @@
     @media (max-width: 920px){
       .nav{display:none}
       .menuBtn{display:grid}
-      header{ position: sticky; }
       .brand{ min-width: unset; }
     }
 
@@ -183,7 +182,6 @@
     .btn.primary:hover{ filter:saturate(1.05); }
     .btn.ghost{ background: rgba(255,255,255,.03); }
 
-    /* foco visível (sem ficar carnaval) */
     :where(a, button).btn:focus-visible,
     :where(button).iconBtn:focus-visible,
     :where(button).menuBtn:focus-visible,
@@ -352,7 +350,6 @@
       padding:16px;
     }
 
-    /* ✅ CENTRALIZA ÍCONES NOS HEADS */
     .miniHead{ display:flex; align-items:center; gap:10px; }
 
     .miniIcon{
@@ -382,7 +379,6 @@
       min-height: 0;
     }
 
-    /* ✅ CENTRALIZA ÍCONES NOS HEADS */
     .pkgHead{ display:flex; align-items:center; gap:10px; }
 
     .pkgTitleWrap{ min-width:0; }
@@ -799,7 +795,7 @@
           <li><span class="tick"></span> Estrutura escaneável, sem cara de genérico</li>
           <li><span class="tick"></span> Entrega pronta pra publicar</li>
           <li><span class="tick"></span> Comunicação clara (sem mistério)</li>
-          <li><span class="tick"></span> Texto que dá pra defender (sem gambiarra de última hora)</li>
+          <li><span class="tick"></span> Texto que sustenta decisão (sem remendo de última hora)</li>
         </ul>
       </aside>
     </div>
@@ -1111,6 +1107,24 @@
             </div>
           </article>
 
+          <!-- ✅ NOVO: post do feed (LinkedIn bloqueia pegar capa/título sem login → placeholder bonito) -->
+          <article class="aCard">
+            <img class="coverImg"
+              src='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="%23ff2d8d"/><stop offset="1" stop-color="%236d6aff"/></linearGradient><radialGradient id="r" cx="0.15" cy="0.15" r="0.9"><stop offset="0" stop-color="%23ffffff" stop-opacity="0.14"/><stop offset="1" stop-color="%230b0f19" stop-opacity="0"/></radialGradient></defs><rect width="1200" height="600" fill="%230b0f19"/><rect width="1200" height="600" fill="url(%23g)" opacity="0.22"/><rect width="1200" height="600" fill="url(%23r)"/><g fill="none" stroke="%23eaf0ff" stroke-opacity="0.9" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" transform="translate(920 165)"><path d="M0 240h170"/><path d="M60 20a40 40 0 0 1 57 57L-120 315l-76 19 19-76L60 20z"/></g><text x="70" y="180" font-family="system-ui,Segoe UI,Roboto,Arial" font-size="44" fill="%23eaf0ff" fill-opacity="0.96">Post no LinkedIn</text><text x="70" y="245" font-family="system-ui,Segoe UI,Roboto,Arial" font-size="26" fill="%23eaf0ff" fill-opacity="0.75">Clique para abrir a publicação no feed</text></svg>'
+              alt="Capa do post do LinkedIn" loading="lazy" />
+            <div class="aBody">
+              <div class="aMeta">Post • LinkedIn</div>
+              <h3 class="aTitle">Publicação no feed</h3>
+              <p>Link direto para a publicação no LinkedIn.</p>
+              <div class="aActions">
+                <a class="btn primary" target="_blank" rel="noopener noreferrer"
+                  href="https://www.linkedin.com/feed/update/urn:li:activity:7430272504755167233/">
+                  Leia
+                </a>
+              </div>
+            </div>
+          </article>
+
         </div>
       </div>
 
@@ -1187,22 +1201,18 @@
         toggleMenu();
       });
 
-      // fecha ao clicar num item
       menu.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
 
-      // fecha ao clicar fora
       document.addEventListener("click", (e) => {
         if(!menu.classList.contains("open")) return;
         if(menu.contains(e.target) || btn.contains(e.target)) return;
         closeMenu();
       });
 
-      // fecha com ESC
       document.addEventListener("keydown", (e) => {
         if(e.key === "Escape") closeMenu();
       });
 
-      // se redimensionar pra desktop, fecha
       window.addEventListener("resize", () => {
         if(window.innerWidth > 920) closeMenu();
       });
@@ -1245,7 +1255,7 @@
     go(0);
     start();
 
-    // Carrossel de artigos (sem fim + auto)
+    // Carrossel de artigos (loop sem fim + scroll contínuo)
     (function(){
       const track = document.getElementById("articleTrack");
       const aPrev = document.getElementById("aPrev");
@@ -1274,7 +1284,7 @@
         if(!originalCards.length) return track.scrollWidth;
         const gap = 16;
         const w = originalCards.reduce((sum, el) => sum + el.getBoundingClientRect().width, 0);
-        return w + gap * (originalCards.length - 1) + 32;
+        return w + gap * (originalCards.length - 1) + 32; // 32 = padding 16+16
       }
 
       let base = 0;
@@ -1283,6 +1293,7 @@
       window.addEventListener("resize", refreshBase);
 
       function normalizeLoop(){
+        // mantém scroll sempre dentro do “bloco original”
         if(track.scrollLeft >= base){
           track.scrollLeft = track.scrollLeft - base;
         }else if(track.scrollLeft < 0){
@@ -1290,40 +1301,67 @@
         }
       }
 
+      // Setas continuam funcionando (por passo)
       function scrollByStep(dir){
         track.scrollBy({ left: dir * step(), behavior: "smooth" });
-        setTimeout(normalizeLoop, 520);
+        setTimeout(normalizeLoop, 420);
       }
-
       aPrev.addEventListener("click", () => scrollByStep(-1));
       aNext.addEventListener("click", () => scrollByStep(1));
-
-      track.addEventListener("scroll", () => window.requestAnimationFrame(normalizeLoop));
-
-      let autoTimer = null;
-      function autoStart(){
-        autoStop();
-        autoTimer = setInterval(() => {
-          track.scrollBy({ left: step(), behavior: "smooth" });
-          setTimeout(normalizeLoop, 520);
-        }, 4200);
-      }
-      function autoStop(){
-        if(autoTimer) clearInterval(autoTimer);
-        autoTimer = null;
-      }
-
-      track.addEventListener("mouseenter", autoStop);
-      track.addEventListener("mouseleave", autoStart);
-      track.addEventListener("focusin", autoStop);
-      track.addEventListener("focusout", autoStart);
-      aPrev.addEventListener("mouseenter", autoStop);
-      aNext.addEventListener("mouseenter", autoStop);
-
       aPrev.disabled = false;
       aNext.disabled = false;
 
-      autoStart();
+      // ===== AUTO CONTÍNUO (sempre no mesmo sentido) =====
+      let running = true;
+      let rafId = null;
+      let lastTs = 0;
+
+      // velocidade em px/seg (ajusta se quiser mais rápido/mais lento)
+      const speed = 26;
+
+      function loop(ts){
+        if(!running){
+          rafId = null;
+          return;
+        }
+        if(!lastTs) lastTs = ts;
+        const dt = Math.min(64, ts - lastTs);
+        lastTs = ts;
+
+        track.scrollLeft += (speed * dt) / 1000;
+        normalizeLoop();
+
+        rafId = requestAnimationFrame(loop);
+      }
+
+      function startAuto(){
+        if(running) return;
+        running = true;
+        lastTs = 0;
+        rafId = requestAnimationFrame(loop);
+      }
+      function stopAuto(){
+        running = false;
+        lastTs = 0;
+        if(rafId) cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+
+      // pausa ao interagir (hover/foco/toque)
+      track.addEventListener("mouseenter", stopAuto);
+      track.addEventListener("mouseleave", startAuto);
+      track.addEventListener("focusin", stopAuto);
+      track.addEventListener("focusout", startAuto);
+      track.addEventListener("touchstart", stopAuto, { passive:true });
+      track.addEventListener("touchend", startAuto, { passive:true });
+      aPrev.addEventListener("mouseenter", stopAuto);
+      aNext.addEventListener("mouseenter", stopAuto);
+
+      // se o usuário arrastar com o mouse/trackpad, normaliza sem “tranco”
+      track.addEventListener("scroll", () => window.requestAnimationFrame(normalizeLoop));
+
+      // inicia
+      startAuto();
     })();
 
     // Scroll Reveal
