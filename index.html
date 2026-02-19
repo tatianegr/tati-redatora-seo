@@ -279,7 +279,6 @@
       padding:16px;
     }
 
-    /* ✅ CENTRALIZA ÍCONES NOS HEADS */
     .miniHead{ display:flex; align-items:center; gap:10px; }
 
     .miniIcon{
@@ -308,7 +307,6 @@
       flex-direction:column;
       min-height: 0;
     }
-
     .pkgHead{ display:flex; align-items:center; gap:10px; }
 
     .pkgTitleWrap{ min-width:0; }
@@ -463,6 +461,77 @@
       padding: 7px 11px;
       border-radius: 999px;
     }
+
+    /* ===== TIMELINE (COMO EU TRABALHO) ===== */
+    .steps{
+      list-style:none;
+      padding:0;
+      margin: 12px 0 0;
+      display:grid;
+      gap:10px;
+    }
+    .step{
+      position:relative;
+      display:grid;
+      grid-template-columns: 38px 1fr;
+      gap:12px;
+      padding:12px 12px;
+      border:1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+      overflow:hidden;
+    }
+    .step::before{
+      content:"";
+      position:absolute;
+      left: 22px;
+      top: 0;
+      bottom: 0;
+      width:2px;
+      background: linear-gradient(180deg, rgba(255,45,141,.30), rgba(109,106,255,.22));
+      opacity:.75;
+    }
+    .step:last-child::before{
+      bottom: 50%;
+    }
+
+    .stepDot{
+      position:relative;
+      width:38px;
+      display:grid;
+      place-items:start center;
+      padding-top: 2px;
+      z-index:1;
+    }
+    .dotBadge{
+      width:26px;
+      height:26px;
+      border-radius: 10px;
+      border:1px solid rgba(255,255,255,.14);
+      background: linear-gradient(135deg, rgba(255,45,141,.85), rgba(109,106,255,.75));
+      box-shadow: 0 14px 36px rgba(255,45,141,.10);
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      font-size:11px;
+      letter-spacing:.6px;
+      color: rgba(255,255,255,.95);
+    }
+    .stepBody{ min-width:0; }
+    .stepTitle{
+      margin:0;
+      font-size: 13px;
+      line-height:1.25;
+      letter-spacing:-.1px;
+      color: rgba(234,240,255,.95);
+    }
+    .stepDesc{
+      margin: 6px 0 0;
+      color: rgba(234,240,255,.72);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
     @media (max-width: 900px){
       .aboutRow,
       .aboutRow.reverse{
@@ -472,6 +541,8 @@
         max-width: 100%;
         justify-self: start !important;
       }
+      .step{ grid-template-columns: 34px 1fr; }
+      .step::before{ left: 20px; }
     }
 
     /* ===== ARTIGOS: CARROSSEL “TIPO HERO” (CONTÍNUO) ===== */
@@ -919,20 +990,55 @@
         <div class="aboutText">
           <h3>Como eu trabalho</h3>
 
-          <p>
-            Eu começo pelo objetivo e pela intenção de busca. Leio o que já existe, defino um recorte claro
-            (o que entra e o que fica de fora) e monto a estrutura antes de escrever.
-          </p>
+          <!-- ✅ TIMELINE / PASSO A PASSO -->
+          <ul class="steps" aria-label="Passo a passo do meu processo de trabalho">
+            <li class="step">
+              <div class="stepDot"><span class="dotBadge">01</span></div>
+              <div class="stepBody">
+                <h4 class="stepTitle">Objetivo e intenção de busca</h4>
+                <p class="stepDesc">Eu alinho a meta (ranque, conversão, autoridade) e a intenção antes de qualquer linha. Sem isso, o texto vira “bonito”, mas inútil.</p>
+              </div>
+            </li>
 
-          <p>
-            Com isso definido, o texto sai mais fácil de aprovar e mais fácil de manter: hierarquia, semântica,
-            links e CTA no lugar certo, sem virar “SEO automático” nem virar textão.
-          </p>
+            <li class="step">
+              <div class="stepDot"><span class="dotBadge">02</span></div>
+              <div class="stepBody">
+                <h4 class="stepTitle">Leitura do que já existe</h4>
+                <p class="stepDesc">Analiso o conteúdo atual e o cenário: o que está fraco, o que está repetido e onde dá pra ganhar clareza rápido.</p>
+              </div>
+            </li>
 
-          <ul class="aboutList">
-            <li><span class="aboutBullet">✅</span> Recorte e estrutura primeiro, pra o texto sair consistente de primeira</li>
-            <li><span class="aboutBullet">✅</span> Consistência de títulos, tom e CTAs</li>
-            <li><span class="aboutBullet">✅</span> Revisão com critério (sem “mutirão de sinônimo”)</li>
+            <li class="step">
+              <div class="stepDot"><span class="dotBadge">03</span></div>
+              <div class="stepBody">
+                <h4 class="stepTitle">Recorte e estrutura primeiro</h4>
+                <p class="stepDesc">Defino o que entra e o que fica de fora. A estrutura vem antes da escrita, pra não virar “SEO automático” nem textão.</p>
+              </div>
+            </li>
+
+            <li class="step">
+              <div class="stepDot"><span class="dotBadge">04</span></div>
+              <div class="stepBody">
+                <h4 class="stepTitle">Escrita + SEO on-page</h4>
+                <p class="stepDesc">Eu escrevo com ritmo de leitura, semântica e hierarquia. Título, intertítulos, links e CTA no lugar certo.</p>
+              </div>
+            </li>
+
+            <li class="step">
+              <div class="stepDot"><span class="dotBadge">05</span></div>
+              <div class="stepBody">
+                <h4 class="stepTitle">Revisão com critério</h4>
+                <p class="stepDesc">Reviso pra melhorar clareza e decisão editorial. Sem mutirão de sinônimo e sem “mexer só pra dizer que mexeu”.</p>
+              </div>
+            </li>
+
+            <li class="step">
+              <div class="stepDot"><span class="dotBadge">06</span></div>
+              <div class="stepBody">
+                <h4 class="stepTitle">Entrega pronta pra publicar</h4>
+                <p class="stepDesc">Você recebe organizado e aprovado pra entrar no ar: com estrutura consistente e sem idas e vindas desnecessárias.</p>
+              </div>
+            </li>
           </ul>
 
           <div class="aboutChips">
@@ -1020,7 +1126,6 @@
               </div>
             </article>
 
-            <!-- ✅ ARTIGO NOVO (com proteção extra) -->
             <article class="aCard">
               <img class="coverImg"
                 referrerpolicy="no-referrer"
@@ -1128,7 +1233,7 @@
     go(0);
     start();
 
-    // Carrossel de artigos (igual hero: contínuo, sem “vai e volta”, com reset invisível)
+    // Carrossel de artigos (igual hero: contínuo)
     (function(){
       const track = document.getElementById("aSlides");
       const aPrev = document.getElementById("aPrev");
@@ -1149,17 +1254,14 @@
       }
 
       function build(){
-        // limpa clones anteriores
         track.querySelectorAll(".aCard[aria-hidden='true']").forEach(n => n.remove());
 
         originals = Array.from(track.querySelectorAll(".aCard")).filter(n => n.getAttribute("aria-hidden") !== "true");
         baseCount = originals.length;
 
-        // clona tudo uma vez pro fim (permite reset sem pulo)
         originals.forEach(card => {
           const clone = card.cloneNode(true);
           clone.setAttribute("aria-hidden", "true");
-          // evita “tab” nos clones
           clone.querySelectorAll("a, button, input, textarea, select").forEach(el => el.setAttribute("tabindex","-1"));
           track.appendChild(clone);
         });
@@ -1176,7 +1278,6 @@
         track.style.transform = `translateX(-${aIndex * stepPx}px)`;
 
         if(noTransition){
-          // força repaint pra garantir que a próxima animação volte suave
           void track.offsetHeight;
           track.classList.remove("noTrans");
         }
@@ -1189,13 +1290,11 @@
         aIndex += dir;
         setTransform(false);
 
-        // após a transição, se passou do bloco original, reseta invisível
         setTimeout(() => {
           if(aIndex >= baseCount){
             aIndex = aIndex - baseCount;
             setTransform(true);
           }else if(aIndex < 0){
-            // se voltar além do início, joga pra “equivalente” no bloco clonado
             aIndex = aIndex + baseCount;
             setTransform(true);
           }
@@ -1215,7 +1314,6 @@
       aPrev.addEventListener("click", () => { autoStop(); nextStep(-1); autoStart(); });
       aNext.addEventListener("click", () => { autoStop(); nextStep(1); autoStart(); });
 
-      // pausa ao interagir
       const wrap = document.querySelector(".aCarousel");
       wrap.addEventListener("mouseenter", autoStop);
       wrap.addEventListener("mouseleave", autoStart);
