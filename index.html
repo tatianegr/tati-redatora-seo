@@ -551,21 +551,24 @@
       border:1px solid var(--line);
       background: rgba(255,255,255,.03);
     }
+
+    /* ✅ snap desligado para ficar contínuo de verdade */
     .track{
       display:flex;
       gap:16px;
       padding:16px;
       overflow:auto;
-      scroll-snap-type:x mandatory;
-      scroll-behavior:smooth;
+      scroll-behavior:auto; /* auto contínuo não pode competir com smooth */
       scrollbar-width: none;
       -ms-overflow-style: none;
+
+      scroll-snap-type: none;
+      -webkit-overflow-scrolling: touch;
     }
     .track::-webkit-scrollbar{ display:none; }
 
     .aCard{
       flex: 0 0 340px;
-      scroll-snap-align:start;
       border:1px solid rgba(255,255,255,.12);
       border-radius: var(--radius);
       background: rgba(17,26,47,.58);
@@ -573,6 +576,8 @@
       display:flex;
       flex-direction:column;
       min-height: 0;
+
+      scroll-snap-align: none;
     }
     .coverImg{
       width:100%;
@@ -1107,18 +1112,18 @@
             </div>
           </article>
 
-          <!-- ✅ NOVO: post do feed (LinkedIn bloqueia pegar capa/título sem login → placeholder bonito) -->
+          <!-- ✅ NOVO ARTIGO (o que você pediu) -->
           <article class="aCard">
             <img class="coverImg"
-              src='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="%23ff2d8d"/><stop offset="1" stop-color="%236d6aff"/></linearGradient><radialGradient id="r" cx="0.15" cy="0.15" r="0.9"><stop offset="0" stop-color="%23ffffff" stop-opacity="0.14"/><stop offset="1" stop-color="%230b0f19" stop-opacity="0"/></radialGradient></defs><rect width="1200" height="600" fill="%230b0f19"/><rect width="1200" height="600" fill="url(%23g)" opacity="0.22"/><rect width="1200" height="600" fill="url(%23r)"/><g fill="none" stroke="%23eaf0ff" stroke-opacity="0.9" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" transform="translate(920 165)"><path d="M0 240h170"/><path d="M60 20a40 40 0 0 1 57 57L-120 315l-76 19 19-76L60 20z"/></g><text x="70" y="180" font-family="system-ui,Segoe UI,Roboto,Arial" font-size="44" fill="%23eaf0ff" fill-opacity="0.96">Post no LinkedIn</text><text x="70" y="245" font-family="system-ui,Segoe UI,Roboto,Arial" font-size="26" fill="%23eaf0ff" fill-opacity="0.75">Clique para abrir a publicação no feed</text></svg>'
-              alt="Capa do post do LinkedIn" loading="lazy" />
+              src="https://media.licdn.com/dms/image/v2/D4D12AQEY0Zt0ISng1Q/article-cover_image-shrink_720_1280/B4DZxnurhEIoAQ-/0/1771266820052?e=2147483647&t=Vw99pxG_-xJ9BYn8YepMDmMRxcvbmG4WTu7-I2CcTuI&v=beta"
+              alt="Capa do artigo: Evitem usar palavras nos textos, pois fica muito claro que é IA" loading="lazy" />
             <div class="aBody">
-              <div class="aMeta">Post • LinkedIn</div>
-              <h3 class="aTitle">Publicação no feed</h3>
-              <p>Link direto para a publicação no LinkedIn.</p>
+              <div class="aMeta">Artigo • LinkedIn</div>
+              <h3 class="aTitle">Evitem usar palavras nos textos, pois fica muito claro que é IA</h3>
+              <p>Escrevendo com palavras… sob suspeita. Quando a gente para de discutir conteúdo e vira fiscal de “cara de ferramenta”.</p>
               <div class="aActions">
                 <a class="btn primary" target="_blank" rel="noopener noreferrer"
-                  href="https://www.linkedin.com/feed/update/urn:li:activity:7430272504755167233/">
+                  href="https://www.linkedin.com/pulse/evitem-usar-palavras-nos-textos-pois-fica-muito-claro-tatiane-gomes-quxtf/">
                   Leia
                 </a>
               </div>
@@ -1255,81 +1260,65 @@
     go(0);
     start();
 
-    // Carrossel de artigos (loop sem fim + scroll contínuo)
+    // Carrossel de artigos (loop sem fim + contínuo)
     (function(){
       const track = document.getElementById("articleTrack");
       const aPrev = document.getElementById("aPrev");
       const aNext = document.getElementById("aNext");
       if(!track || !aPrev || !aNext) return;
 
-      // Duplica os cards uma vez para permitir loop “infinito”
-      const originalCards = Array.from(track.querySelectorAll(".aCard"));
-      if(originalCards.length){
-        originalCards.forEach(card => {
-          const clone = card.cloneNode(true);
-          clone.setAttribute("aria-hidden", "true");
-          clone.querySelectorAll("a").forEach(a => a.setAttribute("tabindex","-1"));
-          track.appendChild(clone);
-        });
-      }
+      // Duplica os cards (uma vez) para “esteira infinita”
+      const originals = Array.from(track.querySelectorAll(".aCard"));
+      originals.forEach(card => {
+        const clone = card.cloneNode(true);
+        clone.setAttribute("aria-hidden", "true");
+        clone.querySelectorAll("a").forEach(a => a.setAttribute("tabindex","-1"));
+        track.appendChild(clone);
+      });
 
-      function step(){
-        const firstCard = track.querySelector(".aCard");
-        if(!firstCard) return 352;
-        const gap = 16;
-        return firstCard.getBoundingClientRect().width + gap;
-      }
-
-      function originalWidth(){
-        if(!originalCards.length) return track.scrollWidth;
-        const gap = 16;
-        const w = originalCards.reduce((sum, el) => sum + el.getBoundingClientRect().width, 0);
-        return w + gap * (originalCards.length - 1) + 32; // 32 = padding 16+16
-      }
-
+      // Base exata: metade do scrollWidth após duplicar (zero chute, zero pulo)
       let base = 0;
-      function refreshBase(){ base = originalWidth(); }
-      refreshBase();
-      window.addEventListener("resize", refreshBase);
+      function refreshBase(){
+        base = track.scrollWidth / 2;
+      }
+      setTimeout(refreshBase, 50);
+      window.addEventListener("resize", () => setTimeout(refreshBase, 50));
 
-      function normalizeLoop(){
-        // mantém scroll sempre dentro do “bloco original”
-        if(track.scrollLeft >= base){
-          track.scrollLeft = track.scrollLeft - base;
-        }else if(track.scrollLeft < 0){
-          track.scrollLeft = track.scrollLeft + base;
-        }
+      function normalize(){
+        if(base <= 0) return;
+        if(track.scrollLeft >= base) track.scrollLeft -= base;
+        if(track.scrollLeft < 0) track.scrollLeft += base;
       }
 
-      // Setas continuam funcionando (por passo)
-      function scrollByStep(dir){
+      // Setas por “passo”
+      function step(){
+        const first = track.querySelector(".aCard");
+        const gap = 16;
+        return (first ? first.getBoundingClientRect().width : 340) + gap;
+      }
+      function clickStep(dir){
         track.scrollBy({ left: dir * step(), behavior: "smooth" });
-        setTimeout(normalizeLoop, 420);
+        setTimeout(normalize, 420);
       }
-      aPrev.addEventListener("click", () => scrollByStep(-1));
-      aNext.addEventListener("click", () => scrollByStep(1));
+      aPrev.addEventListener("click", () => clickStep(-1));
+      aNext.addEventListener("click", () => clickStep(1));
       aPrev.disabled = false;
       aNext.disabled = false;
 
-      // ===== AUTO CONTÍNUO (sempre no mesmo sentido) =====
+      // Auto contínuo (requestAnimationFrame)
       let running = true;
       let rafId = null;
       let lastTs = 0;
-
-      // velocidade em px/seg (ajusta se quiser mais rápido/mais lento)
-      const speed = 26;
+      const speed = 28; // px por segundo
 
       function loop(ts){
-        if(!running){
-          rafId = null;
-          return;
-        }
+        if(!running){ rafId = null; return; }
         if(!lastTs) lastTs = ts;
         const dt = Math.min(64, ts - lastTs);
         lastTs = ts;
 
         track.scrollLeft += (speed * dt) / 1000;
-        normalizeLoop();
+        normalize();
 
         rafId = requestAnimationFrame(loop);
       }
@@ -1347,7 +1336,7 @@
         rafId = null;
       }
 
-      // pausa ao interagir (hover/foco/toque)
+      // pausa na interação
       track.addEventListener("mouseenter", stopAuto);
       track.addEventListener("mouseleave", startAuto);
       track.addEventListener("focusin", stopAuto);
@@ -1357,11 +1346,10 @@
       aPrev.addEventListener("mouseenter", stopAuto);
       aNext.addEventListener("mouseenter", stopAuto);
 
-      // se o usuário arrastar com o mouse/trackpad, normaliza sem “tranco”
-      track.addEventListener("scroll", () => window.requestAnimationFrame(normalizeLoop));
+      track.addEventListener("scroll", () => window.requestAnimationFrame(normalize));
 
-      // inicia
-      startAuto();
+      // start
+      rafId = requestAnimationFrame(loop);
     })();
 
     // Scroll Reveal
