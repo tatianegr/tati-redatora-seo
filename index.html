@@ -231,7 +231,6 @@
       display:grid;
       place-items:center;
       font-weight:900;
-      color: rgba(234,240,255,.95);
     }
     .iconBtn:hover{ background: rgba(255,255,255,.09); }
     .iconBtn:disabled{ opacity:.35; cursor:not-allowed; }
@@ -280,7 +279,7 @@
       padding:16px;
     }
 
-    .miniHead{ display:flex; align-items:center; gap:10px; }
+    .miniHead{ display:flex; align-items:flex-start; gap:10px; }
 
     .miniIcon{
       width:36px; height:36px;
@@ -455,65 +454,72 @@
       border-radius: 999px;
     }
 
-    /* ===== COMO EU TRABALHO (CARDS EXPLICATIVOS) ===== */
-    .howWork{
-      margin-top: 10px;
+    /* ===== COMO EU TRABALHO (CARDS NO ESTILO "PACOTES") ===== */
+    .workWrap{ margin-top: 10px; }
+    .workGrid{ margin-top: 12px; }
+
+    .workCard{
+      display:flex;
+      flex-direction:column;
+      min-height: 0;
     }
-    .howGrid{
-      display:grid;
-      gap:10px;
-      margin-top: 12px;
-      grid-template-columns: 1fr;
+    .workKicker{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      color: rgba(234,240,255,.75);
+      border:1px solid var(--line);
+      padding:6px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.03);
+      width: fit-content;
+      margin-bottom: 10px;
     }
-    @media (min-width: 900px){
-      .howGrid{
-        grid-template-columns: 1fr 1fr;
-      }
+    .workKicker .dot{
+      box-shadow: 0 0 0 6px rgba(255,45,141,.10);
+      background: rgba(255,45,141,.85);
     }
 
-    .howCard{
-      border:1px solid rgba(255,255,255,.12);
-      border-radius: 16px;
-      background: rgba(17,26,47,.58);
-      padding: 14px 14px;
-      overflow:hidden;
-      box-shadow: 0 18px 60px rgba(0,0,0,.12);
-      position:relative;
-    }
-    .howHead{
-      display:flex;
-      align-items:flex-start;
-      gap:12px;
-      margin-bottom: 8px;
-    }
-    .dotBadge{
-      width:28px;
-      height:28px;
-      border-radius: 11px;
+    .workIcon{
+      width:36px; height:36px;
+      border-radius:14px;
       border:1px solid rgba(255,255,255,.14);
-      background: linear-gradient(135deg, rgba(255,45,141,.85), rgba(109,106,255,.75));
-      box-shadow: 0 14px 36px rgba(255,45,141,.10);
+      background: linear-gradient(135deg, rgba(255,45,141,.18), rgba(109,106,255,.14));
       display:grid;
       place-items:center;
+      flex:0 0 auto;
+      position:relative;
+      overflow:hidden;
+    }
+    .workIcon::after{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background: radial-gradient(300px 120px at 10% 10%, rgba(255,45,141,.22), transparent 60%),
+                  radial-gradient(320px 140px at 90% 30%, rgba(109,106,255,.18), transparent 60%);
+      opacity:.95;
+      pointer-events:none;
+    }
+    .workIcon span{
+      position:relative;
+      z-index:1;
       font-weight:900;
       font-size:11px;
       letter-spacing:.6px;
-      color: rgba(255,255,255,.95);
-      flex:0 0 auto;
-      margin-top: 1px;
+      color: rgba(234,240,255,.96);
     }
-    .howTitle{
+
+    .workText p{
       margin:0;
-      font-size: 13px;
-      line-height:1.25;
-      letter-spacing:-.1px;
-      color: rgba(234,240,255,.95);
-    }
-    .howDesc{
-      margin: 0;
+      font-size:13px;
       color: rgba(234,240,255,.72);
-      font-size: 13px;
-      line-height: 1.6;
+      line-height: 1.65;
+    }
+
+    @media (max-width: 900px){
+      .aboutRow{ grid-template-columns: 1fr; }
+      .aboutPhoto{ max-width: 100%; }
     }
 
     /* ===== ARTIGOS: CARROSSEL “TIPO HERO” (CONTÍNUO) ===== */
@@ -524,9 +530,7 @@
       border:1px solid var(--line);
       background: rgba(255,255,255,.03);
     }
-    .aViewport{
-      overflow:hidden;
-    }
+    .aViewport{ overflow:hidden; }
     .aSlides{
       display:flex;
       gap:16px;
@@ -633,11 +637,6 @@
       filter: blur(0);
     }
     .revealGroup .reveal{ transition-delay: var(--d, 0ms); }
-
-    @media (max-width: 900px){
-      .aboutRow{ grid-template-columns: 1fr; }
-      .aboutPhoto{ max-width: 100%; }
-    }
 
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior:auto; }
@@ -934,7 +933,6 @@
     <section class="card pad reveal about" data-reveal="up" id="sobre">
       <h2 class="sectionTitle">Sobre mim</h2>
 
-      <!-- LINHA 1: mantém o formato, mas usa a foto que antes estava no "Como eu trabalho" -->
       <div class="aboutRow">
         <figure class="aboutPhoto">
           <img src="assets/img/tati-2.png" alt="Foto de Tatiane Gomes" loading="lazy">
@@ -963,57 +961,74 @@
 
       <hr class="aboutDivider">
 
-      <!-- LINHA 2: sem foto, só cards explicativos com passo a passo -->
-      <div class="aboutText howWork">
+      <div class="aboutText workWrap">
         <h3>Como eu trabalho</h3>
 
-        <div class="howGrid" aria-label="Passo a passo do meu processo de trabalho">
-          <div class="howCard">
-            <div class="howHead">
-              <span class="dotBadge">01</span>
-              <h4 class="howTitle">Objetivo e intenção de busca</h4>
+        <div class="grid3 revealGroup workGrid" aria-label="Passo a passo do meu processo de trabalho">
+          <div class="miniCard workCard reveal" data-reveal="up" style="--d:0ms">
+            <div class="workKicker"><span class="dot"></span> Passo 01</div>
+            <div class="miniHead">
+              <div class="workIcon" aria-hidden="true"><span>01</span></div>
+              <div class="workText">
+                <h3>Objetivo e intenção de busca</h3>
+                <p>Antes de escrever, eu amarro o que essa página precisa fazer de verdade: ranquear, converter, sustentar autoridade ou destravar uma objeção específica. A intenção de busca entra como bússola, porque sem isso o texto pode ficar “bem escrito”, mas não entrega o resultado que você está esperando.</p>
+              </div>
             </div>
-            <p class="howDesc">Eu alinho a meta (ranque, conversão, autoridade) e a intenção antes de qualquer linha. Sem isso, o texto vira “bonito”, mas inútil.</p>
           </div>
 
-          <div class="howCard">
-            <div class="howHead">
-              <span class="dotBadge">02</span>
-              <h4 class="howTitle">Leitura do que já existe</h4>
+          <div class="miniCard workCard reveal" data-reveal="up" style="--d:90ms">
+            <div class="workKicker"><span class="dot"></span> Passo 02</div>
+            <div class="miniHead">
+              <div class="workIcon" aria-hidden="true"><span>02</span></div>
+              <div class="workText">
+                <h3>Leitura do que já existe</h3>
+                <p>Eu olho o que você já tem hoje e o contexto ao redor, pra entender onde o conteúdo está fraco, repetitivo ou pouco convincente. É aqui que aparecem os “buracos” clássicos: texto que não explica, promessa que não prova e página que até fala, mas não orienta ninguém.</p>
+              </div>
             </div>
-            <p class="howDesc">Analiso o conteúdo atual e o cenário: o que está fraco, o que está repetido e onde dá pra ganhar clareza rápido.</p>
           </div>
 
-          <div class="howCard">
-            <div class="howHead">
-              <span class="dotBadge">03</span>
-              <h4 class="howTitle">Recorte e estrutura primeiro</h4>
+          <div class="miniCard workCard reveal" data-reveal="up" style="--d:180ms">
+            <div class="workKicker"><span class="dot"></span> Passo 03</div>
+            <div class="miniHead">
+              <div class="workIcon" aria-hidden="true"><span>03</span></div>
+              <div class="workText">
+                <h3>Recorte e estrutura primeiro</h3>
+                <p>Eu decido o que entra e o que fica de fora, porque o “excesso de informação” costuma ser só falta de recorte. A estrutura vem antes da escrita, com hierarquia clara e caminho de leitura, pra não cair no textão nem naquela sensação de SEO automático que parece que foi montado por peça.</p>
+              </div>
             </div>
-            <p class="howDesc">Defino o que entra e o que fica de fora. A estrutura vem antes da escrita, pra não virar “SEO automático” nem textão.</p>
           </div>
 
-          <div class="howCard">
-            <div class="howHead">
-              <span class="dotBadge">04</span>
-              <h4 class="howTitle">Escrita + SEO on-page</h4>
+          <div class="miniCard workCard reveal" data-reveal="up" style="--d:270ms">
+            <div class="workKicker"><span class="dot"></span> Passo 04</div>
+            <div class="miniHead">
+              <div class="workIcon" aria-hidden="true"><span>04</span></div>
+              <div class="workText">
+                <h3>Escrita + SEO on-page</h3>
+                <p>Com a estrutura pronta, eu escrevo com ritmo de leitura e semântica, cuidando de títulos, intertítulos, links e CTA como parte do argumento, não como enfeite. O SEO entra junto do texto, do jeito certo: ajudando a página a ser encontrada e, principalmente, entendida.</p>
+              </div>
             </div>
-            <p class="howDesc">Eu escrevo com ritmo de leitura, semântica e hierarquia. Título, intertítulos, links e CTA no lugar certo.</p>
           </div>
 
-          <div class="howCard">
-            <div class="howHead">
-              <span class="dotBadge">05</span>
-              <h4 class="howTitle">Revisão com critério</h4>
+          <div class="miniCard workCard reveal" data-reveal="up" style="--d:360ms">
+            <div class="workKicker"><span class="dot"></span> Passo 05</div>
+            <div class="miniHead">
+              <div class="workIcon" aria-hidden="true"><span>05</span></div>
+              <div class="workText">
+                <h3>Revisão com critério</h3>
+                <p>Eu reviso pra melhorar clareza, consistência e decisão editorial, sem virar mutirão de sinônimo e sem mexer só pra “mostrar serviço”. A revisão aqui tem um papel simples: deixar o texto mais defendível, mais direto e mais forte, sem perder naturalidade.</p>
+              </div>
             </div>
-            <p class="howDesc">Reviso pra melhorar clareza e decisão editorial. Sem mutirão de sinônimo e sem “mexer só pra dizer que mexeu”.</p>
           </div>
 
-          <div class="howCard">
-            <div class="howHead">
-              <span class="dotBadge">06</span>
-              <h4 class="howTitle">Entrega pronta pra publicar</h4>
+          <div class="miniCard workCard reveal" data-reveal="up" style="--d:450ms">
+            <div class="workKicker"><span class="dot"></span> Passo 06</div>
+            <div class="miniHead">
+              <div class="workIcon" aria-hidden="true"><span>06</span></div>
+              <div class="workText">
+                <h3>Entrega pronta pra publicar</h3>
+                <p>Você recebe tudo organizado pra entrar no ar, com estrutura consistente e sem depender de “interpretação” na hora de subir. A ideia é cortar idas e vindas desnecessárias: menos retrabalho, mais previsibilidade e um conteúdo que não fica preso no limbo da aprovação.</p>
+              </div>
             </div>
-            <p class="howDesc">Você recebe organizado e aprovado pra entrar no ar: com estrutura consistente e sem idas e vindas desnecessárias.</p>
           </div>
         </div>
 
@@ -1092,7 +1107,7 @@
                 <p>Quando a página até aparece no Google, mas não orienta o leitor e não converte.</p>
                 <div class="aActions">
                   <a class="btn primary" target="_blank" rel="noreferrer"
-                    href="https://www.linkedin.com/pulse/p%25C3%25A1gina-que-ranqueia-e-n%25C3%A3o-ajuda-tatiane-gomes-tctof">Leia</a>
+                    href="https://www.linkedin.com/pulse/p%25C3%25A1gina-que-ranqueia-e-n%25C3%25A3o-ajuda-tatiane-gomes-tctof">Leia</a>
                 </div>
               </div>
             </article>
@@ -1169,7 +1184,7 @@
 
     // Slider (hero)
     const slides = document.getElementById("slides");
-    const dots = Array.from(document.querySelectorAll(".dotBtn[data-go]"));
+    const dots = Array.from(document.querySelectorAll(".dotBtn"));
     const prev = document.getElementById("prev");
     const next = document.getElementById("next");
 
