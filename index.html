@@ -366,10 +366,6 @@
       align-items:stretch;
       margin-top: 10px;
     }
-    .aboutRow.reverse{
-      grid-template-columns: 1fr minmax(260px, 340px);
-      align-items:stretch;
-    }
 
     .aboutPhoto{
       margin:0;
@@ -385,10 +381,6 @@
 
       align-self: start;
       justify-self: start;
-    }
-    .aboutRow.reverse .aboutPhoto{
-      justify-self: end;
-      align-self: start;
     }
 
     .aboutPhoto::after{
@@ -463,64 +455,32 @@
       border-radius: 999px;
     }
 
-    /* ===== PASSO A PASSO (CARROSSEL HORIZONTAL) ===== */
-    .stepsWrap{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      border-radius: var(--radius);
-      padding: 12px;
+    /* ===== COMO EU TRABALHO (CARDS EXPLICATIVOS) ===== */
+    .howWork{
+      margin-top: 10px;
     }
-
-    .stepsTopRow{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
+    .howGrid{
+      display:grid;
       gap:10px;
-      margin-bottom: 10px;
+      margin-top: 12px;
+      grid-template-columns: 1fr;
     }
-    .stepsHint{
-      color: rgba(234,240,255,.60);
-      font-size:12px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      padding:6px 10px;
-      border-radius:999px;
-      width: fit-content;
-      user-select:none;
-      white-space:nowrap;
+    @media (min-width: 900px){
+      .howGrid{
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
-    .steps{
-      list-style:none;
-      padding:0;
-      margin: 0;
-      display:flex;
-      gap:12px;
-      overflow-x:auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      padding-bottom: 6px;
-    }
-    .steps::-webkit-scrollbar{ display:none; }
-
-    .step{
-      flex: 0 0 100%;
-      scroll-snap-align: start;
+    .howCard{
       border:1px solid rgba(255,255,255,.12);
       border-radius: 16px;
       background: rgba(17,26,47,.58);
       padding: 14px 14px;
+      overflow:hidden;
       box-shadow: 0 18px 60px rgba(0,0,0,.12);
-      min-height: 120px;
+      position:relative;
     }
-
-    /* Em telas maiores, dá um “peek” do próximo passo */
-    @media (min-width: 900px){
-      .step{ flex-basis: 88%; }
-    }
-
-    .stepHead{
+    .howHead{
       display:flex;
       align-items:flex-start;
       gap:12px;
@@ -542,49 +502,18 @@
       flex:0 0 auto;
       margin-top: 1px;
     }
-    .stepTitle{
+    .howTitle{
       margin:0;
       font-size: 13px;
       line-height:1.25;
       letter-spacing:-.1px;
       color: rgba(234,240,255,.95);
     }
-    .stepDesc{
+    .howDesc{
       margin: 0;
       color: rgba(234,240,255,.72);
       font-size: 13px;
       line-height: 1.6;
-    }
-
-    .stepsNav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-top: 10px;
-    }
-    .stepsDots{
-      display:flex;
-      gap:8px;
-      align-items:center;
-      justify-content:center;
-      flex:1 1 auto;
-    }
-
-    /* Reutiliza o estilo do dot do hero */
-    .stepsDots .dotBtn{ width:10px; height:10px; }
-
-    @media (max-width: 900px){
-      .aboutRow,
-      .aboutRow.reverse{
-        grid-template-columns: 1fr;
-      }
-      .aboutPhoto{
-        max-width: 100%;
-        justify-self: start !important;
-      }
-      .stepsTopRow{ flex-wrap:wrap; }
-      .step{ flex-basis: 92%; }
     }
 
     /* ===== ARTIGOS: CARROSSEL “TIPO HERO” (CONTÍNUO) ===== */
@@ -705,6 +634,11 @@
     }
     .revealGroup .reveal{ transition-delay: var(--d, 0ms); }
 
+    @media (max-width: 900px){
+      .aboutRow{ grid-template-columns: 1fr; }
+      .aboutPhoto{ max-width: 100%; }
+    }
+
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior:auto; }
       html.js .reveal, html.js .reveal.in{
@@ -716,7 +650,6 @@
       .slides{ transition:none !important; }
       .aSlides{ transition:none !important; }
       .btn{ transition:none !important; }
-      .steps{ scroll-snap-type:none; }
     }
   </style>
 </head>
@@ -1001,9 +934,10 @@
     <section class="card pad reveal about" data-reveal="up" id="sobre">
       <h2 class="sectionTitle">Sobre mim</h2>
 
+      <!-- LINHA 1: mantém o formato, mas usa a foto que antes estava no "Como eu trabalho" -->
       <div class="aboutRow">
         <figure class="aboutPhoto">
-          <img src="assets/img/tati-1.png" alt="Foto de Tatiane Gomes" loading="lazy">
+          <img src="assets/img/tati-2.png" alt="Foto de Tatiane Gomes" loading="lazy">
         </figure>
 
         <div class="aboutText">
@@ -1029,88 +963,65 @@
 
       <hr class="aboutDivider">
 
-      <!-- COMO EU TRABALHO (DEITADO + CARROSSEL) -->
-      <div class="aboutRow">
-        <figure class="aboutPhoto">
-          <img src="assets/img/tati-2.png" alt="Foto de Tatiane Gomes" loading="lazy">
-        </figure>
+      <!-- LINHA 2: sem foto, só cards explicativos com passo a passo -->
+      <div class="aboutText howWork">
+        <h3>Como eu trabalho</h3>
 
-        <div class="aboutText">
-          <h3>Como eu trabalho</h3>
-
-          <div class="stepsWrap" aria-label="Carrossel do passo a passo">
-            <div class="stepsTopRow">
-              <div class="stepsHint" id="stepsHint">Passo 1 de 6</div>
-              <div class="stepsHint" aria-hidden="true">Arraste pro lado</div>
+        <div class="howGrid" aria-label="Passo a passo do meu processo de trabalho">
+          <div class="howCard">
+            <div class="howHead">
+              <span class="dotBadge">01</span>
+              <h4 class="howTitle">Objetivo e intenção de busca</h4>
             </div>
-
-            <ul class="steps" id="steps" aria-label="Passo a passo do meu processo de trabalho">
-              <li class="step" data-step="1">
-                <div class="stepHead">
-                  <span class="dotBadge">01</span>
-                  <h4 class="stepTitle">Objetivo e intenção de busca</h4>
-                </div>
-                <p class="stepDesc">Eu alinho a meta (ranque, conversão, autoridade) e a intenção antes de qualquer linha. Sem isso, o texto vira “bonito”, mas inútil.</p>
-              </li>
-
-              <li class="step" data-step="2">
-                <div class="stepHead">
-                  <span class="dotBadge">02</span>
-                  <h4 class="stepTitle">Leitura do que já existe</h4>
-                </div>
-                <p class="stepDesc">Analiso o conteúdo atual e o cenário: o que está fraco, o que está repetido e onde dá pra ganhar clareza rápido.</p>
-              </li>
-
-              <li class="step" data-step="3">
-                <div class="stepHead">
-                  <span class="dotBadge">03</span>
-                  <h4 class="stepTitle">Recorte e estrutura primeiro</h4>
-                </div>
-                <p class="stepDesc">Defino o que entra e o que fica de fora. A estrutura vem antes da escrita, pra não virar “SEO automático” nem textão.</p>
-              </li>
-
-              <li class="step" data-step="4">
-                <div class="stepHead">
-                  <span class="dotBadge">04</span>
-                  <h4 class="stepTitle">Escrita + SEO on-page</h4>
-                </div>
-                <p class="stepDesc">Eu escrevo com ritmo de leitura, semântica e hierarquia. Título, intertítulos, links e CTA no lugar certo.</p>
-              </li>
-
-              <li class="step" data-step="5">
-                <div class="stepHead">
-                  <span class="dotBadge">05</span>
-                  <h4 class="stepTitle">Revisão com critério</h4>
-                </div>
-                <p class="stepDesc">Reviso pra melhorar clareza e decisão editorial. Sem mutirão de sinônimo e sem “mexer só pra dizer que mexeu”.</p>
-              </li>
-
-              <li class="step" data-step="6">
-                <div class="stepHead">
-                  <span class="dotBadge">06</span>
-                  <h4 class="stepTitle">Entrega pronta pra publicar</h4>
-                </div>
-                <p class="stepDesc">Você recebe organizado e aprovado pra entrar no ar: com estrutura consistente e sem idas e vindas desnecessárias.</p>
-              </li>
-            </ul>
-
-            <div class="stepsNav">
-              <button class="iconBtn" id="sPrev" aria-label="Voltar passo">‹</button>
-
-              <div class="stepsDots" id="stepsDots" aria-label="Navegação do passo a passo">
-                <!-- dots gerados via JS (mas se o JS falhar, o carrossel continua arrastável) -->
-              </div>
-
-              <button class="iconBtn" id="sNext" aria-label="Avançar passo">›</button>
-            </div>
+            <p class="howDesc">Eu alinho a meta (ranque, conversão, autoridade) e a intenção antes de qualquer linha. Sem isso, o texto vira “bonito”, mas inútil.</p>
           </div>
 
-          <div class="aboutChips">
-            <span class="chip">SEO on-page</span>
-            <span class="chip">Briefing</span>
-            <span class="chip">Páginas institucionais</span>
-            <span class="chip">Artigos</span>
+          <div class="howCard">
+            <div class="howHead">
+              <span class="dotBadge">02</span>
+              <h4 class="howTitle">Leitura do que já existe</h4>
+            </div>
+            <p class="howDesc">Analiso o conteúdo atual e o cenário: o que está fraco, o que está repetido e onde dá pra ganhar clareza rápido.</p>
           </div>
+
+          <div class="howCard">
+            <div class="howHead">
+              <span class="dotBadge">03</span>
+              <h4 class="howTitle">Recorte e estrutura primeiro</h4>
+            </div>
+            <p class="howDesc">Defino o que entra e o que fica de fora. A estrutura vem antes da escrita, pra não virar “SEO automático” nem textão.</p>
+          </div>
+
+          <div class="howCard">
+            <div class="howHead">
+              <span class="dotBadge">04</span>
+              <h4 class="howTitle">Escrita + SEO on-page</h4>
+            </div>
+            <p class="howDesc">Eu escrevo com ritmo de leitura, semântica e hierarquia. Título, intertítulos, links e CTA no lugar certo.</p>
+          </div>
+
+          <div class="howCard">
+            <div class="howHead">
+              <span class="dotBadge">05</span>
+              <h4 class="howTitle">Revisão com critério</h4>
+            </div>
+            <p class="howDesc">Reviso pra melhorar clareza e decisão editorial. Sem mutirão de sinônimo e sem “mexer só pra dizer que mexeu”.</p>
+          </div>
+
+          <div class="howCard">
+            <div class="howHead">
+              <span class="dotBadge">06</span>
+              <h4 class="howTitle">Entrega pronta pra publicar</h4>
+            </div>
+            <p class="howDesc">Você recebe organizado e aprovado pra entrar no ar: com estrutura consistente e sem idas e vindas desnecessárias.</p>
+          </div>
+        </div>
+
+        <div class="aboutChips">
+          <span class="chip">SEO on-page</span>
+          <span class="chip">Briefing</span>
+          <span class="chip">Páginas institucionais</span>
+          <span class="chip">Artigos</span>
         </div>
       </div>
     </section>
@@ -1181,7 +1092,7 @@
                 <p>Quando a página até aparece no Google, mas não orienta o leitor e não converte.</p>
                 <div class="aActions">
                   <a class="btn primary" target="_blank" rel="noreferrer"
-                    href="https://www.linkedin.com/pulse/p%25C3%25A1gina-que-ranqueia-e-n%25C3%25A3o-ajuda-tatiane-gomes-tctof">Leia</a>
+                    href="https://www.linkedin.com/pulse/p%25C3%25A1gina-que-ranqueia-e-n%25C3%A3o-ajuda-tatiane-gomes-tctof">Leia</a>
                 </div>
               </div>
             </article>
@@ -1292,82 +1203,6 @@
 
     go(0);
     start();
-
-    // Passo a passo (carrossel horizontal seguro: funciona até sem JS via arrastar)
-    (function(){
-      const steps = document.getElementById("steps");
-      const sPrev = document.getElementById("sPrev");
-      const sNext = document.getElementById("sNext");
-      const dotsWrap = document.getElementById("stepsDots");
-      const hint = document.getElementById("stepsHint");
-      if(!steps || !sPrev || !sNext || !dotsWrap || !hint) return;
-
-      const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      const items = Array.from(steps.querySelectorAll(".step"));
-      const total = items.length;
-
-      // cria dots
-      dotsWrap.innerHTML = "";
-      const dots = items.map((_, i) => {
-        const b = document.createElement("button");
-        b.className = "dotBtn" + (i === 0 ? " active" : "");
-        b.type = "button";
-        b.setAttribute("aria-label", `Ir para o passo ${i+1}`);
-        b.addEventListener("click", () => scrollToIndex(i));
-        dotsWrap.appendChild(b);
-        return b;
-      });
-
-      function measure(){
-        const first = items[0];
-        if(!first) return { step: 0, gap: 0 };
-        const rect = first.getBoundingClientRect();
-        const styles = getComputedStyle(steps);
-        const gap = parseFloat(styles.columnGap || styles.gap || "12") || 12;
-        return { step: Math.round(rect.width + gap), gap };
-      }
-
-      function getIndex(){
-        const { step } = measure();
-        if(!step) return 0;
-        const i = Math.round(steps.scrollLeft / step);
-        return Math.max(0, Math.min(total - 1, i));
-      }
-
-      function setActive(i){
-        dots.forEach((d, idx) => d.classList.toggle("active", idx === i));
-        hint.textContent = `Passo ${i+1} de ${total}`;
-      }
-
-      function scrollToIndex(i){
-        const { step } = measure();
-        const left = Math.max(0, i * step);
-        steps.scrollTo({ left, behavior: prefersReduced ? "auto" : "smooth" });
-        setActive(i);
-      }
-
-      function scrollByDir(dir){
-        const { step } = measure();
-        const i = getIndex();
-        const nextI = Math.max(0, Math.min(total - 1, i + dir));
-        scrollToIndex(nextI);
-      }
-
-      // Atualiza dot ativo ao arrastar/scrollar (com debounce simples)
-      let raf = null;
-      steps.addEventListener("scroll", () => {
-        if(raf) cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(() => setActive(getIndex()));
-      }, { passive:true });
-
-      sPrev.addEventListener("click", () => scrollByDir(-1));
-      sNext.addEventListener("click", () => scrollByDir(1));
-
-      // inicial
-      setTimeout(() => setActive(getIndex()), 60);
-      window.addEventListener("resize", () => setActive(getIndex()));
-    })();
 
     // Carrossel de artigos (igual hero: contínuo)
     (function(){
