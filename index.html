@@ -539,41 +539,58 @@
       font-size:13px;
     }
     .fitList li{ line-height: 1.5; }
-    .fitItem{
-      position: relative;
-      padding-left: 22px;
+    .fitSteps{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:12px;
+      margin-top: 10px;
     }
-    .fitItem::before{
-      content:"";
-      position:absolute;
-      left:0;
-      top:0.15em;
-      width:14px;
-      height:14px;
-      background: rgba(231, 238, 255, .75);
-      opacity: .9;
-      -webkit-mask: var(--fit-ico) no-repeat center / contain;
-      mask: var(--fit-ico) no-repeat center / contain;
+    .fitStep{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      border-radius: 16px;
+      padding:14px;
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
     }
-    .fitItem:hover::before{
-      opacity:1;
-      background: rgba(231,238,255,.92);
+    .fitIco{
+      width:34px;
+      height:34px;
+      border-radius: 12px;
+      display:grid;
+      place-items:center;
+      flex: 0 0 34px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
     }
-    .fitIcon-target{ --fit-ico: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'><path d='M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8Zm0-14a6 6 0 1 0 6 6 6 6 0 0 0-6-6Zm0 10a4 4 0 1 1 4-4 4 4 0 0 1-4 4Zm0-6a2 2 0 1 0 2 2 2 2 0 0 0-2-2Z'/></svg>"); }
-    .fitIcon-layout{ --fit-ico: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'><path d='M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5Zm4 2H6v12h2V7Zm10 0H10v4h8V7Zm0 6H10v6h8v-6Z'/></svg>"); }
-    .fitIcon-search{ --fit-ico: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'><path d='M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2Zm0 14a6 6 0 1 1 6-6 6 6 0 0 1-6 6Z'/></svg>"); }
-    .fitIcon-sliders{ --fit-ico: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'><path d='M7 4h2v9H7V4Zm8 7h2v9h-2v-9ZM6 13h4v2H6v-2Zm8-7h4v2h-4V6Zm-1 7h4v2h-4v-2ZM6 6h4v2H6V6Z'/></svg>"); }
+    .fitIco svg{
+      width:18px;
+      height:18px;
+      fill: none;
+      stroke: rgba(231,238,255,.85);
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .fitTxt{
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
     .fitCta{
       display:inline-block;
       font-size:13px;
       color: var(--accent);
       text-decoration:none;
+      margin-top: 12px;
     }
     .fitCta:hover{ text-decoration: underline; }
 
     @media (max-width: 900px){
       .aboutRow{ grid-template-columns: 1fr; }
       .aboutPhoto{ max-width: 100%; }
+      .fitSteps{ grid-template-columns: 1fr; }
     }
 
     /* ===== ARTIGOS: CARROSSEL “TIPO HERO” (CONTÍNUO) ===== */
@@ -922,12 +939,53 @@
       <p class="lead">Depois de entender o que eu entrego, aqui vai como normalmente funciona na prática:</p>
 
       <div class="fitCard">
-        <ul class="fitList">
-          <li class="fitItem fitIcon-target">Alinhamento inicial rápido (objetivo, público, tom e referências).</li>
-          <li class="fitItem fitIcon-layout">Conteúdo com estrutura editorial e foco em conversão.</li>
-          <li class="fitItem fitIcon-search">SEO on-page com decisões claras, não checklist automático.</li>
-          <li class="fitItem fitIcon-sliders">Revisão guiada por critérios, com ajustes que melhoram o texto de verdade.</li>
-        </ul>
+        <div class="fitSteps">
+          <div class="fitStep">
+            <span class="fitIco" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="8" />
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2" />
+                <path d="M12 20v2" />
+                <path d="M2 12h2" />
+                <path d="M20 12h2" />
+              </svg>
+            </span>
+            <div class="fitTxt">Alinhamento inicial rápido (objetivo, público, tom e referências).</div>
+          </div>
+          <div class="fitStep">
+            <span class="fitIco" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <rect x="4" y="5" width="16" height="14" rx="2" />
+                <path d="M9 5v14" />
+                <path d="M9 9h11" />
+              </svg>
+            </span>
+            <div class="fitTxt">Conteúdo com estrutura editorial e foco em conversão.</div>
+          </div>
+          <div class="fitStep">
+            <span class="fitIco" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="6" />
+                <path d="M16 16l5 5" />
+              </svg>
+            </span>
+            <div class="fitTxt">SEO on-page com decisões claras, não checklist automático.</div>
+          </div>
+          <div class="fitStep">
+            <span class="fitIco" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M6 4v16" />
+                <path d="M12 4v16" />
+                <path d="M18 4v16" />
+                <circle cx="6" cy="9" r="2" />
+                <circle cx="12" cy="15" r="2" />
+                <circle cx="18" cy="7" r="2" />
+              </svg>
+            </span>
+            <div class="fitTxt">Revisão guiada por critérios, com ajustes que melhoram o texto de verdade.</div>
+          </div>
+        </div>
         <a class="fitCta" href="https://wa.me/5511976625245?text=Oi%20Tati!%20Quero%20um%20or%C3%A7amento%20de%20conte%C3%BAdo%20com%20foco%20em%20SEO.">Se fizer sentido, me chama e eu te digo qual opção encaixa melhor no seu caso.</a>
       </div>
     </section>
