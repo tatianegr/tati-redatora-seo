@@ -521,9 +521,64 @@
       line-height: 1.65;
     }
 
+    /* ===== FILTRO RAPIDO ===== */
+    .fitCard{
+      margin-top: 12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius);
+      padding:16px;
+    }
+    .fitGrid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:12px;
+    }
+    .fitCol{
+      border:1px solid var(--line);
+      border-radius: 16px;
+      padding:14px;
+      background: rgba(255,255,255,.02);
+    }
+    .fitYes{
+      border-color: rgba(46,229,157,.28);
+      background: rgba(46,229,157,.08);
+    }
+    .fitNo{
+      border-color: rgba(255,45,141,.30);
+      background: rgba(255,45,141,.08);
+    }
+    .fitCol h3{
+      margin:0 0 8px;
+      font-size:14px;
+    }
+    .fitList{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:8px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .fitList li{ line-height: 1.5; }
+    .fitClose{
+      margin:12px 0 6px;
+      color: var(--text);
+      font-size:14px;
+    }
+    .fitCta{
+      display:inline-block;
+      font-size:13px;
+      color: var(--accent);
+      text-decoration:none;
+    }
+    .fitCta:hover{ text-decoration: underline; }
+
     @media (max-width: 900px){
       .aboutRow{ grid-template-columns: 1fr; }
       .aboutPhoto{ max-width: 100%; }
+      .fitGrid{ grid-template-columns: 1fr; }
     }
 
     /* ===== ARTIGOS: CARROSSEL “TIPO HERO” (CONTÍNUO) ===== */
@@ -758,6 +813,34 @@
         </ul>
       </aside>
     </div>
+
+    <section class="card pad reveal" data-reveal="up" id="para-quem">
+      <h2 class="sectionTitle">Filtro rápido</h2>
+      <p class="lead">Só pra alinhar expectativa antes da gente gastar energia (e WhatsApp) à toa.</p>
+
+      <div class="fitCard">
+        <div class="fitGrid">
+          <div class="fitCol fitYes">
+            <h3>Para quem é</h3>
+            <ul class="fitList">
+              <li>Quer um texto que explique, convença e leve à ação, sem enrolação.</li>
+              <li>Precisa de SEO com intenção e estrutura editorial, não checklist.</li>
+              <li>Topa um processo com alinhamento e revisão, porque quer consistência, não um texto solto.</li>
+            </ul>
+          </div>
+          <div class="fitCol fitNo">
+            <h3>Para quem não é</h3>
+            <ul class="fitList">
+              <li>Quer só preencher site ou postar por obrigação.</li>
+              <li>Pede texto bonito mas não decide objetivo, público e proposta.</li>
+              <li>Espera mágica sem posicionamento e sem ajustes com base em feedback real.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="fitClose">Se você quer texto que pare de pedir desculpas por existir, a gente vai se dar bem.</p>
+        <a class="fitCta" href="https://wa.me/5511976625245?text=Oi%20Tati!%20Quero%20um%20or%C3%A7amento%20de%20conte%C3%BAdo%20com%20foco%20em%20SEO.">Se faz sentido, me chama e eu te digo qual opção encaixa melhor.</a>
+      </div>
+    </section>
 
     <!-- MINI PACOTES -->
     <section class="card pad reveal" data-reveal="up" id="pacotes">
