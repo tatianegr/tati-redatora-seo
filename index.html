@@ -33,7 +33,12 @@
     }
 
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    html{
+      scroll-behavior:smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: geometricPrecision;
+    }
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
@@ -46,7 +51,7 @@
 
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
+      text-rendering: geometricPrecision;
     }
     a{color:inherit}
     img{max-width:100%; height:auto; display:block;}
@@ -616,16 +621,14 @@
     }
 
     /* Scroll Reveal (seguro) */
-    .reveal{ opacity:1; transform:none; filter:none; }
+    .reveal{ opacity:1; transform:none; }
     html.js .reveal{
       opacity: 0;
       transform: translateY(14px);
-      filter: blur(2px);
       transition:
         opacity .65s ease,
-        transform .65s cubic-bezier(.2,.75,.2,1),
-        filter .65s ease;
-      will-change: opacity, transform, filter;
+        transform .65s cubic-bezier(.2,.75,.2,1);
+      will-change: opacity, transform;
     }
     html.js .reveal[data-reveal="left"]{ transform: translateX(-16px); }
     html.js .reveal[data-reveal="right"]{ transform: translateX(16px); }
@@ -634,7 +637,6 @@
     html.js .reveal.in{
       opacity: 1;
       transform: translate(0,0);
-      filter: blur(0);
     }
     .revealGroup .reveal{ transition-delay: var(--d, 0ms); }
 
@@ -754,7 +756,7 @@
           <li><span class="tick"></span> Estrutura escaneável, sem cara de genérico</li>
           <li><span class="tick"></span> Entrega pronta pra publicar</li>
           <li><span class="tick"></span> Comunicação clara (sem mistério)</li>
-          <li><span class="tick"></span> Texto com lógica e responsabilidade (sem improviso)</li>
+          <li><span class="tick"></span> Texto lógico e responsável (sem improviso)</li>
         </ul>
       </aside>
     </div>
