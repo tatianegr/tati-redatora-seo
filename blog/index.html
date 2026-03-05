@@ -1,0 +1,28 @@
+---
+layout: default
+title: Blog
+---
+<h1>Blog</h1>
+
+{% if site.posts and site.posts.size > 0 %}
+  <ul>
+    {% for post in site.posts %}
+      <li>
+        <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+        <p>
+          <time datetime="{{ post.date | date_to_xmlschema }}">
+            {{ post.date | date: "%d/%m/%Y" }}
+          </time>
+          {% if post.categories and post.categories.size > 0 %}
+            · {{ post.categories | join: ", " }}
+          {% endif %}
+        </p>
+        {% if post.cover %}
+          <img src="{{ post.cover }}" alt="Capa do post {{ post.title }}" />
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Nenhum post publicado ainda.</p>
+{% endif %}
