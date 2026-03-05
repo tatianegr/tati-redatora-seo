@@ -1,2 +1,5 @@
 title: Tati Redatora SEO
+description: "Textos, aprendizados e bastidores do trabalho com conteúdo."
+url: "https://tatianegr.github.io"
+baseurl: "/tati-redatora-seo"
 permalink: /blog/:title/
