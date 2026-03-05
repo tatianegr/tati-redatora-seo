@@ -1,0 +1,339 @@
+:root {
+  color-scheme: dark;
+  --bg: #0b0b0d;
+  --surface: #15161b;
+  --surface-2: #1b1d23;
+  --text: #e9eaf0;
+  --muted: #a9adba;
+  --border: #2d3039;
+  --link: #9fb8ff;
+  --link-hover: #c4d3ff;
+  --primary: #7d5cff;
+  --primary-hover: #8f73ff;
+  --focus: #b7a8ff;
+  --overlay: rgba(7, 8, 10, 0.86);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}
+
+html,
+body {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+body,
+input,
+textarea,
+select,
+button {
+  color: var(--text) !important;
+}
+
+* {
+  border-color: var(--border);
+}
+
+a {
+  color: var(--link) !important;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--link-hover) !important;
+}
+
+button,
+[role="button"],
+.button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  background: var(--surface-2) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+}
+
+button:hover,
+[role="button"]:hover,
+.button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+  background: #232632 !important;
+}
+
+button[class*="primary"],
+[class*="primary"] button,
+button[class*="Primary"],
+[class*="Primary"] button,
+input[type="submit"] {
+  background: var(--primary) !important;
+  border-color: #6f4cf5 !important;
+  color: #f7f7ff !important;
+}
+
+button[class*="primary"]:hover,
+[class*="primary"] button:hover,
+button[class*="Primary"]:hover,
+[class*="Primary"] button:hover,
+input[type="submit"]:hover {
+  background: var(--primary-hover) !important;
+}
+
+input,
+textarea,
+select {
+  background: #121319 !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+button:focus,
+a:focus,
+[role="button"]:focus {
+  outline: 2px solid var(--focus) !important;
+  outline-offset: 1px;
+  box-shadow: none !important;
+}
+
+[class*="card"],
+[class*="Card"],
+[class*="panel"],
+[class*="Panel"],
+article,
+section,
+aside {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+}
+
+table,
+[class*="table"],
+[class*="Table"],
+ul,
+ol {
+  background: #11131a;
+  color: var(--text);
+}
+
+thead,
+[class*="header"],
+[class*="Header"] {
+  background: #171922 !important;
+}
+
+tbody tr:nth-child(odd),
+li:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.015);
+}
+
+tbody tr:hover,
+li:hover,
+[class*="row"]:hover,
+[class*="Row"]:hover {
+  background: rgba(159, 184, 255, 0.1) !important;
+}
+
+[class*="modal"],
+[class*="Modal"],
+[role="dialog"] {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5) !important;
+}
+
+[class*="overlay"],
+[class*="Overlay"],
+[aria-modal="true"] {
+  background: var(--overlay) !important;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #0f1014;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #323641;
+  border-radius: 10px;
+  border: 2px solid #0f1014;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #424857;
+}
+
+/* Additional Decap dark overrides to eliminate remaining light areas */
+body header,
+body nav,
+body main,
+body [class^="nc-"],
+body [class*=" nc-"] {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+body [class^="nc-"][class*="Widget"],
+body [class*=" nc-"][class*="Widget"],
+body [class^="nc-"][class*="Control"],
+body [class*=" nc-"][class*="Control"],
+body [class^="nc-"][class*="Field"],
+body [class*=" nc-"][class*="Field"],
+body [class^="nc-"][class*="Input"],
+body [class*=" nc-"][class*="Input"],
+body [class^="nc-"][class*="Select"],
+body [class*=" nc-"][class*="Select"],
+body [class^="nc-"][class*="List"],
+body [class*=" nc-"][class*="List"],
+body [class^="nc-"][class*="Date"],
+body [class*=" nc-"][class*="Date"],
+body [class^="nc-"][class*="Datetime"],
+body [class*=" nc-"][class*="Datetime"],
+body [class^="nc-"][class*="Image"],
+body [class*=" nc-"][class*="Image"],
+body [class^="nc-"][class*="Upload"],
+body [class*=" nc-"][class*="Upload"],
+body [class^="nc-"][class*="File"],
+body [class*=" nc-"][class*="File"] {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+body [class^="nc-"][class*="Widget"] button,
+body [class*=" nc-"][class*="Widget"] button,
+body [class^="nc-"][class*="Control"] button,
+body [class*=" nc-"][class*="Control"] button,
+body [class^="nc-"][class*="Field"] button,
+body [class*=" nc-"][class*="Field"] button,
+body [class^="nc-"][class*="Input"] button,
+body [class*=" nc-"][class*="Input"] button,
+body [class^="nc-"][class*="Select"] button,
+body [class*=" nc-"][class*="Select"] button,
+body [class^="nc-"][class*="List"] button,
+body [class*=" nc-"][class*="List"] button,
+body [class^="nc-"][class*="Date"] button,
+body [class*=" nc-"][class*="Date"] button,
+body [class^="nc-"][class*="Datetime"] button,
+body [class*=" nc-"][class*="Datetime"] button,
+body [class^="nc-"][class*="Image"] button,
+body [class*=" nc-"][class*="Image"] button,
+body [class^="nc-"][class*="Upload"] button,
+body [class*=" nc-"][class*="Upload"] button,
+body [class^="nc-"][class*="File"] button,
+body [class*=" nc-"][class*="File"] button {
+  background: var(--surface-2) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+}
+
+body [class^="nc-"][class*="Editor"],
+body [class*=" nc-"][class*="Editor"],
+body [class^="nc-"][class*="editor"],
+body [class*=" nc-"][class*="editor"],
+body [class^="nc-"][class*="Toolbar"],
+body [class*=" nc-"][class*="Toolbar"],
+body [class^="nc-"][class*="toolbar"],
+body [class*=" nc-"][class*="toolbar"],
+body [class^="nc-"][class*="Markdown"],
+body [class*=" nc-"][class*="Markdown"],
+body [class^="nc-"][class*="markdown"],
+body [class*=" nc-"][class*="markdown"] {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+body [class^="nc-"][class*="Editor"] iframe,
+body [class*=" nc-"][class*="Editor"] iframe,
+body [class^="nc-"][class*="editor"] iframe,
+body [class*=" nc-"][class*="editor"] iframe,
+body [class^="nc-"][class*="Markdown"] iframe,
+body [class*=" nc-"][class*="Markdown"] iframe,
+body [class^="nc-"][class*="markdown"] iframe,
+body [class*=" nc-"][class*="markdown"] iframe,
+body [class^="nc-"][class*="Editor"] [contenteditable="true"],
+body [class*=" nc-"][class*="Editor"] [contenteditable="true"],
+body [class^="nc-"][class*="editor"] [contenteditable="true"],
+body [class*=" nc-"][class*="editor"] [contenteditable="true"],
+body [class^="nc-"][class*="Markdown"] [contenteditable="true"],
+body [class*=" nc-"][class*="Markdown"] [contenteditable="true"],
+body [class^="nc-"][class*="markdown"] [contenteditable="true"],
+body [class*=" nc-"][class*="markdown"] [contenteditable="true"] {
+  background: #11131a !important;
+  color: var(--text) !important;
+}
+
+body [style*="background: white"],
+body [style*="background:white"],
+body [style*="background-color: white"],
+body [style*="background-color:white"],
+body [style*="background: rgb(255, 255, 255)"],
+body [style*="background:rgb(255,255,255)"],
+body [style*="background-color: rgb(255, 255, 255)"],
+body [style*="background-color:rgb(255,255,255)"],
+body [style*="background:#fff"],
+body [style*="background: #fff"],
+body [style*="background-color:#fff"],
+body [style*="background-color: #fff"] {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+}
+
+#nc-root,
+#nc-app,
+[id^="nc-"] {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+#nc-root [class*="css-"],
+#nc-app [class*="css-"] {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+#nc-root [class*="Mui"],
+#nc-app  [class*="Mui"] {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+#nc-root [role="banner"],
+#nc-root [role="toolbar"],
+#nc-root [role="navigation"],
+#nc-app  [role="banner"],
+#nc-app  [role="toolbar"],
+#nc-app  [role="navigation"] {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+#nc-root [class*="css-"] button,
+#nc-app  [class*="css-"] button {
+  background: var(--surface-2) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+}
