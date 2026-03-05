@@ -2,8 +2,8 @@ backend:
   name: github
   repo: tatianegr/tati-redatora-seo
   branch: main
-  base_url: "https://COLOQUE-AQUI-O-WORKER-DEPOIS"
-  auth_endpoint: "auth"
+  base_url: "https://tati-decap-proxy.gomesrodrigues1995.workers.dev"
+  auth_endpoint: "/auth"
 publish_mode: simple
 media_folder: "assets/uploads"
 public_folder: "/tati-redatora-seo/assets/uploads"
