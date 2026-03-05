@@ -18,7 +18,19 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Título", name: "title", widget: "string" }
+      - label: "Slug"
+        name: "slug"
+        widget: "string"
+        required: true
+        hint: "usado como parte do nome do arquivo; use letras minúsculas e hífens"
       - { label: "Descrição", name: "description", widget: "string", required: false }
+      - { label: "Resumo", name: "summary", widget: "string", required: false }
+      - { label: "Imagem de capa", name: "cover_image", widget: "image", required: false }
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+        field: { label: "Tag", name: "tag", widget: "string" }
       - { label: "Data", name: "date", widget: "datetime" }
       - label: "Categoria"
         name: "categories"
