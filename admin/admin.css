@@ -298,3 +298,42 @@ body [style*="background-color: #fff"] {
   background: var(--surface) !important;
   color: var(--text) !important;
 }
+
+#nc-root,
+#nc-app,
+[id^="nc-"] {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+#nc-root [class*="css-"],
+#nc-app [class*="css-"] {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+#nc-root [class*="Mui"],
+#nc-app  [class*="Mui"] {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+#nc-root [role="banner"],
+#nc-root [role="toolbar"],
+#nc-root [role="navigation"],
+#nc-app  [role="banner"],
+#nc-app  [role="toolbar"],
+#nc-app  [role="navigation"] {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+#nc-root [class*="css-"] button,
+#nc-app  [class*="css-"] button {
+  background: var(--surface-2) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+}
