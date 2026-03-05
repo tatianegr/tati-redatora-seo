@@ -7,9 +7,21 @@
     <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
   </head>
   <body>
-    <a href="{{ '/' | relative_url }}">Voltar para a Home</a>
-    <main>
-      {{ content }}
-    </main>
+    <div class="wrap">
+      <header class="card pad">
+        <div class="brand">
+          <div>
+            <b>Blog</b>
+            <small>Atualizações e bastidores</small>
+          </div>
+        </div>
+        <nav class="nav">
+          <a class="btn ghost" href="{{ '/' | relative_url }}">Home</a>
+        </nav>
+      </header>
+      <main style="margin-top:16px">
+        {{ content }}
+      </main>
+    </div>
   </body>
 </html>
