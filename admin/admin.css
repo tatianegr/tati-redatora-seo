@@ -180,3 +180,121 @@ li:hover,
 *::-webkit-scrollbar-thumb:hover {
   background: #424857;
 }
+
+/* Additional Decap dark overrides to eliminate remaining light areas */
+body header,
+body nav,
+body main,
+body [class^="nc-"],
+body [class*=" nc-"] {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+body [class^="nc-"][class*="Widget"],
+body [class*=" nc-"][class*="Widget"],
+body [class^="nc-"][class*="Control"],
+body [class*=" nc-"][class*="Control"],
+body [class^="nc-"][class*="Field"],
+body [class*=" nc-"][class*="Field"],
+body [class^="nc-"][class*="Input"],
+body [class*=" nc-"][class*="Input"],
+body [class^="nc-"][class*="Select"],
+body [class*=" nc-"][class*="Select"],
+body [class^="nc-"][class*="List"],
+body [class*=" nc-"][class*="List"],
+body [class^="nc-"][class*="Date"],
+body [class*=" nc-"][class*="Date"],
+body [class^="nc-"][class*="Datetime"],
+body [class*=" nc-"][class*="Datetime"],
+body [class^="nc-"][class*="Image"],
+body [class*=" nc-"][class*="Image"],
+body [class^="nc-"][class*="Upload"],
+body [class*=" nc-"][class*="Upload"],
+body [class^="nc-"][class*="File"],
+body [class*=" nc-"][class*="File"] {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+body [class^="nc-"][class*="Widget"] button,
+body [class*=" nc-"][class*="Widget"] button,
+body [class^="nc-"][class*="Control"] button,
+body [class*=" nc-"][class*="Control"] button,
+body [class^="nc-"][class*="Field"] button,
+body [class*=" nc-"][class*="Field"] button,
+body [class^="nc-"][class*="Input"] button,
+body [class*=" nc-"][class*="Input"] button,
+body [class^="nc-"][class*="Select"] button,
+body [class*=" nc-"][class*="Select"] button,
+body [class^="nc-"][class*="List"] button,
+body [class*=" nc-"][class*="List"] button,
+body [class^="nc-"][class*="Date"] button,
+body [class*=" nc-"][class*="Date"] button,
+body [class^="nc-"][class*="Datetime"] button,
+body [class*=" nc-"][class*="Datetime"] button,
+body [class^="nc-"][class*="Image"] button,
+body [class*=" nc-"][class*="Image"] button,
+body [class^="nc-"][class*="Upload"] button,
+body [class*=" nc-"][class*="Upload"] button,
+body [class^="nc-"][class*="File"] button,
+body [class*=" nc-"][class*="File"] button {
+  background: var(--surface-2) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+}
+
+body [class^="nc-"][class*="Editor"],
+body [class*=" nc-"][class*="Editor"],
+body [class^="nc-"][class*="editor"],
+body [class*=" nc-"][class*="editor"],
+body [class^="nc-"][class*="Toolbar"],
+body [class*=" nc-"][class*="Toolbar"],
+body [class^="nc-"][class*="toolbar"],
+body [class*=" nc-"][class*="toolbar"],
+body [class^="nc-"][class*="Markdown"],
+body [class*=" nc-"][class*="Markdown"],
+body [class^="nc-"][class*="markdown"],
+body [class*=" nc-"][class*="markdown"] {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+body [class^="nc-"][class*="Editor"] iframe,
+body [class*=" nc-"][class*="Editor"] iframe,
+body [class^="nc-"][class*="editor"] iframe,
+body [class*=" nc-"][class*="editor"] iframe,
+body [class^="nc-"][class*="Markdown"] iframe,
+body [class*=" nc-"][class*="Markdown"] iframe,
+body [class^="nc-"][class*="markdown"] iframe,
+body [class*=" nc-"][class*="markdown"] iframe,
+body [class^="nc-"][class*="Editor"] [contenteditable="true"],
+body [class*=" nc-"][class*="Editor"] [contenteditable="true"],
+body [class^="nc-"][class*="editor"] [contenteditable="true"],
+body [class*=" nc-"][class*="editor"] [contenteditable="true"],
+body [class^="nc-"][class*="Markdown"] [contenteditable="true"],
+body [class*=" nc-"][class*="Markdown"] [contenteditable="true"],
+body [class^="nc-"][class*="markdown"] [contenteditable="true"],
+body [class*=" nc-"][class*="markdown"] [contenteditable="true"] {
+  background: #11131a !important;
+  color: var(--text) !important;
+}
+
+body [style*="background: white"],
+body [style*="background:white"],
+body [style*="background-color: white"],
+body [style*="background-color:white"],
+body [style*="background: rgb(255, 255, 255)"],
+body [style*="background:rgb(255,255,255)"],
+body [style*="background-color: rgb(255, 255, 255)"],
+body [style*="background-color:rgb(255,255,255)"],
+body [style*="background:#fff"],
+body [style*="background: #fff"],
+body [style*="background-color:#fff"],
+body [style*="background-color: #fff"] {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+}
