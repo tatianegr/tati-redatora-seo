@@ -15,6 +15,21 @@
     }
 
     *{box-sizing:border-box}
+    .skipLink{
+      position: absolute;
+      top: -100%;
+      left: 16px;
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 0 0 12px 12px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      z-index: 9999;
+      transition: top .2s;
+    }
+    .skipLink:focus{ top: 0; }
     html{
       scroll-behavior:smooth;
     }
@@ -291,7 +306,6 @@
       line-height:1;
       font-size:16px;
     }
-    .tick:after{ content:"✅"; }
 
     /* Grids / mini cards */
     .grid3{ display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; }

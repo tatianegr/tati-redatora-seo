@@ -36,6 +36,8 @@
 
 <body>
 
+  <a class="skipLink" href="#conteudo">Ir para o conteúdo</a>
+
   <div class="wrap" id="top">
 
     <header class="card reveal" data-reveal="up" id="siteHeader">
@@ -71,7 +73,7 @@
       <a class="btn primary" href="https://wa.me/5511976625245?text=Oi%20Tati!%20Quero%20um%20or%C3%A7amento%20de%20conte%C3%BAdo%20com%20foco%20em%20SEO.">Pedir orçamento</a>
     </header>
 
-    <div class="heroGrid revealGroup">
+    <div class="heroGrid revealGroup" id="conteudo">
       <div class="slider reveal" data-reveal="left" style="--d:0ms" aria-label="Banners de serviços" role="region">
         <div class="slides" id="slides">
 
@@ -129,6 +131,7 @@
           </div>
 
           <div class="arrows">
+            <button class="iconBtn" id="sliderPause" aria-label="Pausar apresentação" aria-pressed="false">⏸</button>
             <button class="iconBtn" id="prev" aria-label="Anterior">‹</button>
             <button class="iconBtn" id="next" aria-label="Próximo">›</button>
           </div>
@@ -139,11 +142,11 @@
         <h3>O que você ganha?</h3>
         <p>Menos retrabalho. Mais previsibilidade. Texto com decisão editorial.</p>
         <ul class="tickList">
-          <li><span class="tick"></span> Conteúdo com foco em SEO e leitura fluida</li>
-          <li><span class="tick"></span> Estrutura escaneável, sem cara de genérico</li>
-          <li><span class="tick"></span> Entrega pronta pra publicar</li>
-          <li><span class="tick"></span> Comunicação clara (sem mistério)</li>
-          <li><span class="tick"></span> Texto lógico e responsável (sem improviso)</li>
+          <li><span class="tick" aria-hidden="true">✅</span> Conteúdo com foco em SEO e leitura fluida</li>
+          <li><span class="tick" aria-hidden="true">✅</span> Estrutura escaneável, sem cara de genérico</li>
+          <li><span class="tick" aria-hidden="true">✅</span> Entrega pronta pra publicar</li>
+          <li><span class="tick" aria-hidden="true">✅</span> Comunicação clara (sem mistério)</li>
+          <li><span class="tick" aria-hidden="true">✅</span> Texto lógico e responsável (sem improviso)</li>
         </ul>
       </aside>
     </div>
@@ -174,9 +177,9 @@
           </div>
 
           <ul class="pkgList">
-            <li><span class="aboutBullet">✅</span> 1 página completa (copy + SEO on-page)</li>
-            <li><span class="aboutBullet">✅</span> Argumento, prova e CTA no lugar certo</li>
-            <li><span class="aboutBullet">✅</span> Entrega pronta pra publicar</li>
+            <li><span class="aboutBullet" aria-hidden="true">✅</span> 1 página completa (copy + SEO on-page)</li>
+            <li><span class="aboutBullet" aria-hidden="true">✅</span> Argumento, prova e CTA no lugar certo</li>
+            <li><span class="aboutBullet" aria-hidden="true">✅</span> Entrega pronta pra publicar</li>
           </ul>
 
           <div class="pkgActions">
@@ -205,9 +208,9 @@
           </div>
 
           <ul class="pkgList">
-            <li><span class="aboutBullet">✅</span> 2–3 páginas (Home, Sobre, Serviços)</li>
-            <li><span class="aboutBullet">✅</span> Tom certo + posicionamento claro</li>
-            <li><span class="aboutBullet">✅</span> Estrutura escaneável e fácil de aprovar</li>
+            <li><span class="aboutBullet" aria-hidden="true">✅</span> 2–3 páginas (Home, Sobre, Serviços)</li>
+            <li><span class="aboutBullet" aria-hidden="true">✅</span> Tom certo + posicionamento claro</li>
+            <li><span class="aboutBullet" aria-hidden="true">✅</span> Estrutura escaneável e fácil de aprovar</li>
           </ul>
 
           <div class="pkgActions">
@@ -237,9 +240,9 @@
           </div>
 
           <ul class="pkgList">
-            <li><span class="aboutBullet">✅</span> 4 ou 8 artigos/mês (você escolhe o ritmo)</li>
-            <li><span class="aboutBullet">✅</span> Pauta + estrutura + otimização</li>
-            <li><span class="aboutBullet">✅</span> Consistência de títulos, links e CTA</li>
+            <li><span class="aboutBullet" aria-hidden="true">✅</span> 4 ou 8 artigos/mês (você escolhe o ritmo)</li>
+            <li><span class="aboutBullet" aria-hidden="true">✅</span> Pauta + estrutura + otimização</li>
+            <li><span class="aboutBullet" aria-hidden="true">✅</span> Consistência de títulos, links e CTA</li>
           </ul>
 
           <div class="pkgActions">
@@ -425,9 +428,9 @@
           </p>
 
           <ul class="aboutList">
-            <li><span class="aboutBullet">✅</span> Texto pensado pra ranquear e orientar, com clareza e recorte de verdade</li>
-            <li><span class="aboutBullet">✅</span> Estrutura que facilita aprovação e publicação, sem virar “versão 12” do arquivo</li>
-            <li><span class="aboutBullet">✅</span> Ajustes on-page com critério, pra SEO acontecer sem “automático” e sem ruído</li>
+            <li><span class="aboutBullet" aria-hidden="true">✅</span> Texto pensado pra ranquear e orientar, com clareza e recorte de verdade</li>
+            <li><span class="aboutBullet" aria-hidden="true">✅</span> Estrutura que facilita aprovação e publicação, sem virar “versão 12” do arquivo</li>
+            <li><span class="aboutBullet" aria-hidden="true">✅</span> Ajustes on-page com critério, pra SEO acontecer sem “automático” e sem ruído</li>
           </ul>
         </div>
       </div>
@@ -529,6 +532,7 @@
       </div>
 
       <div class="articleArrows reveal" data-reveal="up">
+        <button class="iconBtn" id="articlePause" aria-label="Pausar carrossel de artigos" aria-pressed="false">⏸</button>
         <button class="iconBtn" id="aPrev" aria-label="Voltar artigos">‹</button>
         <button class="iconBtn" id="aNext" aria-label="Avançar artigos">›</button>
       </div>
@@ -627,8 +631,21 @@
     slider.addEventListener("touchend", e => {
       const delta = e.changedTouches[0].clientX - touchStartX;
       if(Math.abs(delta) > 40) go(delta < 0 ? index + 1 : index - 1);
-      start();
+      if(!sliderPaused) start();
     });
+
+    // Pausa manual (hero)
+    let sliderPaused = false;
+    const sliderPauseBtn = document.getElementById("sliderPause");
+    if(sliderPauseBtn){
+      sliderPauseBtn.addEventListener("click", () => {
+        sliderPaused = !sliderPaused;
+        sliderPaused ? stop() : start();
+        sliderPauseBtn.textContent = sliderPaused ? "▶" : "⏸";
+        sliderPauseBtn.setAttribute("aria-label", sliderPaused ? "Retomar apresentação" : "Pausar apresentação");
+        sliderPauseBtn.setAttribute("aria-pressed", String(sliderPaused));
+      });
+    }
 
     go(0);
     start();
@@ -711,14 +728,14 @@
         autoTimer = null;
       }
 
-      aPrev.addEventListener("click", () => { autoStop(); nextStep(-1); autoStart(); });
-      aNext.addEventListener("click", () => { autoStop(); nextStep(1); autoStart(); });
+      aPrev.addEventListener("click", () => { autoStop(); nextStep(-1); if(!articlePaused) autoStart(); });
+      aNext.addEventListener("click", () => { autoStop(); nextStep(1); if(!articlePaused) autoStart(); });
 
       const wrap = document.querySelector(".aCarousel");
       wrap.addEventListener("mouseenter", autoStop);
-      wrap.addEventListener("mouseleave", autoStart);
+      wrap.addEventListener("mouseleave", () => { if(!articlePaused) autoStart(); });
       wrap.addEventListener("focusin", autoStop);
-      wrap.addEventListener("focusout", autoStart);
+      wrap.addEventListener("focusout", () => { if(!articlePaused) autoStart(); });
 
       // Swipe (artigos)
       let aTouchStartX = 0;
@@ -726,8 +743,21 @@
       wrap.addEventListener("touchend", e => {
         const delta = e.changedTouches[0].clientX - aTouchStartX;
         if(Math.abs(delta) > 40) nextStep(delta < 0 ? 1 : -1);
-        autoStart();
+        if(!articlePaused) autoStart();
       });
+
+      // Pausa manual (artigos)
+      let articlePaused = false;
+      const articlePauseBtn = document.getElementById("articlePause");
+      if(articlePauseBtn){
+        articlePauseBtn.addEventListener("click", () => {
+          articlePaused = !articlePaused;
+          articlePaused ? autoStop() : autoStart();
+          articlePauseBtn.textContent = articlePaused ? "▶" : "⏸";
+          articlePauseBtn.setAttribute("aria-label", articlePaused ? "Retomar carrossel de artigos" : "Pausar carrossel de artigos");
+          articlePauseBtn.setAttribute("aria-pressed", String(articlePaused));
+        });
+      }
 
       window.addEventListener("resize", () => {
         measure();
