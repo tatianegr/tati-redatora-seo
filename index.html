@@ -99,7 +99,7 @@
               </p>
             </div>
             <div class="ctaRow">
-              <a class="btn primary" href="https://wa.me/5511976625245?text=Oi%20Tati!%20Quero%20um%20or%C3%A7amento%20de%20conte%C3%BAdo%20com%20foco%20em%20SEO.">Falar no WhatsApp</a>
+              <a class="btn primary" href="https://wa.me/5511976625245?text=Oi%20Tati!%20Quero%20um%20or%C3%A7amento%20de%20conte%C3%BAdo%20com%20foco%20em%20SEO.">Pedir orçamento</a>
               <a class="btn ghost" href="#artigos">Ver artigos</a>
             </div>
           </div>
@@ -591,12 +591,13 @@
     const dots = Array.from(document.querySelectorAll(".dotBtn"));
     const prev = document.getElementById("prev");
     const next = document.getElementById("next");
+    const slideCount = slides.querySelectorAll(".slide").length;
 
     let index = 0;
     let timer = null;
 
     function go(i){
-      index = (i + 3) % 3;
+      index = (i + slideCount) % slideCount;
       slides.style.transform = `translateX(-${index * 100}%)`;
       dots.forEach((d, idx) => d.classList.toggle("active", idx === index));
     }
