@@ -1,7 +1,5 @@
 :root{
       --bg:#0b0f19;
-      --panel:#101a33;
-      --panel2:#0f1629;
       --text:#eaf0ff;
       --muted:#aeb9d8;
       --line:rgba(255,255,255,.10);
@@ -560,76 +558,10 @@
       line-height: 1.65;
     }
 
-    /* ===== FILTRO RAPIDO ===== */
-    .fitCard{
-      margin-top: 12px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      border-radius: var(--radius);
-      padding:16px;
-    }
-    .fitList{
-      list-style:none;
-      padding:0;
-      margin:0;
-      display:grid;
-      gap:8px;
-      color:var(--muted);
-      font-size:13px;
-    }
-    .fitList li{ line-height: 1.5; }
-    .fitSteps{
-      display:grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap:12px;
-      margin-top: 10px;
-    }
-    .fitStep{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.02);
-      border-radius: 16px;
-      padding:14px;
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-    }
-    .fitIco{
-      width:34px;
-      height:34px;
-      border-radius: 12px;
-      display:grid;
-      place-items:center;
-      flex: 0 0 34px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
-    }
-    .fitIco svg{
-      width:18px;
-      height:18px;
-      fill: none;
-      stroke: rgba(231,238,255,.85);
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .fitTxt{
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.55;
-    }
-    .fitCta{
-      display:inline-block;
-      font-size:13px;
-      color: var(--accent);
-      text-decoration:none;
-      margin-top: 12px;
-    }
-    .fitCta:hover{ text-decoration: underline; }
 
     @media (max-width: 900px){
       .aboutRow{ grid-template-columns: 1fr; }
       .aboutPhoto{ max-width: 100%; }
-      .fitSteps{ grid-template-columns: 1fr; }
     }
     /* ===== ARTIGOS: CARROSSEL “TIPO HERO” (CONTÍNUO) ===== */
     .aCarousel{
