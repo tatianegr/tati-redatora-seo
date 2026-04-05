@@ -620,6 +620,15 @@
     slider.addEventListener("focusin", stop);
     slider.addEventListener("focusout", start);
 
+    // Swipe (hero)
+    let touchStartX = 0;
+    slider.addEventListener("touchstart", e => { touchStartX = e.touches[0].clientX; stop(); }, { passive: true });
+    slider.addEventListener("touchend", e => {
+      const delta = e.changedTouches[0].clientX - touchStartX;
+      if(Math.abs(delta) > 40) go(delta < 0 ? index + 1 : index - 1);
+      start();
+    });
+
     go(0);
     start();
 
@@ -709,6 +718,15 @@
       wrap.addEventListener("mouseleave", autoStart);
       wrap.addEventListener("focusin", autoStop);
       wrap.addEventListener("focusout", autoStart);
+
+      // Swipe (artigos)
+      let aTouchStartX = 0;
+      wrap.addEventListener("touchstart", e => { aTouchStartX = e.touches[0].clientX; autoStop(); }, { passive: true });
+      wrap.addEventListener("touchend", e => {
+        const delta = e.changedTouches[0].clientX - aTouchStartX;
+        if(Math.abs(delta) > 40) nextStep(delta < 0 ? 1 : -1);
+        autoStart();
+      });
 
       window.addEventListener("resize", () => {
         measure();
