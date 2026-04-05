@@ -6,6 +6,23 @@
 
   <title>Tati Redatora | Portfólio</title>
   <meta name="description" content="Redatora SEO | Transformando palavras em sucesso online. Páginas institucionais, páginas de produtos e serviços e artigos para blogs com foco em SEO." />
+  <meta name="author" content="Tatiane Gomes" />
+  <link rel="canonical" href="https://tatianegr.github.io/tati-redatora-seo/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:url" content="https://tatianegr.github.io/tati-redatora-seo/" />
+  <meta property="og:title" content="Tati Redatora | Portfólio" />
+  <meta property="og:description" content="Redatora SEO | Transformando palavras em sucesso online. Páginas institucionais, páginas de produtos e serviços e artigos para blogs com foco em SEO." />
+  <meta property="og:image" content="https://tatianegr.github.io/tati-redatora-seo/assets/img/tati-1.png" />
+  <meta property="og:image:alt" content="Tatiane Gomes — Redatora SEO" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tati Redatora | Portfólio" />
+  <meta name="twitter:description" content="Redatora SEO | Transformando palavras em sucesso online. Páginas institucionais, páginas de produtos e serviços e artigos para blogs com foco em SEO." />
+  <meta name="twitter:image" content="https://tatianegr.github.io/tati-redatora-seo/assets/img/tati-1.png" />
 
   <!-- FAVICON (ícone da aba) -->
   <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/4659/4659027.png?v=2">
@@ -35,7 +52,15 @@
         </div>
       </div>
 
-      <nav class="nav" aria-label="Navegação">
+      <button class="menuBtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+
+      <nav class="nav" id="mainNav" aria-label="Navegação">
         <a href="#top">Início</a>
         <a href="#portfolio">Portfólio</a>
         <a href="#sobre">Sobre mim</a>
@@ -517,6 +542,31 @@
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Menu mobile
+    (function(){
+      const btn = document.getElementById("menuBtn");
+      const nav = document.getElementById("mainNav");
+      if(!btn || !nav) return;
+
+      function closeMenu(){
+        nav.classList.remove("open");
+        btn.setAttribute("aria-expanded", "false");
+        btn.setAttribute("aria-label", "Abrir menu");
+      }
+
+      btn.addEventListener("click", () => {
+        const isOpen = nav.classList.toggle("open");
+        btn.setAttribute("aria-expanded", String(isOpen));
+        btn.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
+      });
+
+      nav.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+
+      document.addEventListener("click", e => {
+        if(!nav.contains(e.target) && !btn.contains(e.target)) closeMenu();
+      });
+    })();
 
     (function(){
       const header = document.getElementById("siteHeader");
