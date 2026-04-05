@@ -17,8 +17,6 @@
     *{box-sizing:border-box}
     html{
       scroll-behavior:smooth;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
     body{
       margin:0;
@@ -615,33 +613,6 @@
       .aboutPhoto{ max-width: 100%; }
       .fitSteps{ grid-template-columns: 1fr; }
     }
-    #para-quem .fitStep{
-      flex-direction: column;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:12px;
-    }
-    #para-quem .fitIco{
-      display:grid;
-      place-items:center;
-    }
-    #para-quem .fitTxt{
-      text-align:center;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-size: 12.5px;
-      line-height: 1.3;
-    }
-    #para-quem .fitSteps{
-      gap:10px;
-    }
-    @media (max-width: 520px){
-      #para-quem .fitTxt{ font-size: 12px; }
-      #para-quem .fitStep{ padding:10px; }
-    }
-
     /* ===== ARTIGOS: CARROSSEL “TIPO HERO” (CONTÍNUO) ===== */
     .aCarousel{
       position:relative;

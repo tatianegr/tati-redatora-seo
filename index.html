@@ -62,6 +62,7 @@
 
       <nav class="nav" id="mainNav" aria-label="Navegação">
         <a href="#top">Início</a>
+        <a href="#pacotes">Pacotes</a>
         <a href="#portfolio">Portfólio</a>
         <a href="#sobre">Sobre mim</a>
         <a href="#artigos">Artigos</a>
@@ -71,7 +72,7 @@
     </header>
 
     <div class="heroGrid revealGroup">
-      <main class="slider reveal" data-reveal="left" style="--d:0ms" aria-label="Banners de serviços">
+      <div class="slider reveal" data-reveal="left" style="--d:0ms" aria-label="Banners de serviços" role="region">
         <div class="slides" id="slides">
 
           <div class="slide">
@@ -132,7 +133,7 @@
             <button class="iconBtn" id="next" aria-label="Próximo">›</button>
           </div>
         </div>
-      </main>
+      </div>
 
       <aside class="sideBox card reveal" data-reveal="right" style="--d:120ms">
         <h3>O que você ganha?</h3>
@@ -259,7 +260,7 @@
 
     <section class="card pad reveal" data-reveal="up">
       <div class="aboutText workWrap">
-        <h3>Como eu trabalho</h3>
+        <h2 class="sectionTitle">Como eu trabalho</h2>
 
         <div class="grid3 revealGroup workGrid" aria-label="Passo a passo do meu processo de trabalho">
           <div class="miniCard workCard reveal" data-reveal="up" style="--d:0ms">
@@ -535,7 +536,10 @@
 
     <footer class="reveal" data-reveal="up">
       <div>© <span id="y"></span> Tati • Redatora SEO</div>
-      <div><a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">Topo</a></div>
+      <div style="display:flex; gap:16px; align-items:center;">
+        <a href="https://www.linkedin.com/in/tatiane-gomes-redatora/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">Topo</a>
+      </div>
     </footer>
 
   </div>
