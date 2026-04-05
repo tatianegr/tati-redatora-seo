@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b0f19" />
+  <link rel="preconnect" href="https://media.licdn.com" crossorigin>
 
   <title>Tati Redatora | Portfólio</title>
   <meta name="description" content="Redatora SEO | Transformando palavras em sucesso online. Páginas institucionais, páginas de produtos e serviços e artigos para blogs com foco em SEO." />
@@ -155,7 +157,7 @@
     <!-- MINI PACOTES -->
     <section class="card pad reveal" data-reveal="up" id="pacotes">
       <h2 class="sectionTitle">Opções mais pedidas</h2>
-      <p class="lead" style="margin-top:-4px">
+      <p class="lead">
         Pra você bater o olho e entender o que dá pra contratar agora, com escopo fechado e processo simples.
       </p>
 
@@ -346,7 +348,7 @@
     <!-- PORTFÓLIO -->
     <section class="card pad reveal" data-reveal="up" id="portfolio">
       <h2 class="sectionTitle">Portfólio</h2>
-      <p class="lead" style="margin-top:-4px">
+      <p class="lead">
         Alguns tipos de entrega que eu faço no dia a dia. Em breve, com exemplos reais.
       </p>
 
@@ -441,7 +443,7 @@
     <!-- ARTIGOS -->
     <section class="card pad reveal" data-reveal="up" id="artigos">
       <h2 class="sectionTitle">Artigos</h2>
-      <p class="lead" style="margin-top:-4px">
+      <p class="lead">
         Um recorte do que eu escrevo quando o assunto é SEO, escrita e vida real do conteúdo. Publicados no LinkedIn.
       </p>
 
@@ -538,20 +540,23 @@
         <button class="iconBtn" id="aNext" aria-label="Avançar artigos">›</button>
       </div>
     </section>
+    </main>
 
     <footer class="reveal" data-reveal="up">
       <div>© <span id="y"></span> Tati • Redatora SEO</div>
-      <div style="display:flex; gap:16px; align-items:center;">
+      <div class="footerLinks">
         <a href="https://www.linkedin.com/in/tatiane-gomes-redatora/" target="_blank" rel="noreferrer">LinkedIn</a>
-        <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">Topo</a>
+        <a href="#top" id="topoLink">Topo</a>
       </div>
     </footer>
-    </main>
 
   </div>
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    const topoLink = document.getElementById("topoLink");
+    if(topoLink) topoLink.addEventListener("click", e => { e.preventDefault(); window.scrollTo({top:0,behavior:"smooth"}); });
 
     // Menu mobile
     (function(){
