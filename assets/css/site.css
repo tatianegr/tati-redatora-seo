@@ -584,7 +584,7 @@
     .aSlides.noTrans{ transition:none !important; }
 
     .aCard{
-      flex: 0 0 340px;
+      flex: 0 0 var(--aCardW, 320px);
       border:1px solid rgba(255,255,255,.12);
       border-radius: var(--radius);
       background: rgba(17,26,47,.58);
@@ -593,7 +593,6 @@
       flex-direction:column;
       min-height: 0;
     }
-    @media (max-width:520px){ .aCard{ flex-basis: 300px; } }
 
     .coverImg{
       width:100%;

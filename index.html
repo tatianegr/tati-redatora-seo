@@ -737,6 +737,7 @@
       if(!track || !aPrev || !aNext) return;
 
       const gap = 16;
+      const sliderPad = 32; // 16px cada lado do .aSlides
       let originals = [];
       let baseCount = 0;
       let stepPx = 0;
@@ -744,9 +745,19 @@
       let autoTimer = null;
       let isAnimating = false;
 
+      function setCardWidth(){
+        const carousel = document.querySelector(".aCarousel");
+        if(!carousel) return;
+        const w = carousel.offsetWidth;
+        const n = w >= 900 ? 3 : w >= 580 ? 2 : 1;
+        const cardW = Math.floor((w - sliderPad - (n - 1) * gap) / n);
+        document.documentElement.style.setProperty("--aCardW", cardW + "px");
+      }
+
       function measure(){
+        setCardWidth();
         const first = track.querySelector(".aCard");
-        stepPx = first ? Math.round(first.getBoundingClientRect().width + gap) : 356;
+        stepPx = first ? Math.round(first.getBoundingClientRect().width + gap) : 320;
       }
 
       function build(){
