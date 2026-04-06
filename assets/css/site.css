@@ -608,8 +608,6 @@
       display:flex;
       flex-direction:column;
       flex:1 1 auto;
-      text-align:center;
-      align-items:center;
     }
     .aTitle{
       margin:0;
@@ -635,7 +633,6 @@
       flex-wrap:wrap;
       margin-top:auto;
       padding-top: 12px;
-      justify-content:center;
     }
 
     .articleArrows{
