@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tatianegr.github.io/tati-redatora-seo/sitemap.xml
