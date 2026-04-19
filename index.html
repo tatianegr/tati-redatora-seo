@@ -9,7 +9,10 @@
   <title>Tatiane Gomes | Redatora SEO</title>
   <meta name="description" content="Redatora SEO | Transformando palavras em sucesso online. Páginas institucionais, páginas de produtos e serviços e artigos para blogs com foco em SEO." />
   <meta name="author" content="Tatiane Gomes" />
+  <meta name="geo.region" content="BR-SP" />
+  <meta name="geo.placename" content="São Paulo" />
   <link rel="canonical" href="https://tatianegr.github.io/tati-redatora-seo/" />
+  <link rel="sitemap" type="application/xml" href="sitemap.xml" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -100,6 +103,7 @@
     <main id="conteudo">
     <div class="heroGrid revealGroup">
       <div class="slider reveal" data-reveal="left" style="--d:0ms" aria-label="Banners de serviços" role="region">
+        <span class="srOnly" id="slideStatus" aria-live="polite" aria-atomic="true"></span>
         <div class="slides" id="slides">
 
           <div class="slide">
@@ -715,6 +719,11 @@
       index = (i + slideCount) % slideCount;
       slides.style.transform = `translateX(-${index * 100}%)`;
       dots.forEach((d, idx) => d.classList.toggle("active", idx === index));
+      const status = document.getElementById("slideStatus");
+      if(status){
+        const kicker = slides.querySelectorAll(".slide")[index].querySelector(".kicker");
+        status.textContent = kicker ? `Slide ${index + 1} de ${slideCount}: ${kicker.textContent.trim()}` : "";
+      }
     }
 
     function start(){
